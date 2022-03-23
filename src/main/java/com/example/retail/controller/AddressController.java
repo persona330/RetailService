@@ -37,8 +37,11 @@ public class AddressController
     @PostMapping(value = "/addresses")
     public ResponseEntity<AddressDTO> create(@RequestBody AddressDTO addressDTO) // Тип ответа явно не указан
     {
+        try{ addressService.create(addressDTO); }
+        catch (Exception e){System.out.println(e.getMessage());}
+
         addressService.create(addressDTO);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        return new ResponseEntity<>(addressDTO, HttpStatus.CREATED);
     }
 
     /**
@@ -48,11 +51,15 @@ public class AddressController
     @GetMapping(value = "/addresses")
     public ResponseEntity<List<AddressDTO>> readAll()
     {
+        try{ addressService.readAll(); }
+        catch (Exception e){System.out.println(e.getMessage());}
+
         final List<AddressDTO> addressesDTO = addressService.readAll();
 
-        return addressesDTO != null &&  !addressesDTO.isEmpty()
+        return new ResponseEntity<>(addressesDTO, HttpStatus.OK);
+        /*return addressesDTO != null &&  !addressesDTO.isEmpty()
                 ? new ResponseEntity<>(addressesDTO, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+                : new ResponseEntity<>(HttpStatus.NOT_FOUND);*/
     }
 
     /**
@@ -60,9 +67,12 @@ public class AddressController
      * @param id аннотацией извлекают значение из запроса
      * @return http статус и/или адрес
      */
-    @GetMapping(value = "/addresses/{id_Address}")
-    public ResponseEntity<AddressDTO> read(@PathVariable(name = "id_Address") Integer id)
+    @GetMapping(value = "/addresses/{id}")
+    public ResponseEntity<AddressDTO> read(@PathVariable(name = "id") Integer id)
     {
+        try{ addressService.read(id); }
+        catch (Exception e){System.out.println(e.getMessage());}
+
         final AddressDTO addressDTO = addressService.read(id);
 
         return addressDTO != null // if else
@@ -76,9 +86,12 @@ public class AddressController
      * @param addressDTO
      * @return http статус и/или измененный адрес
      */
-    @PutMapping(value = "/addresses/{id_Address}")
-    public ResponseEntity<AddressDTO> update(@PathVariable(name = "id_Address") int id, @RequestBody AddressDTO addressDTO)
+    @PutMapping(value = "/addresses/{id}")
+    public ResponseEntity<AddressDTO> update(@PathVariable(name = "id") int id, @RequestBody AddressDTO addressDTO)
     {
+        try{ addressService.update(addressDTO, id);}
+        catch (Exception e){System.out.println(e.getMessage());}
+
         final boolean updated = addressService.update(addressDTO, id);
 
         return updated
@@ -91,9 +104,12 @@ public class AddressController
      * @param id
      * @return http статус
      */
-    @DeleteMapping(value = "/addresses/{id_Address}")
-    public ResponseEntity<AddressDTO> delete(@PathVariable(name = "id_Address") int id)
+    @DeleteMapping(value = "/addresses/{id}")
+    public ResponseEntity<AddressDTO> delete(@PathVariable(name = "id") int id)
     {
+        try{ addressService.delete(id); }
+        catch (Exception e){System.out.println(e.getMessage());}
+
         final boolean deleted = addressService.delete(id);
 
         return deleted

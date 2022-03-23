@@ -8,9 +8,9 @@ import java.time.LocalDateTime;
 @Data
 public abstract class BaseDTO implements Serializable
 {
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss.SSS")
+   /* @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss.SSS")
     LocalDateTime created;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss.SSS")
-    LocalDateTime updated;
+    LocalDateTime updated;*/
 }

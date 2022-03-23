@@ -14,7 +14,7 @@ import lombok.*;
 @AllArgsConstructor
 public abstract class BaseEntity implements Serializable
 {
-    LocalDateTime created;
+   /* LocalDateTime created;
     LocalDateTime updated;
 
     @Column(name = "created", updatable = false)
@@ -29,5 +29,5 @@ public abstract class BaseEntity implements Serializable
     public void toCreate() { setCreated(LocalDateTime.now()); }
 
     @PreUpdate
-    public void toUpdate() { setUpdated(LocalDateTime.now()); }
+    public void toUpdate() { setUpdated(LocalDateTime.now()); }*/
 }
