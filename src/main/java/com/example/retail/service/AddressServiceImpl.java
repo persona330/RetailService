@@ -5,6 +5,7 @@ import com.example.retail.model.dto.AddressDTO;
 import com.example.retail.model.entity.Address;
 import com.example.retail.repository.AddressRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -44,15 +45,32 @@ public class AddressServiceImpl implements AddressService
     }
 
     @Override
-    public boolean update(AddressDTO addressDTO, Integer id)
+    public AddressDTO update(AddressDTO addressDTO, Integer id)
     {
-        Address address = addressRepository.getOne(id);
+        Address address = addressRepository.getById(id);
+        Address addresstoEntity = addressMapper.toEntity(addressDTO);
+
         if (address != null)
         {
-            addressDTO = addressMapper.toDTO(address);
-            return true;
+            if (addresstoEntity.getId() == null) addresstoEntity.setId(address.getId());
+
+            if (addresstoEntity.getApartment() == null) addresstoEntity.setApartment(address.getApartment());
+
+            if (addresstoEntity.getEntrance() == 0) addresstoEntity.setEntrance(address.getEntrance());
+
+            if (addresstoEntity.getHouse() == null) addresstoEntity.setHouse(address.getHouse());
+
+            if (addresstoEntity.getStreet() == null) addresstoEntity.setStreet(address.getStreet());
+
+            if (addresstoEntity.getRegion() == null) addresstoEntity.setRegion(address.getRegion());
+
+            if (addresstoEntity.getCity() == null) addresstoEntity.setCity(address.getCity());
+
+            if (addresstoEntity.getNation() == null) addresstoEntity.setNation(address.getNation());
+
+            return addressMapper.toDTO(addressRepository.save(addresstoEntity));
         }
-        else return false;
+        else return null;
     }
 
     @Override

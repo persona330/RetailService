@@ -40,7 +40,6 @@ public class AddressController
         try{ addressService.create(addressDTO); }
         catch (Exception e){System.out.println(e.getMessage());}
 
-        addressService.create(addressDTO);
         return new ResponseEntity<>(addressDTO, HttpStatus.CREATED);
     }
 
@@ -92,10 +91,10 @@ public class AddressController
         try{ addressService.update(addressDTO, id);}
         catch (Exception e){System.out.println(e.getMessage());}
 
-        final boolean updated = addressService.update(addressDTO, id);
+        AddressDTO updatedAddressDTO = addressService.update(addressDTO, id);
 
-        return updated
-                ? new ResponseEntity<>(addressDTO, HttpStatus.OK)
+        return updatedAddressDTO != null
+                ? new ResponseEntity<>(updatedAddressDTO, HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
 

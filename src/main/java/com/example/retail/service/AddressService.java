@@ -31,7 +31,7 @@ public interface AddressService
      * @param id
      * @return true если данные были обновлены, иначе false
      */
-    boolean update(AddressDTO addressDTO, Integer id);
+    AddressDTO update(AddressDTO addressDTO, Integer id);
 
     /**
      * Удаляет адрес с заданным id
