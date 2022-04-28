@@ -6,7 +6,7 @@ import java.util.Date;
 /**
  * Класс Накладная со свойствами <b>id_produkt<b/>, <b>voll_name<b/>, <b>menge_auf_lager<b/>
  */
-public class ConsignmentNote
+public class ConsignmentNote extends BaseEntity
 {
     /** Свойство идентификатор товарной накладной*/
     private int id_ConsignmentNote;

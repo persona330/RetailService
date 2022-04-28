@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Entity
 @EqualsAndHashCode(callSuper = false)
 @Table(name = "CUSTOMER")
-public class Customer
+public class Customer extends BaseEntity
 {
     /** Свойство идентификатор покупателя*/
     private Integer id_Customer;
