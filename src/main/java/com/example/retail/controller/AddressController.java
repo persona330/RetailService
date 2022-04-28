@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
+@CrossOrigin(origins = "*")
 @RestController
 public class AddressController
 {
@@ -34,7 +35,7 @@ public class AddressController
      * @param addressDTO аннатацией переобразуется содержимое запроса и подставляется в объект параметра функции
      * @return http статус
      */
-    @PostMapping(value = "/addresses")
+    @PostMapping(value = "/addresses", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<AddressDTO> create(@RequestBody AddressDTO addressDTO) // Тип ответа явно не указан
     {
         try{ addressService.create(addressDTO); }
@@ -47,7 +48,7 @@ public class AddressController
      * Получение информации об адресах
      * @return http статус и/или адреса
      */
-    @GetMapping(value = "/addresses")
+    @GetMapping(value = "/addresses", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<List<AddressDTO>> readAll()
     {
         try{ addressService.readAll(); }
@@ -66,7 +67,7 @@ public class AddressController
      * @param id аннотацией извлекают значение из запроса
      * @return http статус и/или адрес
      */
-    @GetMapping(value = "/addresses/{id}")
+    @GetMapping(value = "/addresses/{id}", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<AddressDTO> read(@PathVariable(name = "id") Integer id)
     {
         try{ addressService.read(id); }
@@ -85,7 +86,7 @@ public class AddressController
      * @param addressDTO
      * @return http статус и/или измененный адрес
      */
-    @PutMapping(value = "/addresses/{id}")
+    @PutMapping(value = "/addresses/{id}", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<AddressDTO> update(@PathVariable(name = "id") int id, @RequestBody AddressDTO addressDTO)
     {
         try{ addressService.update(addressDTO, id);}
@@ -103,7 +104,7 @@ public class AddressController
      * @param id
      * @return http статус
      */
-    @DeleteMapping(value = "/addresses/{id}")
+    @DeleteMapping(value = "/addresses/{id}", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<AddressDTO> delete(@PathVariable(name = "id") int id)
     {
         try{ addressService.delete(id); }
