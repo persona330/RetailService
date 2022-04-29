@@ -1,4 +1,14 @@
 package com.example.retail.repository;
 
-public interface ProducerRepository {
+import com.example.retail.model.entity.Address;
+import com.example.retail.model.entity.Producer;
+
+import java.util.List;
+
+public interface ProducerRepository extends BaseRepository <Producer, Integer>
+{
+    List<Producer> findAll();
+    Producer getById(Integer id);
+    void delete(Producer producer);
+    Producer getOne(Integer id);
 }

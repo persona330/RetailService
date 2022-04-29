@@ -12,6 +12,4 @@ public interface AddressRepository extends BaseRepository <Address, Integer>
     Address getById(Integer id);
     void delete(Address address);
     Address getOne(Integer id);
-
-
 }
