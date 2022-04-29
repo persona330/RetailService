@@ -25,7 +25,7 @@ public class Measurement extends BaseEntity
      * @param id_Measurement
      * @param name
      * @param fullName
-     * @see Communication#Communication()
+     * @see Measurement#Measurement()
      */
     public Measurement(Integer id_Measurement, String name, String fullName)
     {
