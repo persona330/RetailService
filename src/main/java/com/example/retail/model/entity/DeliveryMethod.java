@@ -14,7 +14,7 @@ import java.util.Date;
 @Entity
 @EqualsAndHashCode(callSuper = false)
 @Table(name = "DELIVERY_METHOD")
-public class DeliveryMethod
+public class DeliveryMethod extends BaseEntity
 {
     /** Свойство идентификатор метода доставки*/
     private Integer id_DeliveryMethod;
