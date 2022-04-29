@@ -6,40 +6,40 @@ import lombok.NonNull;
 import javax.persistence.*;
 
 /**
- * Класс Должность со свойствами <b>id_Position<b/>, <b>ame<b/>
+ * Класс СпособОплаты со свойствами <b>id_PaymentMethod<b/>, <b>name<b/>
  */
 @Entity
 @EqualsAndHashCode(callSuper = false)
-@Table(name = "POSITION")
-public class Position extends BaseEntity
+@Table(name = "PAYMENT_METHOD")
+public class PaymentMethod extends BaseEntity
 {
-    /** Свойство идентификатор должности работника*/
-    private Integer id_Position;
-    /**Свойство наименование должности*/
+    /** Свойство идентификатор способа оплаты*/
+    private Integer id_PaymentMethod;
+    /**Свойство название*/
     private String name;
 
     /**
      * Конструктор - создание нового объекта с определенными значениями
-     * @param id_Position
+     * @param id_PaymentMethod
      * @param name
-     * @see Position#Position()
+     * @see PaymentMethod#PaymentMethod()
      */
-    public Position(Integer id_Position, String name)
+    public PaymentMethod(Integer id_PaymentMethod, String name)
     {
-        this.id_Position = id_Position;
+        this.id_PaymentMethod = id_PaymentMethod;
         this.name = name;
     }
     /**
      * Конструктор - создание нового объекта
-     * @see Position#Position(Integer, String)
+     * @see PaymentMethod#PaymentMethod(Integer, String)
      */
-    public Position(){}
+    public PaymentMethod(){}
 
     @Id
     @GeneratedValue(generator = "SQLAddress", strategy = GenerationType.AUTO)
     @Column(name = "ID_Address", unique = true, nullable = false)
-    public Integer getId_Position() { return id_Position; }
-    public void setId_Position(Integer id_Position) { this.id_Position = id_Position; }
+    public Integer getId_PaymentMethod() { return id_PaymentMethod; }
+    public void setId_PaymentMethod(Integer id_PaymentMethod) { this.id_PaymentMethod = id_PaymentMethod; }
 
     @Basic
     @NonNull
