@@ -1,5 +1,7 @@
 package com.example.retail.model.entity;
 
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -12,6 +14,7 @@ public class ConsignmentNote extends BaseEntity
     private int id_ConsignmentNote;
     /**Свойство номер накладной*/
     private char number;
+    @Temporal(TemporalType.DATE)
     /**Свойство дата прибытия товара*/
     private Date arrivalDate;
     /**Свойство товар на возврат организации поставщику*/

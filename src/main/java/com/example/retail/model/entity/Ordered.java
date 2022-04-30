@@ -60,6 +60,7 @@ public class Ordered extends BaseEntity
 
     @Basic
     @NonNull
+    @Temporal(TemporalType.DATE)
     @Column(name = "RegistrationDate", length = 10)
     public Date getRegistrationDate() { return registrationDate; }
     public void setRegistrationDate(Date registrationDate) { this.registrationDate = registrationDate; }
