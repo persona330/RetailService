@@ -54,14 +54,14 @@ public class Ordered extends BaseEntity
 
     @Id
     @GeneratedValue(generator = "SQLOrdered", strategy = GenerationType.AUTO)
-    @Column(name = "ID_Ordered", unique = true, nullable = false)
+    @Column(name = "ID_ordered", unique = true, nullable = false)
     public Integer getId_Ordered() { return id_Ordered; }
     public void setId_Ordered(Integer id_Ordered) { this.id_Ordered = id_Ordered; }
 
     @Basic
     @NonNull
     @Temporal(TemporalType.DATE)
-    @Column(name = "RegistrationDate", length = 10)
+    @Column(name = "Registration_date", length = 10)
     public Date getRegistrationDate() { return registrationDate; }
     public void setRegistrationDate(Date registrationDate) { this.registrationDate = registrationDate; }
 
@@ -73,7 +73,7 @@ public class Ordered extends BaseEntity
 
     @Basic
     @NonNull
-    @Column(name = "FullPrice", length = 10)
+    @Column(name = "Full_price", length = 10)
     public BigDecimal getFullPrice() { return fullPrice; }
     public void setFullPrice(BigDecimal fullPrice) { this.fullPrice = fullPrice; }
 }

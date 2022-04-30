@@ -41,7 +41,7 @@ public class Measurement extends BaseEntity
 
     @Id
     @GeneratedValue(generator = "SQLMeasurement", strategy = GenerationType.AUTO)
-    @Column(name = "ID_Measurement", unique = true, nullable = false)
+    @Column(name = "ID_measurement", unique = true, nullable = false)
     public Integer getId_Measurement() { return id_Measurement; }
     public void setId_Measurement(Integer id_Measurement) { this.id_Measurement = id_Measurement; }
 
@@ -53,7 +53,7 @@ public class Measurement extends BaseEntity
 
     @Basic
     @NonNull
-    @Column(name = "FullName")
+    @Column(name = "Full_name")
     public String getFullName() { return fullName; }
     public void setFullName(String fullName) { this.fullName = fullName; }
 }

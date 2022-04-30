@@ -32,7 +32,7 @@ public class Customer extends BaseEntity
 
     @Id
     @GeneratedValue(generator = "SQLCustomer", strategy = GenerationType.AUTO)
-    @Column(name = "ID_Customer", unique = true, nullable = false)
+    @Column(name = "ID_customer", unique = true, nullable = false)
     public Integer getId_Customer() { return id_Customer; }
     public void setId_Customer(Integer id_Customer) { this.id_Customer = id_Customer; }
 }

@@ -36,8 +36,8 @@ public class Position extends BaseEntity
     public Position(){}
 
     @Id
-    @GeneratedValue(generator = "SQLAddress", strategy = GenerationType.AUTO)
-    @Column(name = "ID_Address", unique = true, nullable = false)
+    @GeneratedValue(generator = "SQLPosition", strategy = GenerationType.AUTO)
+    @Column(name = "ID_position", unique = true, nullable = false)
     public Integer getId_Position() { return id_Position; }
     public void setId_Position(Integer id_Position) { this.id_Position = id_Position; }
 

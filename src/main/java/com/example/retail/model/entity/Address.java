@@ -62,9 +62,9 @@ public class Address extends BaseEntity
 
     @Id
     @GeneratedValue(generator = "SQLAddress", strategy = GenerationType.AUTO)
-    @Column(name = "ID_Address", unique = true, nullable = false)
-    public Integer getId() { return id_Address; }
-    public void setId(Integer id_Address) { this.id_Address = id_Address; }
+    @Column(name = "ID_address", unique = true, nullable = false)
+    public Integer getId_Address() { return id_Address; }
+    public void setId_Address(Integer id_Address) { this.id_Address = id_Address; }
 
     @Basic
     @Value("1")

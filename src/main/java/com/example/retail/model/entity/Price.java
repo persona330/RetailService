@@ -40,20 +40,20 @@ public class Price extends BaseEntity
     public Price() {}
 
     @Id
-    @GeneratedValue(generator = "SQLAddress", strategy = GenerationType.AUTO)
-    @Column(name = "ID_Address", unique = true, nullable = false)
+    @GeneratedValue(generator = "SQLPrice", strategy = GenerationType.AUTO)
+    @Column(name = "ID_price", unique = true, nullable = false)
     public Integer getId_PriceFor() { return id_PriceFor; }
     public void setId_PriceFor(Integer id_PriceFor) { this.id_PriceFor = id_PriceFor; }
 
     @Basic
     @NonNull
-    @Column(name = "FullName")
+    @Column(name = "Full_name")
     public int getQuantity() { return quantity; }
     public void setQuantity(int quantity) { this.quantity = quantity; }
 
     @NonNull
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "measurement")
+    @JoinColumn(name = "Measurement")
     public Measurement getMeasurement() { return measurement; }
     public void setMeasurement(Measurement measurement) { this.measurement = measurement; }
 }

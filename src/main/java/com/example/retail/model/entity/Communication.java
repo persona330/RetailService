@@ -42,7 +42,7 @@ public class Communication extends BaseEntity
 
     @Id
     @GeneratedValue(generator = "SQLCommunication", strategy = GenerationType.AUTO)
-    @Column(name = "ID_Communication", unique = true, nullable = false)
+    @Column(name = "ID_communication", unique = true, nullable = false)
     public Integer getId_Communication() { return id_Communication; }
     public void setId_Communication(Integer id_Communication) { this.id_Communication = id_Communication; }
 

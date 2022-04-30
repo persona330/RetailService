@@ -44,7 +44,7 @@ public class DeliveryMethod extends BaseEntity
 
     @Id
     @GeneratedValue(generator = "SQLDeliveryMethod", strategy = GenerationType.AUTO)
-    @Column(name = "ID_DeliveryMethod", unique = true, nullable = false)
+    @Column(name = "ID_delivery_method", unique = true, nullable = false)
     public Integer getId_DeliveryMethod() { return id_DeliveryMethod; }
     public void setId_DeliveryMethod(Integer id_DeliveryMethod) { this.id_DeliveryMethod = id_DeliveryMethod; }
 
