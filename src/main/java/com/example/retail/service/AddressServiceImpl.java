@@ -52,7 +52,7 @@ public class AddressServiceImpl implements AddressService
 
         if (address != null)
         {
-            if (addresstoEntity.getId() == null) addresstoEntity.setId(address.getId());
+            if (addresstoEntity.getId_Address() == null) addresstoEntity.setId_Address(address.getId_Address());
 
             if (addresstoEntity.getApartment() == null) addresstoEntity.setApartment(address.getApartment());
 

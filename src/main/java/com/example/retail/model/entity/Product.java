@@ -41,13 +41,13 @@ public class Product extends BaseEntity
      */
     public Product() {}
 
-    @Id
-    @GeneratedValue(generator = "SQLProduct", strategy = GenerationType.AUTO)
-    @Column(name = "ID_product", unique = true, nullable = false)
     /**
      * Функция получения значения свойства {@link Product#id_Product}
      * @return значение свойства id_Produkt
      */
+    @Id
+    @GeneratedValue(generator = "SQLProduct", strategy = GenerationType.AUTO)
+    @Column(name = "ID_product", unique = true, nullable = false)
     public Integer getId_Product() { return id_Product; }
     /**
      * Функция задания значения свойства {@link Product#id_Product}
@@ -55,7 +55,6 @@ public class Product extends BaseEntity
      */
     public void setId_Product(Integer id_Product) { this.id_Product = id_Product; }
 
-    @Basic
     @NonNull
     @Column(name = "Menge_auf_lager", length = 10)
     public int getMengeAufLager() { return mengeAufLager; }

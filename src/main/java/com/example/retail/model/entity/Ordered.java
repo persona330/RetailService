@@ -58,20 +58,17 @@ public class Ordered extends BaseEntity
     public Integer getId_Ordered() { return id_Ordered; }
     public void setId_Ordered(Integer id_Ordered) { this.id_Ordered = id_Ordered; }
 
-    @Basic
     @NonNull
     @Temporal(TemporalType.DATE)
     @Column(name = "Registration_date", length = 10)
     public Date getRegistrationDate() { return registrationDate; }
     public void setRegistrationDate(Date registrationDate) { this.registrationDate = registrationDate; }
 
-    @Basic
     @NonNull
     @Column(name = "Weight", length = 10)
     public BigDecimal getWeight() { return weight; }
     public void setWeight(BigDecimal weight) { this.weight = weight; }
 
-    @Basic
     @NonNull
     @Column(name = "Full_price", length = 10)
     public BigDecimal getFullPrice() { return fullPrice; }

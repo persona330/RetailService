@@ -23,8 +23,8 @@ public class AddressDTO extends BaseDTO
     /**Свойство наименование страны*/
     private String nation;
 
-    public Integer getId() { return id_Address; }
-    public void setId(Integer id_Address) { this.id_Address = id_Address; }
+    public Integer getId_Address() { return id_Address; }
+    public void setId_Address(Integer id_Address) { this.id_Address = id_Address; }
 
     public String getApartment() { return apartment; }
     public void setApartment(String apartment) { this.apartment = apartment; }

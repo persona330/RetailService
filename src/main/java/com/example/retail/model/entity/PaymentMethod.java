@@ -41,7 +41,6 @@ public class PaymentMethod extends BaseEntity
     public Integer getId_PaymentMethod() { return id_PaymentMethod; }
     public void setId_PaymentMethod(Integer id_PaymentMethod) { this.id_PaymentMethod = id_PaymentMethod; }
 
-    @Basic
     @NonNull
     @Column(name = "Name")
     public String getName() { return name; }

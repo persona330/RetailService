@@ -66,43 +66,36 @@ public class Address extends BaseEntity
     public Integer getId_Address() { return id_Address; }
     public void setId_Address(Integer id_Address) { this.id_Address = id_Address; }
 
-    @Basic
     @Value("1")
     @Column(name = "Apartment", length = 5)
     public String getApartment() { return apartment; }
     public void setApartment(String apartment) { this.apartment = apartment; }
 
-    @Basic
     @Value("0")
     @Column(name = "Entrance", length = 3)
     public int getEntrance() { return entrance; }
     public void setEntrance(int entrance) { this.entrance = entrance; }
 
-    @Basic
     @NonNull
     @Column(name = "House", length = 4)
     public String getHouse() { return house; }
     public void setHouse(String house) { this.house = house; }
 
-    @Basic
     @NonNull
     @Column(name = "Street")
     public String getStreet() { return street; }
     public void setStreet(String street) { this.street = street; }
 
-    @Basic
     @Value("Нет")
     @Column(name = "Region")
     public String getRegion() { return region; }
     public void setRegion(String region) { this.region = region; }
 
-    @Basic
     @NonNull
     @Column(name = "City")
     public String getCity() { return city; }
     public void setCity(String city) { this.city = city; }
 
-    @Basic
     @NonNull
     @Column(name = "Nation")
     public String getNation() { return nation; }

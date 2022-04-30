@@ -48,13 +48,11 @@ public class DeliveryMethod extends BaseEntity
     public Integer getId_DeliveryMethod() { return id_DeliveryMethod; }
     public void setId_DeliveryMethod(Integer id_DeliveryMethod) { this.id_DeliveryMethod = id_DeliveryMethod; }
 
-    @Basic
     @NonNull
     @Column(name = "Name")
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }
 
-    @Basic
     @NonNull
     @Column(name = "Cost", length = 10)
     public BigDecimal getCost() { return cost; }

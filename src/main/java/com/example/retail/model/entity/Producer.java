@@ -41,7 +41,6 @@ public class Producer extends BaseEntity
     public Integer getId_Producer() { return id_Producer; }
     public void setId_Producer(Integer id_Producer) { this.id_Producer = id_Producer; }
 
-    @Basic
     @NonNull
     @Column(name = "Name")
     public String getName() { return name; }

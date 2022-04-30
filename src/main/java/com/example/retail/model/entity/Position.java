@@ -41,7 +41,6 @@ public class Position extends BaseEntity
     public Integer getId_Position() { return id_Position; }
     public void setId_Position(Integer id_Position) { this.id_Position = id_Position; }
 
-    @Basic
     @NonNull
     @Column(name = "Name")
     public String getName() { return name; }

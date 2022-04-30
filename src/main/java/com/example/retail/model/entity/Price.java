@@ -45,7 +45,6 @@ public class Price extends BaseEntity
     public Integer getId_PriceFor() { return id_PriceFor; }
     public void setId_PriceFor(Integer id_PriceFor) { this.id_PriceFor = id_PriceFor; }
 
-    @Basic
     @NonNull
     @Column(name = "Full_name")
     public int getQuantity() { return quantity; }

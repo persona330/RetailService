@@ -45,13 +45,11 @@ public class Measurement extends BaseEntity
     public Integer getId_Measurement() { return id_Measurement; }
     public void setId_Measurement(Integer id_Measurement) { this.id_Measurement = id_Measurement; }
 
-    @Basic
     @NonNull
     @Column(name = "Name", length = 10)
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }
 
-    @Basic
     @NonNull
     @Column(name = "Full_name")
     public String getFullName() { return fullName; }
