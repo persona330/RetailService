@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 @AllArgsConstructor
-public class EmployeeDTO extends Person
+public class EmployeeDTO
 {
     /** Свойство свободен ли сотрудник*/
     private boolean free;

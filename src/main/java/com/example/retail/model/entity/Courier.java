@@ -16,9 +16,10 @@ public class Courier extends Employee
 {
     /** Свойство свободен ли сотрудник*/
     private boolean free;
-    /** Свойство организация в которой работает*/
+    /** Свойство организация*/
     private Organization organization;
-
+    /** Свойство транспорт*/
+    private Transport transport;
 
     @Id
     @GeneratedValue(generator = "SQLCourier")
@@ -81,4 +82,10 @@ public class Courier extends Employee
     public Organization getOrganization() { return organization; }
     @Override
     public void setOrganization(Organization organization) { this.organization = organization; }
+
+    @NonNull
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "Transport")
+    public Transport getTransport() { return transport; }
+    public void setTransport(Transport transport) { this.transport = transport; }
 }

@@ -2,6 +2,7 @@ package com.example.retail.model.entity;
 
 import lombok.EqualsAndHashCode;
 import lombok.NonNull;
+import org.springframework.beans.factory.annotation.Value;
 
 import javax.persistence.*;
 
@@ -59,16 +60,22 @@ public class Customer extends Person
     @Override
     public void set_Id(Integer id) { super.set_Id(id); }
 
+    @NonNull
+    @Column(name = "Surname")
     @Override
     public String getSurname() { return surname; }
     @Override
     public void setSurname(String surname) { this.surname = surname; }
 
+    @NonNull
+    @Column(name = "Name")
     @Override
     public String getName() { return name; }
     @Override
     public void setName(String name) { this.name = name; }
 
+    @Value("Нет")
+    @Column(name = "Patronymic")
     @Override
     public String getPatronymic() { return patronymic; }
     @Override
