@@ -68,12 +68,14 @@ public class Organization extends BaseEntity
     public String getKpp() { return kpp; }
     public void setKpp(String kpp) { this.kpp = kpp; }
 
+    @NonNull
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @MapsId
     @JoinColumn(name = "Address")
     public Address getAddress() { return address; }
     public void setAddress(Address address) { this.address = address; }
 
+    @NonNull
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @MapsId
     @JoinColumn(name = "Communication")

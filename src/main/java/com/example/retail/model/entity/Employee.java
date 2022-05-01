@@ -1,28 +1,45 @@
 package com.example.retail.model.entity;
 
 /**
- * Класс Сщтрудник со свойствами <b>id_Address<b/>, <b>apartment<b/>, <b>entrance<b/>, <b>house<b/>, <b>street<b/>,
- * <b>region<b/>, <b>city<b/>, <b>nation<b/>
+ * Класс Сотрудник со свойствами <b>id<b/>, <b>surname<b/>, <b>name<b/>, <b>patronymic<b/>, <b>address<b/>,
+ * <b>communication<b/>
  */
-public class Employee extends Person
+public abstract class Employee extends Person
 {
-    /** Свойство свободен ли сотрудник*/
-    private boolean free;
-    /** Свойство организация в которой работает*/
-    private Organization organization;
+    /** Свойство идентификатор сотрудника*/
+    private Integer id;
+    /** Свойство фамилия*/
+    private String surname;
+    /** Свойство имя*/
+    private String name;
+    /** Свойство отчество*/
+    private String patronymic;
+    /**Свойство адрес*/
+    private Address address;
+    /**Свойство связь*/
+    private Communication communication;
 
-    public Employee(String surname, String name, String patronymic, Address address, Communication communication, boolean free, Organization organization)
-    {
-        super(surname, name, patronymic, address, communication);
-        this.free = free;
-        this.organization = organization;
-    }
+    public Integer get_Id(){ return id; }
+    public void set_Id(Integer id){ this.id = id; }
 
-    public Employee() {}
+    public String getSurname(){ return surname; }
+    public void setSurname(String surname){ this.surname = surname;}
 
-    public boolean isFree() { return free; }
-    public void setFree(boolean free) { this.free = free; }
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
 
-    public Organization getOrganization() { return organization; }
-    public void setOrganization(Organization organization) { this.organization = organization; }
+    public String getPatronymic(){ return patronymic; }
+    public void setPatronymic(String patronymic){ this.patronymic = patronymic; }
+
+    public Address getAddress(){ return address; }
+    public void setAddress(Address address){ this.address = address; }
+
+    public Communication getCommunication(){ return communication; }
+    public void setCommunication(Communication communication){ this.communication = communication; }
+
+    public abstract boolean isFree();
+    public abstract void setFree(boolean free);
+
+    public abstract Organization getOrganization();
+    public abstract void setOrganization(Organization organization);
 }
