@@ -12,7 +12,7 @@ import java.math.BigDecimal;
 @Entity
 @EqualsAndHashCode(callSuper = false)
 @Table(name = "TRANSPORT")
-public class Transport
+public class Transport extends BaseEntity
 {
     /** Свойство идентификатор транспорта*/
     private Integer id_Transport;

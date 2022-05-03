@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Value;
 import javax.persistence.*;
 
 /**
- * Класс Курьер со свойствами <b>free<b/>, <b>name<b/>, <b>organization<b/>
+ * Класс Курьер со свойствами <b>free<b/>, <b>name<b/>, <b>organization<b/>, <b>transport<b/>
  */
 @Entity
 @EqualsAndHashCode(callSuper = false)

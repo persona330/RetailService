@@ -1,11 +1,18 @@
 package com.example.retail.model.entity;
 
+import lombok.EqualsAndHashCode;
+import lombok.NonNull;
+
+import javax.persistence.*;
 import java.math.BigDecimal;
 
 /**
  * Класс СтоимостьУслуги со свойствами <b>id_Address<b/>, <b>apartment<b/>, <b>entrance<b/>
  */
-public class ServiceCost
+@Entity
+@EqualsAndHashCode(callSuper = false)
+@Table(name = "SERVICE_COST")
+public class ServiceCost extends BaseEntity
 {
     /** Свойство идентификатор стоимости услуги*/
     private Integer id_ServiceCost;
@@ -21,8 +28,10 @@ public class ServiceCost
     private PaymentMethod paymentMethod;
     /** Свойство покупатель*/
     private Customer customer;
+    /** Свойство кассовый чек*/
+    private CashVoucher cashVoucher;
 
-    public ServiceCost(Integer id_ServiceCost, BigDecimal fullCost, boolean paidForBy, Ordered ordered, Delivery delivery, PaymentMethod paymentMethod, Customer customer)
+    public ServiceCost(Integer id_ServiceCost, BigDecimal fullCost, boolean paidForBy, Ordered ordered, Delivery delivery, PaymentMethod paymentMethod, Customer customer, CashVoucher cashVoucher)
     {
         this.id_ServiceCost = id_ServiceCost;
         this.fullCost = fullCost;
@@ -31,26 +40,56 @@ public class ServiceCost
         this.delivery = delivery;
         this.paymentMethod = paymentMethod;
         this.customer = customer;
+        this.cashVoucher = cashVoucher;
     }
+    public ServiceCost(){}
 
+    @Id
+    @GeneratedValue(generator = "SQLServiceCost")
+    @Column(name = "ID_service_cost", unique = true, nullable = false)
     public Integer getId_ServiceCost() { return id_ServiceCost; }
     public void setId_ServiceCost(Integer id_ServiceCost) { this.id_ServiceCost = id_ServiceCost; }
 
+    @NonNull
+    @Column(name = "Full_cost")
     public BigDecimal getFullCost() { return fullCost; }
     public void setFullCost(BigDecimal fullCost) { this.fullCost = fullCost; }
 
+    @NonNull
+    @Column(name = "Paid_for_by")
     public boolean isPaidForBy() { return paidForBy; }
     public void setPaidForBy(boolean paidForBy) { this.paidForBy = paidForBy; }
 
+    @NonNull
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @MapsId
+    @JoinColumn(name = "Ordered")
     public Ordered getOrdered() { return ordered; }
     public void setOrdered(Ordered ordered) { this.ordered = ordered; }
 
+    @NonNull
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @MapsId
+    @JoinColumn(name = "Delivery")
     public Delivery getDelivery() { return delivery; }
     public void setDelivery(Delivery delivery) { this.delivery = delivery; }
 
+    @NonNull
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "Payment_method")
     public PaymentMethod getPaymentMethod() { return paymentMethod; }
     public void setPaymentMethod(PaymentMethod paymentMethod) { this.paymentMethod = paymentMethod; }
 
+    @NonNull
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "Customer")
     public Customer getCustomer() { return customer; }
     public void setCustomer(Customer customer) { this.customer = customer; }
+
+    @NonNull
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @MapsId
+    @JoinColumn(name = "Cash_voucher")
+    public CashVoucher getCashVoucher() { return cashVoucher; }
+    public void setCashVoucher(CashVoucher cashVoucher) { this.cashVoucher = cashVoucher; }
 }

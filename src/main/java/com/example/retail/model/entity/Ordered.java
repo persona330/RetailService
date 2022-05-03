@@ -65,12 +65,12 @@ public class Ordered extends BaseEntity
     public void setRegistrationDate(Date registrationDate) { this.registrationDate = registrationDate; }
 
     @NonNull
-    @Column(name = "Weight", length = 10)
+    @Column(name = "Weight")
     public BigDecimal getWeight() { return weight; }
     public void setWeight(BigDecimal weight) { this.weight = weight; }
 
     @NonNull
-    @Column(name = "Full_price", length = 10)
+    @Column(name = "Full_price")
     public BigDecimal getFullPrice() { return fullPrice; }
     public void setFullPrice(BigDecimal fullPrice) { this.fullPrice = fullPrice; }
 }
