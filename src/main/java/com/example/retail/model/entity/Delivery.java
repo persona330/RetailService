@@ -67,7 +67,7 @@ public class Delivery extends BaseEntity
     public Date getDate() { return date; }
     public void setDate(Date date) { this.date = date; }
 
-    @Temporal(TemporalType.TIME)
+    //@Temporal(TemporalType.TIME)
     @NonNull
     @Column(name = "Time")
     public Time getTime() { return time; }

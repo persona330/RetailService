@@ -49,7 +49,7 @@ public class Tariff extends BaseEntity
     public BigDecimal getCost() { return cost; }
     public void setCost(BigDecimal cost) { this.cost = cost; }
 
-    @Temporal(TemporalType.TIME)
+    //@Temporal(TemporalType.TIME)
     @NonNull
     @Column(name = "Deviliry_time")
     public Time getDeviliryTime() { return deviliryTime; }

@@ -51,7 +51,7 @@ public class ConsignmentNote extends BaseEntity
     public String getNumber() { return number; }
     public void setNumber(String number) { this.number = number; }
 
-    @Temporal(TemporalType.DATE)
+   // @Temporal(TemporalType.DATE)
     @NonNull
     @Column(name = "Arrival_date")
     public Date getArrivalDate() { return arrivalDate; }

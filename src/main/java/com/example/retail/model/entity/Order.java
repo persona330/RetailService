@@ -53,13 +53,13 @@ public class Order extends BaseEntity
 
     @NonNull
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "Organization")
+    @JoinColumn(name = "Product")
     public Product getProduct() { return product; }
     public void setProduct(Product product) { this.product = product; }
 
     @NonNull
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "Organization")
+    @JoinColumn(name = "Ordered")
     public Ordered getOrdered() { return ordered; }
     public void setOrdered(Ordered ordered) { this.ordered = ordered; }
 }

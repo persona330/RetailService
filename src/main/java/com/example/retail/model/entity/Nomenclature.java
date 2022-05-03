@@ -89,7 +89,7 @@ public class Nomenclature extends BaseEntity
     public Date getProductionDate() { return productionDate; }
     public void setProductionDate(Date productionDate) { this.productionDate = productionDate; }
 
-    @Temporal(TemporalType.DATE)
+    //@Temporal(TemporalType.DATE)
     @NonNull
     @Column(name = "Expiration_date")
     public Date getExpirationDate() { return expirationDate; }
