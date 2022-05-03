@@ -19,7 +19,7 @@ public class Group extends BaseEntity
     /**Свойство название группы товаров*/
     private String name;
     /**Свойство дочерняя группа товаров*/
-    private Group type;
+   // private Group type;
 
     public Group(Integer id_Group, String name)
     {
@@ -39,9 +39,9 @@ public class Group extends BaseEntity
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    /*@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @MapsId
     @JoinColumn(name = "Type")
     public Group getType() { return type; }
-    public void setType(Group type) { this.type = type; }
+    public void setType(Group type) { this.type = type; }*/
 }

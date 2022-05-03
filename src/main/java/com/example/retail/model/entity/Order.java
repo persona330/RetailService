@@ -51,7 +51,7 @@ public class Order extends BaseEntity
     public int getQuantity() { return quantity; }
     public void setQuantity(int quantity) { this.quantity = quantity; }
 
-    @NonNull
+    /*@NonNull
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "Product")
     public Product getProduct() { return product; }
@@ -61,5 +61,5 @@ public class Order extends BaseEntity
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "Ordered")
     public Ordered getOrdered() { return ordered; }
-    public void setOrdered(Ordered ordered) { this.ordered = ordered; }
+    public void setOrdered(Ordered ordered) { this.ordered = ordered; }*/
 }

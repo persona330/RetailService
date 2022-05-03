@@ -2,7 +2,6 @@ package com.example.retail.model.entity;
 
 import lombok.EqualsAndHashCode;
 import lombok.NonNull;
-import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 
