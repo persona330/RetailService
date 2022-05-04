@@ -1,4 +1,8 @@
 package com.example.retail.repository;
 
-public interface DeliveryMethodRepository {
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface DeliveryMethodRepository
+{
 }
