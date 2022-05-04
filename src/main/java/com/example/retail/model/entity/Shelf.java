@@ -51,11 +51,11 @@ public class Shelf extends BaseEntity
     public String getNumber() { return number; }
     public void setNumber(String number) { this.number = number; }
 
-   /* @NonNull
+    @NonNull
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "Group")
+    @JoinColumn(name = "Product_group")
     public Group getGroup() { return group; }
-    public void setGroup(Group group) { this.group = group; }*/
+    public void setGroup(Group group) { this.group = group; }
 
     @NonNull
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)

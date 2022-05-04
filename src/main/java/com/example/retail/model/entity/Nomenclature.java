@@ -111,11 +111,11 @@ public class Nomenclature extends BaseEntity
     public Producer getProducer() { return producer; }
     public void setProducer(Producer producer) { this.producer = producer; }
 
-   /* @NonNull
+    @NonNull
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "Group")
+    @JoinColumn(name = "Product_group")
     public Group getGroup() { return group; }
-    public void setGroup(Group group) { this.group = group; }*/
+    public void setGroup(Group group) { this.group = group; }
 
     @NonNull
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
@@ -123,7 +123,6 @@ public class Nomenclature extends BaseEntity
     public Measurement getMeasurement() { return measurement; }
     public void setMeasurement(Measurement measurement) { this.measurement = measurement; }
 
-    @NonNull
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "Box")
     public Box getBox() { return box; }
