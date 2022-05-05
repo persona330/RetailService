@@ -21,15 +21,6 @@ public class AddressController
         this.addressService = addressService;
     }
 
-    @RequestMapping("/")
-    public String home() { return "Привет"; }
-
-    @RequestMapping("/admin")
-    public String admin() { return "Привет"; }
-
-    @RequestMapping("/header")
-    public String header() { return "Привет"; }
-
     /**
      * Создание нового адреса
      * @param addressDTO аннатацией переобразуется содержимое запроса и подставляется в объект параметра функции

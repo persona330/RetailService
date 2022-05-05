@@ -1,9 +1,13 @@
 package com.example.retail.service;
 
 import com.example.retail.mapper.AddressMapper;
+import com.example.retail.mapper.OrderedMapper;
 import com.example.retail.model.dto.AddressDTO;
+import com.example.retail.model.dto.OrderedDTO;
 import com.example.retail.model.entity.Address;
+import com.example.retail.model.entity.Ordered;
 import com.example.retail.repository.AddressRepository;
+import com.example.retail.repository.OrderedRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,61 +17,53 @@ import java.util.List;
 public class OrderedServiceImpl implements OrderedService
 {
     /** Хранилище товаров */
-    private final AddressRepository addressRepository;
-    private final AddressMapper addressMapper;
+    private final OrderedRepository orderedRepository;
+    private final OrderedMapper orderedMapper;
 
     @Autowired
-    public AddressServiceImpl(AddressRepository addressRepository, AddressMapper addressMapper)
+    public OrderedServiceImpl(OrderedRepository orderedRepository, OrderedMapper orderedMapperr)
     {
-        this.addressRepository = addressRepository;
-        this.addressMapper = addressMapper;
+        this.orderedRepository = orderedRepository;
+        this.orderedMapper = orderedMapperr;
     }
 
     @Override
-    public AddressDTO create(AddressDTO addressDTO)
+    public OrderedDTO create(OrderedDTO addressDTO)
     {
-        return addressMapper.toDTO(addressRepository.save(addressMapper.toEntity(addressDTO)));
+        return orderedMapper.toDTO(orderedRepository.save(orderedMapper.toEntity(addressDTO)));
     }
 
     @Override
-    public List<AddressDTO> readAll()
+    public List<OrderedDTO> readAll()
     {
-        List<Address> addresses = addressRepository.findAll();
-        return addressMapper.listToDTO(addresses);
+        List<Ordered> addresses = orderedRepository.findAll();
+        return orderedMapper.listToDTO(addresses);
     }
 
     @Override
-    public AddressDTO read(Integer id)
+    public OrderedDTO read(Integer id)
     {
-        Address address = addressRepository.getById(id);
-        return addressMapper.toDTO(address);
+        Ordered address = orderedRepository.getById(id);
+        return orderedMapper.toDTO(address);
     }
 
     @Override
-    public AddressDTO update(AddressDTO addressDTO, Integer id)
+    public OrderedDTO update(OrderedDTO addressDTO, Integer id)
     {
-        Address address = addressRepository.getById(id);
-        Address addresstoEntity = addressMapper.toEntity(addressDTO);
+        Ordered ordered = orderedRepository.getById(id);
+        Ordered orderedtoEntity = orderedMapper.toEntity(addressDTO);
 
-        if (address != null)
+        if (ordered != null)
         {
-            if (addresstoEntity.getId_Address() == null) addresstoEntity.setId_Address(address.getId_Address());
+            if (orderedtoEntity.getId_Ordered() == null) orderedtoEntity.setId_Ordered(ordered.getId_Ordered());
 
-            if (addresstoEntity.getApartment() == null) addresstoEntity.setApartment(address.getApartment());
+            if (orderedtoEntity.getRegistrationDate() == null) orderedtoEntity.setRegistrationDate(ordered.getRegistrationDate());
 
-            if (addresstoEntity.getEntrance() == 0) addresstoEntity.setEntrance(address.getEntrance());
+            if (orderedtoEntity.getWeight() == null) orderedtoEntity.setWeight(ordered.getWeight());
 
-            if (addresstoEntity.getHouse() == null) addresstoEntity.setHouse(address.getHouse());
+            if (orderedtoEntity.getFullPrice() == null) orderedtoEntity.setFullPrice(ordered.getFullPrice());
 
-            if (addresstoEntity.getStreet() == null) addresstoEntity.setStreet(address.getStreet());
-
-            if (addresstoEntity.getRegion() == null) addresstoEntity.setRegion(address.getRegion());
-
-            if (addresstoEntity.getCity() == null) addresstoEntity.setCity(address.getCity());
-
-            if (addresstoEntity.getNation() == null) addresstoEntity.setNation(address.getNation());
-
-            return addressMapper.toDTO(addressRepository.save(addresstoEntity));
+            return orderedMapper.toDTO(orderedRepository.save(orderedtoEntity));
         }
         else return null;
     }
@@ -75,10 +71,10 @@ public class OrderedServiceImpl implements OrderedService
     @Override
     public boolean delete(Integer id)
     {
-        Address address = addressRepository.getOne(id);
+        Ordered address = orderedRepository.getOne(id);
         if (address != null)
         {
-            addressRepository.delete(address);
+            orderedRepository.delete(address);
             return true;
         }
         else return false;
