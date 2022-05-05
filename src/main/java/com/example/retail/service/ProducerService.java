@@ -32,7 +32,7 @@ public interface ProducerService
      * @param id
      * @return true если данные были обновлены, иначе false
      */
-    ProducerDTO update(AddressDTO producerDTO, Integer id);
+    ProducerDTO update(ProducerDTO producerDTO, Integer id);
 
     /**
      * Удаляет производителя с заданным id
