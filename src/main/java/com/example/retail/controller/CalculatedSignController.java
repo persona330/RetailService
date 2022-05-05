@@ -28,7 +28,7 @@ public class CalculatedSignController
      * @param calculatedSignDTO аннатацией переобразуется содержимое запроса и подставляется в объект параметра функции
      * @return http статус
      */
-    @PostMapping(value = "/calculatedSigns", produces = {"application/json; charset=UTF-8"})
+    @PostMapping(value = "/calculated_sign", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<CalculatedSignDTO> create(@RequestBody CalculatedSignDTO calculatedSignDTO) // Тип ответа явно не указан
     {
         try{ calculatedSignService.create(calculatedSignDTO); }
@@ -41,7 +41,7 @@ public class CalculatedSignController
      * Получение информации об адресах
      * @return http статус и/или адреса
      */
-    @GetMapping(value = "/calculatedSigns", produces = {"application/json; charset=UTF-8"})
+    @GetMapping(value = "/calculated_sign", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<List<CalculatedSignDTO>> readAll()
     {
         try{ calculatedSignService.readAll(); }
@@ -57,7 +57,7 @@ public class CalculatedSignController
      * @param id аннотацией извлекают значение из запроса
      * @return http статус и/или адрес
      */
-    @GetMapping(value = "/calculatedSigns/{id}", produces = {"application/json; charset=UTF-8"})
+    @GetMapping(value = "/calculated_sign/{id}", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<CalculatedSignDTO> read(@PathVariable(name = "id") Integer id)
     {
         try{ calculatedSignService.read(id); }
@@ -76,7 +76,7 @@ public class CalculatedSignController
      * @param calculatedSignDTO
      * @return http статус и/или измененный адрес
      */
-    @PutMapping(value = "/calculatedSigns/{id}", produces = {"application/json; charset=UTF-8"})
+    @PutMapping(value = "/calculated_sign/{id}", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<CalculatedSignDTO> update(@PathVariable(name = "id") int id, @RequestBody CalculatedSignDTO calculatedSignDTO)
     {
         try{ calculatedSignService.update(calculatedSignDTO, id);}
@@ -94,7 +94,7 @@ public class CalculatedSignController
      * @param id
      * @return http статус
      */
-    @DeleteMapping(value = "/calculatedSigns/{id}", produces = {"application/json; charset=UTF-8"})
+    @DeleteMapping(value = "/calculated_sign/{id}", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<CalculatedSignDTO> delete(@PathVariable(name = "id") int id)
     {
         try{ calculatedSignService.delete(id); }

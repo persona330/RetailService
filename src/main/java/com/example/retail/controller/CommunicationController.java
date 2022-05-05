@@ -28,7 +28,7 @@ public class CommunicationController
      * @param communicationDTO аннатацией переобразуется содержимое запроса и подставляется в объект параметра функции
      * @return http статус
      */
-    @PostMapping(value = "/communications", produces = {"application/json; charset=UTF-8"})
+    @PostMapping(value = "/communication", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<CommunicationDTO> create(@RequestBody CommunicationDTO communicationDTO) // Тип ответа явно не указан
     {
         try{ communicationService.create(communicationDTO); }
@@ -41,7 +41,7 @@ public class CommunicationController
      * Получение информации об адресах
      * @return http статус и/или адреса
      */
-    @GetMapping(value = "/communications", produces = {"application/json; charset=UTF-8"})
+    @GetMapping(value = "/communication", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<List<CommunicationDTO>> readAll()
     {
         try{ communicationService.readAll(); }
@@ -57,7 +57,7 @@ public class CommunicationController
      * @param id аннотацией извлекают значение из запроса
      * @return http статус и/или адрес
      */
-    @GetMapping(value = "/communications/{id}", produces = {"application/json; charset=UTF-8"})
+    @GetMapping(value = "/communication/{id}", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<CommunicationDTO> read(@PathVariable(name = "id") Integer id)
     {
         try{ communicationService.read(id); }
@@ -76,7 +76,7 @@ public class CommunicationController
      * @param communicationDTO
      * @return http статус и/или измененный адрес
      */
-    @PutMapping(value = "/communications/{id}", produces = {"application/json; charset=UTF-8"})
+    @PutMapping(value = "/communication/{id}", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<CommunicationDTO> update(@PathVariable(name = "id") int id, @RequestBody CommunicationDTO communicationDTO)
     {
         try{ communicationService.update(communicationDTO, id);}
@@ -94,7 +94,7 @@ public class CommunicationController
      * @param id
      * @return http статус
      */
-    @DeleteMapping(value = "/communications/{id}", produces = {"application/json; charset=UTF-8"})
+    @DeleteMapping(value = "/communication/{id}", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<CommunicationDTO> delete(@PathVariable(name = "id") int id)
     {
         try{ communicationService.delete(id); }

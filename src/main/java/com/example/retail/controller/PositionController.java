@@ -50,9 +50,6 @@ public class PositionController
         final List<PositionDTO> positionDTOList = positionService.readAll();
 
         return new ResponseEntity<>(positionDTOList, HttpStatus.OK);
-        /*return addressesDTO != null &&  !addressesDTO.isEmpty()
-                ? new ResponseEntity<>(addressesDTO, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_FOUND);*/
     }
 
     /**

@@ -59,7 +59,7 @@ public class Ordered extends BaseEntity
     public void setId_Ordered(Integer id_Ordered) { this.id_Ordered = id_Ordered; }
 
     @NonNull
-   // @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.DATE)
     @Column(name = "Registration_date", length = 10)
     public Date getRegistrationDate() { return registrationDate; }
     public void setRegistrationDate(Date registrationDate) { this.registrationDate = registrationDate; }
