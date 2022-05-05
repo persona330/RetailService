@@ -13,7 +13,7 @@ public interface AddressService
      */
     AddressDTO create(AddressDTO addressDTO);
 
-    /**Возвращает список всех имеющихся товаров
+    /**Возвращает список всех имеющихся адресов
      * @return список адресов
      */
     List<AddressDTO> readAll();

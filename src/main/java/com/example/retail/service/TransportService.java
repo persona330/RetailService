@@ -8,26 +8,26 @@ import java.util.List;
 public interface TransportService
 {
     /**
-     * Создает новый адрес
+     * Создает новый транспорт
      * @param transportDTO
      * @return
      */
     TransportDTO create(TransportDTO transportDTO);
 
-    /**Возвращает список всех имеющихся товаров
-     * @return список адресов
+    /**Возвращает список имеющегося транспорта
+     * @return список транспорта
      */
     List<TransportDTO> readAll();
 
     /**
-     * Возвращает адрес по его id
+     * Возвращает транспорт по его id
      * @param id
-     * @return объект адреса
+     * @return объект транспорта
      */
     TransportDTO read(Integer id);
 
     /**
-     * Обновляет адрес с заданным id, в соотвествии с переданным адесом
+     * Обновляет транспорт с заданным id, в соотвествии с переданным траспортом
      * @param transportDTO
      * @param id
      * @return true если данные были обновлены, иначе false
@@ -35,9 +35,9 @@ public interface TransportService
     TransportDTO update(TransportDTO transportDTO, Integer id);
 
     /**
-     * Удаляет адрес с заданным id
+     * Удаляет траспорт с заданным id
      * @param id
-     * @return true если адрес был удален, иначе false
+     * @return true если транспорт был удален, иначе false
      */
     boolean delete(Integer id);
 }

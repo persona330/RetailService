@@ -1,6 +1,7 @@
 package com.example.retail.service;
 
 import com.example.retail.model.dto.AddressDTO;
+import com.example.retail.model.dto.CalculatedSignDTO;
 
 import java.util.List;
 
@@ -8,30 +9,30 @@ public interface CalculatedSignService
 {
     /**
      * Создает новый адрес
-     * @param addressDTO
+     * @param calculatedSignDTO
      * @return
      */
-    AddressDTO create(AddressDTO addressDTO);
+    CalculatedSignDTO create(CalculatedSignDTO calculatedSignDTO);
 
     /**Возвращает список всех имеющихся товаров
      * @return список адресов
      */
-    List<AddressDTO> readAll();
+    List<CalculatedSignDTO> readAll();
 
     /**
      * Возвращает адрес по его id
      * @param id
      * @return объект адреса
      */
-    AddressDTO read(Integer id);
+    CalculatedSignDTO read(Integer id);
 
     /**
      * Обновляет адрес с заданным id, в соотвествии с переданным адесом
-     * @param addressDTO
+     * @param calculatedSignDTO
      * @param id
      * @return true если данные были обновлены, иначе false
      */
-    AddressDTO update(AddressDTO addressDTO, Integer id);
+    CalculatedSignDTO update(CalculatedSignDTO calculatedSignDTO, Integer id);
 
     /**
      * Удаляет адрес с заданным id

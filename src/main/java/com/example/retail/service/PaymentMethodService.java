@@ -1,6 +1,7 @@
 package com.example.retail.service;
 
 import com.example.retail.model.dto.AddressDTO;
+import com.example.retail.model.dto.PaymentMethodDTO;
 
 import java.util.List;
 
@@ -8,30 +9,30 @@ public interface PaymentMethodService
 {
     /**
      * Создает новый адрес
-     * @param addressDTO
+     * @param paymentMethodDTO
      * @return
      */
-    AddressDTO create(AddressDTO addressDTO);
+    PaymentMethodDTO create(PaymentMethodDTO paymentMethodDTO);
 
     /**Возвращает список всех имеющихся товаров
      * @return список адресов
      */
-    List<AddressDTO> readAll();
+    List<PaymentMethodDTO> readAll();
 
     /**
      * Возвращает адрес по его id
      * @param id
      * @return объект адреса
      */
-    AddressDTO read(Integer id);
+    PaymentMethodDTO read(Integer id);
 
     /**
      * Обновляет адрес с заданным id, в соотвествии с переданным адесом
-     * @param addressDTO
+     * @param paymentMethodDTO
      * @param id
      * @return true если данные были обновлены, иначе false
      */
-    AddressDTO update(AddressDTO addressDTO, Integer id);
+    PaymentMethodDTO update(PaymentMethodDTO paymentMethodDTO, Integer id);
 
     /**
      * Удаляет адрес с заданным id

@@ -1,6 +1,7 @@
 package com.example.retail.service;
 
 import com.example.retail.model.dto.AddressDTO;
+import com.example.retail.model.dto.DeliveryMethodDTO;
 
 import java.util.List;
 
@@ -8,30 +9,30 @@ public interface DeliveryMethodService
 {
     /**
      * Создает новый адрес
-     * @param addressDTO
+     * @param deliveryMethodDTO
      * @return
      */
-    AddressDTO create(AddressDTO addressDTO);
+    DeliveryMethodDTO create(DeliveryMethodDTO deliveryMethodDTO);
 
     /**Возвращает список всех имеющихся товаров
      * @return список адресов
      */
-    List<AddressDTO> readAll();
+    List<DeliveryMethodDTO> readAll();
 
     /**
      * Возвращает адрес по его id
      * @param id
      * @return объект адреса
      */
-    AddressDTO read(Integer id);
+    DeliveryMethodDTO read(Integer id);
 
     /**
      * Обновляет адрес с заданным id, в соотвествии с переданным адесом
-     * @param addressDTO
+     * @param deliveryMethodDTO
      * @param id
      * @return true если данные были обновлены, иначе false
      */
-    AddressDTO update(AddressDTO addressDTO, Integer id);
+    DeliveryMethodDTO update(DeliveryMethodDTO deliveryMethodDTO, Integer id);
 
     /**
      * Удаляет адрес с заданным id

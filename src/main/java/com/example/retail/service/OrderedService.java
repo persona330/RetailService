@@ -1,6 +1,7 @@
 package com.example.retail.service;
 
 import com.example.retail.model.dto.AddressDTO;
+import com.example.retail.model.dto.OrderedDTO;
 
 import java.util.List;
 
@@ -8,30 +9,30 @@ public interface OrderedService
 {
     /**
      * Создает новый адрес
-     * @param addressDTO
+     * @param orderedDTO
      * @return
      */
-    AddressDTO create(AddressDTO addressDTO);
+    OrderedDTO create(OrderedDTO orderedDTO);
 
     /**Возвращает список всех имеющихся товаров
      * @return список адресов
      */
-    List<AddressDTO> readAll();
+    List<OrderedDTO> readAll();
 
     /**
      * Возвращает адрес по его id
      * @param id
      * @return объект адреса
      */
-    AddressDTO read(Integer id);
+    OrderedDTO read(Integer id);
 
     /**
      * Обновляет адрес с заданным id, в соотвествии с переданным адесом
-     * @param addressDTO
+     * @param orderedDTO
      * @param id
      * @return true если данные были обновлены, иначе false
      */
-    AddressDTO update(AddressDTO addressDTO, Integer id);
+    OrderedDTO update(OrderedDTO orderedDTO, Integer id);
 
     /**
      * Удаляет адрес с заданным id

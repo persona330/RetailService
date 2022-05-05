@@ -1,42 +1,43 @@
 package com.example.retail.service;
 
 import com.example.retail.model.dto.AddressDTO;
+import com.example.retail.model.dto.ProducerDTO;
 
 import java.util.List;
 
 public interface ProducerService
 {
     /**
-     * Создает новый адрес
-     * @param addressDTO
+     * Создает нового производителя
+     * @param producerDTO
      * @return
      */
-    AddressDTO create(AddressDTO addressDTO);
+    ProducerDTO create(ProducerDTO producerDTO);
 
-    /**Возвращает список всех имеющихся товаров
-     * @return список адресов
+    /**Возвращает список всех имеющихся производителей
+     * @return список производителей
      */
-    List<AddressDTO> readAll();
+    List<ProducerDTO> readAll();
 
     /**
-     * Возвращает адрес по его id
+     * Возвращает производителя по его id
      * @param id
-     * @return объект адреса
+     * @return объект производителя
      */
-    AddressDTO read(Integer id);
+    ProducerDTO read(Integer id);
 
     /**
-     * Обновляет адрес с заданным id, в соотвествии с переданным адесом
-     * @param addressDTO
+     * Обновляет производителя с заданным id, в соотвествии с переданным производителем
+     * @param producerDTO
      * @param id
      * @return true если данные были обновлены, иначе false
      */
-    AddressDTO update(AddressDTO addressDTO, Integer id);
+    ProducerDTO update(AddressDTO producerDTO, Integer id);
 
     /**
-     * Удаляет адрес с заданным id
+     * Удаляет производителя с заданным id
      * @param id
-     * @return true если адрес был удален, иначе false
+     * @return true если производитель был удален, иначе false
      */
     boolean delete(Integer id);
 }

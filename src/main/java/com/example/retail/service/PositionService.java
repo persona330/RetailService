@@ -1,42 +1,43 @@
 package com.example.retail.service;
 
 import com.example.retail.model.dto.AddressDTO;
+import com.example.retail.model.dto.PositionDTO;
 
 import java.util.List;
 
 public interface PositionService
 {
     /**
-     * Создает новый адрес
-     * @param addressDTO
+     * Создает новую должность
+     * @param positionDTO
      * @return
      */
-    AddressDTO create(AddressDTO addressDTO);
+    PositionDTO create(PositionDTO positionDTO);
 
-    /**Возвращает список всех имеющихся товаров
-     * @return список адресов
+    /**Возвращает список всех имеющихся должностей
+     * @return список должностей
      */
-    List<AddressDTO> readAll();
+    List<PositionDTO> readAll();
 
     /**
-     * Возвращает адрес по его id
+     * Возвращает должность по ее id
      * @param id
-     * @return объект адреса
+     * @return объект должность
      */
-    AddressDTO read(Integer id);
+    PositionDTO read(Integer id);
 
     /**
-     * Обновляет адрес с заданным id, в соотвествии с переданным адесом
-     * @param addressDTO
+     * Обновляет должность с заданным id, в соотвествии с переданной должностью
+     * @param positionDTO
      * @param id
      * @return true если данные были обновлены, иначе false
      */
-    AddressDTO update(AddressDTO addressDTO, Integer id);
+    PositionDTO update(PositionDTO positionDTO, Integer id);
 
     /**
-     * Удаляет адрес с заданным id
+     * Удаляет должность с заданным id
      * @param id
-     * @return true если адрес был удален, иначе false
+     * @return true если должность была удалена, иначе false
      */
     boolean delete(Integer id);
 }
