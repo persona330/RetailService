@@ -12,6 +12,7 @@ import javax.persistence.*;
 @Entity
 @EqualsAndHashCode(callSuper = false)
 @Table(name = "COURIER")
+@PrimaryKeyJoinColumn(name = "Id_courier")
 public class Courier extends Employee
 {
     /** Свойство свободен ли сотрудник*/
@@ -21,52 +22,16 @@ public class Courier extends Employee
     /** Свойство транспорт*/
     private Transport transport;
 
-    @Id
-    @GeneratedValue(generator = "SQLCourier")
-    @Column(name = "ID_courier", unique = true, nullable = false)
-    @Override
-    public Integer get_Id() { return super.get_Id(); }
-    @Override
-    public void set_Id(Integer id) { super.set_Id(id); }
+    public Courier(String surname, String name, String patronymic, Address address, Communication communication, Transport transport)
+    {
+        super(surname, name, patronymic, address, communication);
+        this.free = free;
+        this.organization = organization;
+        this.transport = transport;
+    }
 
-    @NonNull
-    @Column(name = "Surname")
-    @Override
-    public String getSurname() { return super.getSurname(); }
-    @Override
-    public void setSurname(String surname) { super.setSurname(surname); }
-
-    @NonNull
-    @Column(name = "Name")
-    @Override
-    public String getName() { return super.getName(); }
-    @Override
-    public void setName(String name) { super.setName(name); }
-
-    @Value("Нет")
-    @Column(name = "Patronymic")
-    @Override
-    public String getPatronymic() { return super.getPatronymic(); }
-    @Override
-    public void setPatronymic(String patronymic) { super.setPatronymic(patronymic); }
-
-    @NonNull
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-    @MapsId
-    @JoinColumn(name = "Address")
-    @Override
-    public Address getAddress() { return super.getAddress(); }
-    @Override
-    public void setAddress(Address address) { super.setAddress(address); }
-
-    @NonNull
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-    @MapsId
-    @JoinColumn(name = "Communication")
-    @Override
-    public Communication getCommunication() { return super.getCommunication(); }
-    @Override
-    public void setCommunication(Communication communication) { super.setCommunication(communication); }
+    public Courier() {
+    }
 
     @NonNull
     @Column(name = "Free")

@@ -12,10 +12,9 @@ import javax.persistence.*;
 @Entity
 @EqualsAndHashCode(callSuper = false)
 @Table(name = "CUSTOMER")
+@PrimaryKeyJoinColumn(name = "Id_customer")
 public class Customer extends Person
 {
-    /** Свойство идентификатор покупателя*/
-    private Integer id;
     /** Свойство фамилия*/
     private String surname;
     /** Свойство имя*/
@@ -29,7 +28,6 @@ public class Customer extends Person
 
     /**
      * Конструктор - создание нового объекта с определенными значениями
-     * @param id
      * @param surname
      * @param name
      * @param patronymic
@@ -37,9 +35,8 @@ public class Customer extends Person
      * @param communication
      * @see Customer#Customer()
      */
-    private Customer(Integer id, String surname, String name, String patronymic, Address address, Communication communication)
+    private Customer(String surname, String name, String patronymic, Address address, Communication communication)
     {
-        this.id = id;
         this.surname = surname;
         this.name = name;
         this.patronymic = patronymic;
@@ -48,17 +45,9 @@ public class Customer extends Person
     }
     /**
      * Конструктор - создание нового объекта
-     * @see Customer#Customer(Integer, String, String, String, Address, Communication)
+     * @see Customer#Customer(String, String, String, Address, Communication)
      */
     public Customer(){}
-
-    @Id
-    @GeneratedValue(generator = "SQLCustomer", strategy = GenerationType.AUTO)
-    @Column(name = "ID_customer", unique = true, nullable = false)
-    @Override
-    public Integer get_Id() { return super.get_Id(); }
-    @Override
-    public void set_Id(Integer id) { super.set_Id(id); }
 
     @NonNull
     @Column(name = "Surname")

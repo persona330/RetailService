@@ -59,6 +59,9 @@ public class Account extends BaseEntity
     public String getLogin() { return login; }
     public void setLogin(String login) { this.login = login; }
 
+    @NonNull
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "Person")
     public Person getPerson() { return person; }
     public void setPerson(Person person) { this.person = person; }
 }

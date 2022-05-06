@@ -6,34 +6,31 @@ import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Transient;
+
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 @AllArgsConstructor
-public class PersonDTO extends BaseDTO
+public abstract class PersonDTO extends BaseDTO
 {
-    /** Свойство фамилия*/
-    private String surname;
-    /** Свойство имя*/
-    private String name;
-    /** Свойство отчество*/
-    private String patronymic;
-    /**Свойство адрес*/
-    private Address address;
-    /**Свойство связь*/
-    private Communication communication;
+    /** Свойство идентификатор человека*/
+    private Integer id;
 
-    public String getSurname() { return surname; }
-    public void setSurname(String surname) { this.surname = surname; }
+    Integer get_Id(){ return id; }
+    void set_Id(Integer id){ this.id = id; }
 
-    public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
+    public abstract String getSurname();
+    public abstract void setSurname(String surname);
 
-    public String getPatronymic() { return patronymic; }
-    public void setPatronymic(String patronymic) { this.patronymic = patronymic; }
+    public abstract String getName();
+    public abstract void setName(String name);
 
-    public Address getAddress() { return address; }
-    public void setAddress(Address address) { this.address = address; }
+    public abstract String getPatronymic();
+    public abstract void setPatronymic(String patronymic);
 
-    public Communication getCommunication() { return communication; }
-    public void setCommunication(Communication communication) { this.communication = communication; }
+    public abstract Address getAddress();
+    public abstract void setAddress(Address address);
+
+    public abstract Communication getCommunication();
+    public abstract void setCommunication(Communication communication);
 }
