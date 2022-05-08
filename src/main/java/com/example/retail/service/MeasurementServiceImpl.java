@@ -1,12 +1,8 @@
 package com.example.retail.service;
 
-import com.example.retail.mapper.AddressMapper;
-import com.example.retail.mapper.MeasurementMapper;
-import com.example.retail.model.dto.AddressDTO;
+import com.example.retail.mapper.MeasurementMapperImpl;
 import com.example.retail.model.dto.MeasurementDTO;
-import com.example.retail.model.entity.Address;
 import com.example.retail.model.entity.Measurement;
-import com.example.retail.repository.AddressRepository;
 import com.example.retail.repository.MeasurementRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,10 +14,11 @@ public class MeasurementServiceImpl implements MeasurementService
 {
     /** Хранилище товаров */
     private final MeasurementRepository measurementRepository;
-    private final MeasurementMapper measurementMapper;
+    //private final MeasurementMapper measurementMapper;
+    private final MeasurementMapperImpl measurementMapper;
 
     @Autowired
-    public MeasurementServiceImpl(MeasurementRepository measurementRepository, MeasurementMapper measurementMapper)
+    public MeasurementServiceImpl(MeasurementRepository measurementRepository, MeasurementMapperImpl measurementMapper)
     {
         this.measurementRepository = measurementRepository;
         this.measurementMapper = measurementMapper;

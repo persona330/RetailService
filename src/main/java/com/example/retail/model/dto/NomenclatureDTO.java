@@ -44,6 +44,7 @@ public class NomenclatureDTO extends BaseDTO
     /**Свойство продукт*/
     private Product product;
 
+
     public Integer getId_Nomenclature() { return id_Nomenclature; }
     public void setId_Nomenclature(Integer id_Nomenclature) { this.id_Nomenclature = id_Nomenclature; }
 

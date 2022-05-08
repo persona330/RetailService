@@ -1,12 +1,13 @@
 package com.example.retail.model.entity;
 
+import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NonNull;
 
 import javax.persistence.*;
 
 /**
- * Класс Цена со свойствами <b>id_produkt<b/>, <b>voll_name<b/>, <b>menge_auf_lager<b/>
+ * Класс Цена со свойствами <b>id_Price<b/>, <b>quantity<b/>, <b><b/>
  */
 @Entity
 @EqualsAndHashCode(callSuper = false)
@@ -14,7 +15,7 @@ import javax.persistence.*;
 public class Price extends BaseEntity
 {
     /** Свойство идентификатор стоимость товара за единицу измерения*/
-    private Integer id_PriceFor;
+    private Integer id_Price;
     /**Свойство количество единиц измерения*/
     private int quantity;
     /**Свойство единица измерения*/
@@ -22,14 +23,14 @@ public class Price extends BaseEntity
 
     /**
      * Конструктор - создание нового объекта с определенными значениями
-     * @param id_PriceFor
+     * @param id_Price
      * @param quantity
      * @param measurement
      * @see  Price#Price()
      */
-    public Price(Integer id_PriceFor, int quantity, Measurement measurement)
+    public Price(Integer id_Price, int quantity, Measurement measurement)
     {
-        this.id_PriceFor = id_PriceFor;
+        this.id_Price = id_Price;
         this.quantity = quantity;
         this.measurement = measurement;
     }
@@ -42,8 +43,8 @@ public class Price extends BaseEntity
     @Id
     @GeneratedValue(generator = "SQLPrice", strategy = GenerationType.AUTO)
     @Column(name = "ID_price", unique = true, nullable = false)
-    public Integer getId_PriceFor() { return id_PriceFor; }
-    public void setId_PriceFor(Integer id_PriceFor) { this.id_PriceFor = id_PriceFor; }
+    public Integer getId_Price() { return id_Price; }
+    public void setId_Price(Integer id_Price) { this.id_Price = id_Price; }
 
     @NonNull
     @Column(name = "Full_name")
@@ -51,19 +52,8 @@ public class Price extends BaseEntity
     public void setQuantity(int quantity) { this.quantity = quantity; }
 
     @NonNull
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     @JoinColumn(name = "Measurement")
     public Measurement getMeasurement() { return measurement; }
     public void setMeasurement(Measurement measurement) { this.measurement = measurement; }
 }
-
-//@Access(AccessType.FIELD)
-//    @OneToMany(mappedBy = "adresse", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-//@Type(type = "text")
-//    @ManyToMany(mappedBy = "spezialisierungen", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-//    @Table(name = "DIENSTSTELLE")
-//    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-//    @JoinTable(name = "ARZT_REGAL", joinColumns = @JoinColumn(name = "ID_Arzt", nullable = false), inverseJoinColumns = @JoinColumn(name = "ID_Regal"))
-//    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-//    @JoinColumn(name = "Dienststelle", nullable = false)
-//    @OneToOne(mappedBy = "dokument", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)

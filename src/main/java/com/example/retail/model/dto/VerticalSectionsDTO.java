@@ -9,7 +9,7 @@ import lombok.NonNull;
 import javax.persistence.*;
 import java.math.BigDecimal;
 
-@EqualsAndHashCode(callSuper = true)
+//@EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 @AllArgsConstructor
 public class VerticalSectionsDTO extends BaseDTO

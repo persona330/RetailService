@@ -1,8 +1,11 @@
 package com.example.retail.config;
 
 import org.modelmapper.ModelMapper;
+import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import static org.modelmapper.config.Configuration.AccessLevel.PRIVATE;
 
 @Configuration
 public class MapperUtil
@@ -10,11 +13,11 @@ public class MapperUtil
     @Bean
     public ModelMapper modelMapper() {
         ModelMapper mapper = new ModelMapper();
-		/*mapper.getConfiguration()
+		mapper.getConfiguration()
 				.setMatchingStrategy(MatchingStrategies.STRICT)
 				.setFieldMatchingEnabled(true)
 				.setSkipNullEnabled(true)
-				.setFieldAccessLevel(PRIVATE);*/
+				.setFieldAccessLevel(PRIVATE);
         return mapper;
     }
 

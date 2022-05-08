@@ -1,10 +1,8 @@
 package com.example.retail.model.dto;
 
 import com.example.retail.model.entity.Measurement;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -14,18 +12,21 @@ import javax.persistence.*;
 public class PriceDTO extends BaseDTO
 {
     /** Свойство идентификатор стоимость товара за единицу измерения*/
-    private Integer id_PriceFor;
+    private Integer id_Price;
     /**Свойство количество единиц измерения*/
     private int quantity;
     /**Свойство единица измерения*/
-    private Measurement measurement;
+    private MeasurementDTO measurement;
 
-    public Integer getId_PriceFor() { return id_PriceFor; }
-    public void setId_PriceFor(Integer id_PriceFor) { this.id_PriceFor = id_PriceFor; }
+    @JsonProperty("id_Price")
+    public Integer getId_Price() { return id_Price; }
+    public void setId_Price(Integer id_Price) { this.id_Price = id_Price; }
 
+    @JsonProperty("quantity")
     public int getQuantity() { return quantity; }
     public void setQuantity(int quantity) { this.quantity = quantity; }
 
-    public Measurement getMeasurement() { return measurement; }
-    public void setMeasurement(Measurement measurement) { this.measurement = measurement; }
+    @JsonProperty("measurement")
+    public MeasurementDTO getMeasurementDTO() { return measurement; }
+    public void setMeasurementDTO(MeasurementDTO measurement) { this.measurement = measurement; }
 }
