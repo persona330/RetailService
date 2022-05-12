@@ -1,16 +1,12 @@
 package com.example.retail.model.entity;
 
+import com.example.retail.model.Status;
 import lombok.EqualsAndHashCode;
 import lombok.NonNull;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
-
-/*public enum Status
-{
-
-}*/
 
 /**
  * Класс Заказано со свойствами <b>id_Address<b/>, <b>apartment<b/>, <b>entrance<b/>
@@ -28,8 +24,8 @@ public class Ordered extends BaseEntity
     private BigDecimal weight;
     /** Свойство полная стоимость*/
     private BigDecimal fullPrice;
-   // /**Свойство статус*/
-    //private Status status;
+    /**Свойство статус*/
+    private Status status;
 
     /**
      * Конструктор - создание нового объекта с определенными значениями
@@ -73,4 +69,10 @@ public class Ordered extends BaseEntity
     @Column(name = "Full_price")
     public BigDecimal getFullPrice() { return fullPrice; }
     public void setFullPrice(BigDecimal fullPrice) { this.fullPrice = fullPrice; }
+
+    @NonNull
+    @Column(name = "Status")
+    @Enumerated(EnumType.STRING)
+    public Status getStatus() { return status; }
+    public void setStatus(Status status) { this.status = status; }
 }

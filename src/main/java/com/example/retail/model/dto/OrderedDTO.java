@@ -1,11 +1,13 @@
 package com.example.retail.model.dto;
 
+import com.example.retail.model.Status;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.util.Date;
+
 
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
@@ -21,7 +23,7 @@ public class OrderedDTO extends BaseDTO
     /** Свойство полная стоимость*/
     private BigDecimal fullPrice;
     /**Свойство статус*/
-    //private Status status;
+    private Status status;
 
     public Integer getId_Ordered() { return id_Ordered; }
     public void setId_Ordered(Integer id_Ordered) { this.id_Ordered = id_Ordered; }
@@ -34,4 +36,7 @@ public class OrderedDTO extends BaseDTO
 
     public BigDecimal getFullPrice() { return fullPrice; }
     public void setFullPrice(BigDecimal fullPrice) { this.fullPrice = fullPrice; }
+
+    public Status getStatus() { return status; }
+    public void setStatus(Status status) { this.status = status; }
 }
