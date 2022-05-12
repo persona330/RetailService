@@ -1,6 +1,6 @@
 package com.example.retail.service;
 
-import com.example.retail.mapper.MeasurementMapperImpl;
+import com.example.retail.mapper.MeasurementMapper;
 import com.example.retail.model.dto.MeasurementDTO;
 import com.example.retail.model.entity.Measurement;
 import com.example.retail.repository.MeasurementRepository;
@@ -12,13 +12,12 @@ import java.util.List;
 @Service
 public class MeasurementServiceImpl implements MeasurementService
 {
-    /** Хранилище товаров */
     private final MeasurementRepository measurementRepository;
     //private final MeasurementMapper measurementMapper;
-    private final MeasurementMapperImpl measurementMapper;
+    private final MeasurementMapper measurementMapper;
 
     @Autowired
-    public MeasurementServiceImpl(MeasurementRepository measurementRepository, MeasurementMapperImpl measurementMapper)
+    public MeasurementServiceImpl(MeasurementRepository measurementRepository, MeasurementMapper measurementMapper)
     {
         this.measurementRepository = measurementRepository;
         this.measurementMapper = measurementMapper;
@@ -33,8 +32,8 @@ public class MeasurementServiceImpl implements MeasurementService
     @Override
     public List<MeasurementDTO> readAll()
     {
-        List<Measurement> addresses = measurementRepository.findAll();
-        return measurementMapper.listToDTO(addresses);
+        List<Measurement> measurementList = measurementRepository.findAll();
+        return measurementMapper.listToDTO(measurementList);
     }
 
     @Override

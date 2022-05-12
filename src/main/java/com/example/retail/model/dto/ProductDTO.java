@@ -19,7 +19,7 @@ public class ProductDTO extends BaseDTO
     /**Свойство количество в наличии*/
     private int mengeAufLager;
     /**Свойство цена за товар*/
-    private Price price;
+    private PriceDTO price;
 
     public Integer getId_Product() { return id_Product; }
     public void setId_Product(Integer id_Product) { this.id_Product = id_Product; }
@@ -27,6 +27,6 @@ public class ProductDTO extends BaseDTO
     public int getMengeAufLager() { return mengeAufLager; }
     public void setMengeAufLager(int mengeAufLager) { this.mengeAufLager = mengeAufLager; }
 
-    public Price getPrice() { return price; }
-    public void setPrice(Price price) { this.price = price; }
+    public PriceDTO getPriceDTO() { return price; }
+    public void setPriceDTO(PriceDTO price) { this.price = price; }
 }

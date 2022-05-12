@@ -18,15 +18,12 @@ public class PriceDTO extends BaseDTO
     /**Свойство единица измерения*/
     private MeasurementDTO measurement;
 
-    @JsonProperty("id_Price")
     public Integer getId_Price() { return id_Price; }
     public void setId_Price(Integer id_Price) { this.id_Price = id_Price; }
 
-    @JsonProperty("quantity")
     public int getQuantity() { return quantity; }
     public void setQuantity(int quantity) { this.quantity = quantity; }
 
-    @JsonProperty("measurement")
     public MeasurementDTO getMeasurementDTO() { return measurement; }
     public void setMeasurementDTO(MeasurementDTO measurement) { this.measurement = measurement; }
 }

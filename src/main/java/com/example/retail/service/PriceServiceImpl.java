@@ -1,6 +1,6 @@
 package com.example.retail.service;
 
-import com.example.retail.mapper.PriceMapperImpl;
+import com.example.retail.mapper.PriceMapper;
 import com.example.retail.model.dto.PriceDTO;
 import com.example.retail.model.entity.Price;
 import com.example.retail.repository.PriceRepository;
@@ -14,11 +14,10 @@ public class PriceServiceImpl implements PriceService
 {
     /** Хранилище товаров */
     private final PriceRepository priceRepository;
-    //private final PriceMapper priceMapper;
-    private final PriceMapperImpl priceMapper;
+    private final PriceMapper priceMapper;
 
     @Autowired
-    public PriceServiceImpl(PriceRepository priceRepository, PriceMapperImpl priceMapper)
+    public PriceServiceImpl(PriceRepository priceRepository, PriceMapper priceMapper)
     {
         this.priceRepository = priceRepository;
         this.priceMapper = priceMapper;
@@ -56,7 +55,7 @@ public class PriceServiceImpl implements PriceService
 
             if (pricetoEntity.getQuantity() == 0) pricetoEntity.setQuantity(price.getQuantity());
 
-            if (pricetoEntity.getMeasurement() == null) pricetoEntity.setMeasurement(price.getMeasurement());
+            //if (pricetoEntity.getMeasurement() == null) pricetoEntity.setMeasurement(price.getMeasurement());
 
             return priceMapper.toDTO(priceRepository.save(pricetoEntity));
         }
