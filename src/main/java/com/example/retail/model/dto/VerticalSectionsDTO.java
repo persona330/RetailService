@@ -21,7 +21,7 @@ public class VerticalSectionsDTO extends BaseDTO
     /** Свойство вместимость*/
     private BigDecimal size;
     /** Свойство стеллаж*/
-    private Stillage stillage;
+    private StillageDTO stillage;
 
     public Integer getId_VerticalSections() { return id_VerticalSections; }
     public void setId_VerticalSections(Integer id_VerticalSections) { this.id_VerticalSections = id_VerticalSections; }
@@ -32,6 +32,6 @@ public class VerticalSectionsDTO extends BaseDTO
     public BigDecimal getSize() { return size; }
     public void setSize(BigDecimal size) { this.size = size; }
 
-    public Stillage getStillage() { return stillage; }
-    public void setStillage(Stillage stillage) { this.stillage = stillage; }
+    public StillageDTO getStillageDTO() { return stillage; }
+    public void setStillageDTO(StillageDTO stillage) { this.stillage = stillage; }
 }

@@ -1,7 +1,10 @@
 package com.example.retail.mapper;
 
 import com.example.retail.model.dto.AddressDTO;
+import com.example.retail.model.dto.MeasurementDTO;
 import com.example.retail.model.entity.Address;
+import com.example.retail.model.entity.Measurement;
+import org.mapstruct.Mapper;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -12,35 +15,10 @@ import java.util.Objects;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-@Component("address")
-public class AddressMapper extends BaseMapper<Address, AddressDTO>
+@Mapper(componentModel = "spring")
+public interface AddressMapper
 {
-    @Autowired
-    private ModelMapper mapper;
-
-    public AddressMapper() {
-        super(Address.class, AddressDTO.class);
-    }
-
-    @Override
-    public Address toEntity(AddressDTO dto) {
-        return Objects.isNull(dto) ? null : mapper.map(dto, Address.class);
-    }
-
-    @Override
-    public AddressDTO toDTO(Address entity) {
-        return Objects.isNull(entity) ? null : mapper.map(entity, AddressDTO.class);
-    }
-
-    @Override
-    public List<AddressDTO> listToDTO(List<Address> list)
-    {
-        ArrayList<AddressDTO> listD = new ArrayList<>();
-        for (Address e : list)
-        {
-            listD.add(toDTO(e));
-        }
-        return listD;
-    }
-
+    Address toEntity(AddressDTO dto);
+    AddressDTO toDTO(Address entity);
+    List<AddressDTO> listToDTO(List<Address> entityList);
 }

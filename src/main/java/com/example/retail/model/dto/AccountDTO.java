@@ -17,7 +17,7 @@ public class AccountDTO extends BaseDTO
     /** Свойство логин*/
     private String login;
     /** Свойство человек*/
-    private Person person;
+    private PersonDTO person;
 
     public Integer getId_Account() { return id_Account; }
     public void setId_Account(Integer id_Account) { this.id_Account = id_Account; }
@@ -28,6 +28,6 @@ public class AccountDTO extends BaseDTO
     public String getLogin() { return login; }
     public void setLogin(String login) { this.login = login; }
 
-    public Person getPerson() { return person; }
-    public void setPerson(Person person) { this.person = person; }
+    public PersonDTO getPersonDTO() { return person; }
+    public void setPersonDTO(PersonDTO person) { this.person = person; }
 }

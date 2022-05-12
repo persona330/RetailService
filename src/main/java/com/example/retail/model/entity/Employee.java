@@ -73,10 +73,10 @@ public abstract class Employee extends Person
     public void setCommunication(Communication communication){ this.communication = communication; }
 
     @Transient
-    public abstract boolean isFree();
-    public abstract void setFree(boolean free);
+    protected abstract boolean isFree();
+    protected abstract void setFree(boolean free);
 
     @Transient
-    public abstract Organization getOrganization();
-    public abstract void setOrganization(Organization organization);
+    protected abstract Organization getOrganization();
+    protected abstract void setOrganization(Organization organization);
 }

@@ -22,9 +22,9 @@ public class ShelfDTO extends BaseDTO
     /** Свойство номер*/
     private String number;
     /** Свойство группа товаров*/
-    private Group group;
+    private GroupDTO group;
     /** Свойство стеллаж*/
-    private Stillage stillage;
+    private StillageDTO stillage;
 
     public Integer getId_Shelf() { return id_Shelf; }
     public void setId_Shelf(Integer id_Shelf) { this.id_Shelf = id_Shelf; }
@@ -35,9 +35,9 @@ public class ShelfDTO extends BaseDTO
     public String getNumber() { return number; }
     public void setNumber(String number) { this.number = number; }
 
-    public Group getGroup() { return group; }
-    public void setGroup(Group group) { this.group = group; }
+    public GroupDTO getGroupDTO() { return group; }
+    public void setGroupDTO(GroupDTO group) { this.group = group; }
 
-    public Stillage getStillage() { return stillage; }
-    public void setStillage(Stillage stillage) { this.stillage = stillage; }
+    public StillageDTO getStillageDTO() { return stillage; }
+    public void setStillageDTO(StillageDTO stillage) { this.stillage = stillage; }
 }

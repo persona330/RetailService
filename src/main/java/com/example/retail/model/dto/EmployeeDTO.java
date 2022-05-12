@@ -26,9 +26,9 @@ public abstract class EmployeeDTO extends PersonDTO
     /** Свойство отчество*/
     private String patronymic;
     /**Свойство адрес*/
-    private Address address;
+    private AddressDTO address;
     /**Свойство связь*/
-    private Communication communication;
+    private CommunicationDTO communication;
 
     public Integer get_Id(){ return id; }
     public void set_Id(Integer id){ this.id = id; }
@@ -42,15 +42,15 @@ public abstract class EmployeeDTO extends PersonDTO
     public String getPatronymic(){ return patronymic; }
     public void setPatronymic(String patronymic){ this.patronymic = patronymic; }
 
-    public Address getAddress(){ return address; }
-    public void setAddress(Address address){ this.address = address; }
+    public AddressDTO getAddressDTO(){ return address; }
+    public void setAddressDTO(AddressDTO address){ this.address = address; }
 
-    public Communication getCommunication(){ return communication; }
-    public void setCommunication(Communication communication){ this.communication = communication; }
+    public CommunicationDTO getCommunicationDTO(){ return communication; }
+    public void setCommunicationDTO(CommunicationDTO communication){ this.communication = communication; }
 
-    public abstract boolean isFree();
-    public abstract void setFree(boolean free);
+    protected abstract boolean isFree();
+    protected abstract void setFree(boolean free);
 
-    public abstract Organization getOrganization();
-    public abstract void setOrganization(Organization organization);
+    protected abstract OrganizationDTO getOrganizationDTO();
+    protected abstract void setOrganizationDTO(OrganizationDTO organization);
 }

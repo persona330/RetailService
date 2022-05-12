@@ -9,9 +9,11 @@ import com.example.retail.model.entity.PaymentMethod;
 import com.example.retail.repository.OrderRepository;
 import com.example.retail.repository.PaymentMethodRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class OrderServiceImpl implements OrderService
 {
     private final OrderRepository orderRepository;
@@ -58,9 +60,9 @@ public class OrderServiceImpl implements OrderService
 
             if (ordertoEntity.getQuantity() == 0) ordertoEntity.setQuantity(order.getQuantity());
 
-            //if (ordertoEntity.getName() == null) ordertoEntity.setName(order.getName());
+            if (ordertoEntity.getProduct() == null) ordertoEntity.setProduct(order.getProduct());
 
-            //if (ordertoEntity.getName() == null) ordertoEntity.setName(order.getName());
+            if (ordertoEntity.getOrdered() == null) ordertoEntity.setOrdered(order.getOrdered());
 
             return orderMapper.toDTO(orderRepository.save(ordertoEntity));
         }

@@ -21,11 +21,11 @@ public class EmployeeStoreDTO extends EmployeeDTO
     /** Свойство свободен ли сотрудник*/
     private boolean free;
     /** Свойство организация*/
-    private Organization organization;
+    private OrganizationDTO organization;
     /** Свойство должность*/
-    private Position position;
+    private PositionDTO position;
     /** Свойство склад*/
-    private Store store;
+    private StoreDTO store;
 
     @Override
     public boolean isFree() { return free; }
@@ -33,13 +33,13 @@ public class EmployeeStoreDTO extends EmployeeDTO
     public void setFree(boolean free) { this.free = free; }
 
     @Override
-    public Organization getOrganization() { return organization; }
+    public OrganizationDTO getOrganizationDTO() { return organization; }
     @Override
-    public void setOrganization(Organization organization) { this.organization = organization; }
+    public void setOrganizationDTO(OrganizationDTO organization) { this.organization = organization; }
 
-    public Position getPosition() { return position; }
-    public void setPosition(Position position) { this.position = position; }
+    public PositionDTO getPositionDTO() { return position; }
+    public void setPositionDTO(PositionDTO position) { this.position = position; }
 
-    public Store getStore() { return store; }
-    public void setStore(Store store) { this.store = store; }
+    public StoreDTO getStoreDTO() { return store; }
+    public void setStoreDTO(StoreDTO store) { this.store = store; }
 }

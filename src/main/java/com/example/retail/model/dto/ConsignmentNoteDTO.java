@@ -24,9 +24,9 @@ public class ConsignmentNoteDTO extends BaseDTO
     /**Свойство товар на возврат организации поставщику*/
     private boolean forReturn;
     /**Свойство работник склада*/
-    private EmployeeStore employeeStore;
+    private EmployeeStoreDTO employeeStore;
     /**Свойство поставщик от организации*/
-    private Supplier supplier;
+    private SupplierDTO supplier;
 
     public Integer getId_ConsignmentNote() { return id_ConsignmentNote; }
     public void setId_ConsignmentNote(Integer id_ConsignmentNote) { this.id_ConsignmentNote = id_ConsignmentNote; }
@@ -40,9 +40,9 @@ public class ConsignmentNoteDTO extends BaseDTO
     public boolean isForReturn() { return forReturn; }
     public void setForReturn(boolean forReturn) { this.forReturn = forReturn; }
 
-    public EmployeeStore getEmployeeStore() { return employeeStore; }
-    public void setEmployeeStore(EmployeeStore employeeStore) { this.employeeStore = employeeStore; }
+    public EmployeeStoreDTO getEmployeeStoreDTO() { return employeeStore; }
+    public void setEmployeeStoreDTO(EmployeeStoreDTO employeeStore) { this.employeeStore = employeeStore; }
 
-    public Supplier getSupplier() { return supplier; }
-    public void setSupplier(Supplier supplier) { this.supplier = supplier; }
+    public SupplierDTO getSupplierDTO() { return supplier; }
+    public void setSupplierDTO(SupplierDTO supplier) { this.supplier = supplier; }
 }

@@ -19,7 +19,7 @@ public class GroupDTO extends BaseDTO
     /**Свойство название группы товаров*/
     private String name;
     /**Свойство дочерняя группа товаров*/
-    private Group type;
+    private GroupDTO type;
 
     public Integer getId_Group() { return id_Group; }
     public void setId_Group(Integer id_Group) { this.id_Group = id_Group; }
@@ -27,6 +27,6 @@ public class GroupDTO extends BaseDTO
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }
 
-    public Group getType() { return type; }
-    public void setType(Group type) { this.type = type; }
+    public GroupDTO getType() { return type; }
+    public void setType(GroupDTO type) { this.type = type; }
 }

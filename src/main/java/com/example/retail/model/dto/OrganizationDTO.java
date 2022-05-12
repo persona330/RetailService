@@ -23,9 +23,9 @@ public class OrganizationDTO extends BaseDTO
     /**Свойство КПП*/
     private String kpp;
     /**Свойство адрес*/
-    private Address address;
+    private AddressDTO address;
     /**Свойство связь*/
-    private Communication communication;
+    private CommunicationDTO communication;
 
     public Integer getId_Organization() { return id_Organization; }
     public void setId_Organization(Integer id_Organization) { this.id_Organization = id_Organization; }
@@ -39,9 +39,9 @@ public class OrganizationDTO extends BaseDTO
     public String getKpp() { return kpp; }
     public void setKpp(String kpp) { this.kpp = kpp; }
 
-    public Address getAddress() { return address; }
-    public void setAddress(Address address) { this.address = address; }
+    public AddressDTO getAddressDTO() { return address; }
+    public void setAddressDTO(AddressDTO address) { this.address = address; }
 
-    public Communication getCommunication() { return communication; }
-    public void setCommunication(Communication communication) { this.communication = communication; }
+    public CommunicationDTO getCommunicationDTO() { return communication; }
+    public void setCommunicationDTO(CommunicationDTO communication) { this.communication = communication; }
 }

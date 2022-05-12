@@ -16,21 +16,21 @@ public abstract class PersonDTO extends BaseDTO
     /** Свойство идентификатор человека*/
     private Integer id;
 
-    Integer get_Id(){ return id; }
-    void set_Id(Integer id){ this.id = id; }
+    public Integer get_Id(){ return id; }
+    public void set_Id(Integer id){ this.id = id; }
 
-    public abstract String getSurname();
-    public abstract void setSurname(String surname);
+    protected abstract String getSurname();
+    protected abstract void setSurname(String surname);
 
-    public abstract String getName();
-    public abstract void setName(String name);
+    protected abstract String getName();
+    protected abstract void setName(String name);
 
-    public abstract String getPatronymic();
-    public abstract void setPatronymic(String patronymic);
+    protected abstract String getPatronymic();
+    protected abstract void setPatronymic(String patronymic);
 
-    public abstract Address getAddress();
-    public abstract void setAddress(Address address);
+    protected abstract AddressDTO getAddressDTO();
+    protected abstract void setAddressDTO(AddressDTO address);
 
-    public abstract Communication getCommunication();
-    public abstract void setCommunication(Communication communication);
+    protected abstract CommunicationDTO getCommunicationDTO();
+    protected abstract void setCommunicationDTO(CommunicationDTO communication);
 }

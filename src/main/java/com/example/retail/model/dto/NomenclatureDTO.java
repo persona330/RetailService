@@ -32,17 +32,17 @@ public class NomenclatureDTO extends BaseDTO
     /**Свойство объем товара*/
     private BigDecimal size;
     /**Свойство производитель*/
-    private Producer producer;
+    private ProducerDTO producer;
     /**Свойство группа товара*/
-    private Group group;
+    private GroupDTO group;
     /**Свойство единица измерения*/
-    private Measurement measurement;
+    private MeasurementDTO measurement;
     /**Свойство ячейка*/
-    private Box box;
+    private BoxDTO box;
     /**Свойство условия хранения*/
-    private StorageConditions storageConditions;
+    private StorageConditionsDTO storageConditions;
     /**Свойство продукт*/
-    private Product product;
+    private ProductDTO product;
 
 
     public Integer getId_Nomenclature() { return id_Nomenclature; }
@@ -69,21 +69,21 @@ public class NomenclatureDTO extends BaseDTO
     public BigDecimal getSize() { return size; }
     public void setSize(BigDecimal size) { this.size = size; }
 
-    public Producer getProducer() { return producer; }
-    public void setProducer(Producer producer) { this.producer = producer; }
+    public ProducerDTO getProducerDTO() { return producer; }
+    public void setProducerDTO(ProducerDTO producer) { this.producer = producer; }
 
-    public Group getGroup() { return group; }
-    public void setGroup(Group group) { this.group = group; }
+    public GroupDTO getGroupDTO() { return group; }
+    public void setGroupDTO(GroupDTO group) { this.group = group; }
 
-    public Measurement getMeasurement() { return measurement; }
-    public void setMeasurement(Measurement measurement) { this.measurement = measurement; }
+    public MeasurementDTO getMeasurementDTO() { return measurement; }
+    public void setMeasurementDTO(MeasurementDTO measurement) { this.measurement = measurement; }
 
-    public Box getBox() { return box; }
-    public void setBox(Box box) { this.box = box; }
+    public BoxDTO getBoxDTO() { return box; }
+    public void setBoxDTO(BoxDTO box) { this.box = box; }
 
-    public StorageConditions getStorageConditions() { return storageConditions; }
-    public void setStorageConditions(StorageConditions storageConditions) { this.storageConditions = storageConditions; }
+    public StorageConditionsDTO getStorageConditionsDTO() { return storageConditions; }
+    public void setStorageConditionsDTO(StorageConditionsDTO storageConditions) { this.storageConditions = storageConditions; }
 
-    public Product getProduct() { return product; }
-    public void setProduct(Product product) { this.product = product; }
+    public ProductDTO getProductDTO() { return product; }
+    public void setProductDTO(ProductDTO product) { this.product = product; }
 }

@@ -24,9 +24,9 @@ public class ImportDTO extends BaseDTO
     /**Свойство НДС*/
     private int vat;
     /**Свойство накладная*/
-    private ConsignmentNote consignmentNote;
+    private ConsignmentNoteDTO consignmentNote;
     /**Свойство номенклатура*/
-    private Nomenclature nomenclature;
+    private NomenclatureDTO nomenclature;
 
     public Integer getId_Import() { return id_Import; }
     public void setId_Import(Integer id_Import) { this.id_Import = id_Import; }
@@ -40,9 +40,9 @@ public class ImportDTO extends BaseDTO
     public int getVat() { return vat; }
     public void setVat(int vat) { this.vat = vat; }
 
-    public ConsignmentNote getConsignmentNote() { return consignmentNote; }
-    public void setConsignmentNote(ConsignmentNote consignmentNote) { this.consignmentNote = consignmentNote; }
+    public ConsignmentNoteDTO getConsignmentNoteDTO() { return consignmentNote; }
+    public void setConsignmentNoteDTO(ConsignmentNoteDTO consignmentNote) { this.consignmentNote = consignmentNote; }
 
-    public Nomenclature getNomenclature() { return nomenclature; }
-    public void setNomenclature(Nomenclature nomenclature) { this.nomenclature = nomenclature; }
+    public NomenclatureDTO getNomenclatureDTO() { return nomenclature; }
+    public void setNomenclatureDTO(NomenclatureDTO nomenclature) { this.nomenclature = nomenclature; }
 }

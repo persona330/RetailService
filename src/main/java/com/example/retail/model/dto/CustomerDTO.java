@@ -18,9 +18,9 @@ public class CustomerDTO extends PersonDTO
     /** Свойство отчество*/
     private String patronymic;
     /**Свойство адрес*/
-    private Address address;
+    private AddressDTO address;
     /**Свойство связь*/
-    private Communication communication;
+    private CommunicationDTO communication;
 
     @Override
     public String getSurname() { return surname; }
@@ -38,13 +38,13 @@ public class CustomerDTO extends PersonDTO
     public void setPatronymic(String patronymic) { this.patronymic = patronymic; }
 
     @Override
-    public Address getAddress() { return address; }
+    public AddressDTO getAddressDTO() { return address; }
     @Override
-    public void setAddress(Address address) { this.address = address; }
+    public void setAddressDTO(AddressDTO address) { this.address = address; }
 
     @Override
-    public Communication getCommunication() { return communication; }
+    public CommunicationDTO getCommunicationDTO() { return communication; }
     @Override
-    public void setCommunication(Communication communication) { this.communication = communication; }
+    public void setCommunicationDTO(CommunicationDTO communication) { this.communication = communication; }
 
 }

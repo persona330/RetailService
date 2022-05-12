@@ -21,15 +21,15 @@ public class ServiceCostDTO extends BaseDTO
     /** Свойство оплачено*/
     private boolean paidForBy;
     /** Свойство заказано*/
-    private Ordered ordered;
+    private OrderedDTO ordered;
     /** Свойство доставка*/
-    private Delivery delivery;
+    private DeliveryDTO delivery;
     /** Свойство способ оплаты*/
-    private PaymentMethod paymentMethod;
+    private PaymentMethodDTO paymentMethod;
     /** Свойство покупатель*/
-    private Customer customer;
+    private CustomerDTO customer;
     /** Свойство кассовый чек*/
-    private CashVoucher cashVoucher;
+    private CashVoucherDTO cashVoucher;
 
     public Integer getId_ServiceCost() { return id_ServiceCost; }
     public void setId_ServiceCost(Integer id_ServiceCost) { this.id_ServiceCost = id_ServiceCost; }
@@ -40,18 +40,18 @@ public class ServiceCostDTO extends BaseDTO
     public boolean isPaidForBy() { return paidForBy; }
     public void setPaidForBy(boolean paidForBy) { this.paidForBy = paidForBy; }
 
-    public Ordered getOrdered() { return ordered; }
-    public void setOrdered(Ordered ordered) { this.ordered = ordered; }
+    public OrderedDTO getOrderedDTO() { return ordered; }
+    public void setOrderedDTO(OrderedDTO ordered) { this.ordered = ordered; }
 
-    public Delivery getDelivery() { return delivery; }
-    public void setDelivery(Delivery delivery) { this.delivery = delivery; }
+    public DeliveryDTO getDeliveryDTO() { return delivery; }
+    public void setDeliveryDTO(DeliveryDTO delivery) { this.delivery = delivery; }
 
-    public PaymentMethod getPaymentMethod() { return paymentMethod; }
-    public void setPaymentMethod(PaymentMethod paymentMethod) { this.paymentMethod = paymentMethod; }
+    public PaymentMethodDTO getPaymentMethod() { return paymentMethod; }
+    public void setPaymentMethodDTO(PaymentMethodDTO paymentMethod) { this.paymentMethod = paymentMethod; }
 
-    public Customer getCustomer() { return customer; }
-    public void setCustomer(Customer customer) { this.customer = customer; }
+    public CustomerDTO getCustomerDTO() { return customer; }
+    public void setCustomerDTO(CustomerDTO customer) { this.customer = customer; }
 
-    public CashVoucher getCashVoucher() { return cashVoucher; }
-    public void setCashVoucher(CashVoucher cashVoucher) { this.cashVoucher = cashVoucher; }
+    public CashVoucherDTO getCashVoucherDTO() { return cashVoucher; }
+    public void setCashVoucherDTO(CashVoucherDTO cashVoucher) { this.cashVoucher = cashVoucher; }
 }

@@ -18,26 +18,26 @@ public abstract class Person extends BaseEntity
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    Integer get_Id(){ return id; }
-    void set_Id(Integer id){ this.id = id; }
+    public Integer get_Id(){ return id; }
+    public void set_Id(Integer id){ this.id = id; }
 
     @Transient
-    public abstract String getSurname();
-    public abstract void setSurname(String surname);
+    protected abstract String getSurname();
+    protected abstract void setSurname(String surname);
 
     @Transient
-    public abstract String getName();
-    public abstract void setName(String name);
+    protected abstract String getName();
+    protected abstract void setName(String name);
 
     @Transient
-    public abstract String getPatronymic();
-    public abstract void setPatronymic(String patronymic);
+    protected abstract String getPatronymic();
+    protected abstract void setPatronymic(String patronymic);
 
     @Transient
-    public abstract Address getAddress();
-    public abstract void setAddress(Address address);
+    protected abstract Address getAddress();
+    protected abstract void setAddress(Address address);
 
     @Transient
-    public abstract Communication getCommunication();
-    public abstract void setCommunication(Communication communication);
+    protected abstract Communication getCommunication();
+    protected abstract void setCommunication(Communication communication);
 }

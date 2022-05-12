@@ -39,11 +39,11 @@ public class CashVoucherDTO extends BaseDTO
     /** Свойство номер чека за смену*/
     private int numberPerShift;
     /** Свойство расчетный признак*/
-    private CalculatedSign calculatedSign;
+    private CalculatedSignDTO calculatedSign;
     /** Свойство ораганизация*/
-    private Organization organization;
+    private OrganizationDTO organization;
     /** Свойство стоимость услуги*/
-    private ServiceCost serviceCost;
+    private ServiceCostDTO serviceCost;
 
     public Integer getId_CashVoucher() { return id_CashVoucher; }
     public void setId_CashVoucher(Integer id_CashVoucher) { this.id_CashVoucher = id_CashVoucher; }
@@ -78,12 +78,12 @@ public class CashVoucherDTO extends BaseDTO
     public int getNumberPerShift() { return numberPerShift; }
     public void setNumberPerShift(int numberPerShift) { this.numberPerShift = numberPerShift; }
 
-    public CalculatedSign getCalculatedSign() { return calculatedSign; }
-    public void setCalculatedSign(CalculatedSign calculatedSign) { this.calculatedSign = calculatedSign; }
+    public CalculatedSignDTO getCalculatedSignDTO() { return calculatedSign; }
+    public void setCalculatedSignDTO(CalculatedSignDTO calculatedSign) { this.calculatedSign = calculatedSign; }
 
-    public Organization getOrganization() { return organization; }
-    public void setOrganization(Organization organization) { this.organization = organization; }
+    public OrganizationDTO getOrganizationDTO() { return organization; }
+    public void setOrganizationDTO(OrganizationDTO organization) { this.organization = organization; }
 
-    public ServiceCost getServiceCost() { return serviceCost; }
-    public void setServiceCost(ServiceCost serviceCost) { this.serviceCost = serviceCost; }
+    public ServiceCostDTO getServiceCostDTO() { return serviceCost; }
+    public void setServiceCostDTO(ServiceCostDTO serviceCost) { this.serviceCost = serviceCost; }
 }

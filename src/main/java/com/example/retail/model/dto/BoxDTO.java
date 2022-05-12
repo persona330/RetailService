@@ -22,9 +22,9 @@ public class BoxDTO extends BaseDTO
     /** Свойство объем ячейки*/
     private BigDecimal size;
     /** Свойство полка*/
-    private Shelf shelf;
+    private ShelfDTO shelf;
     /** Свойство вертикальная секция*/
-    private VerticalSections verticalSections;
+    private VerticalSectionsDTO verticalSections;
 
     public Integer getId_Box() { return id_Box; }
     public void setId_Box(Integer id_Box) { this.id_Box = id_Box; }
@@ -35,9 +35,9 @@ public class BoxDTO extends BaseDTO
     public BigDecimal getSize() { return size; }
     public void setSize(BigDecimal size) { this.size = size; }
 
-    public Shelf getShelf() { return shelf; }
-    public void setShelf(Shelf shelf) { this.shelf = shelf; }
+    public ShelfDTO getShelfDTO() { return shelf; }
+    public void setShelfDTO(ShelfDTO shelf) { this.shelf = shelf; }
 
-    public VerticalSections getVerticalSections() { return verticalSections; }
-    public void setVerticalSections(VerticalSections verticalSections) { this.verticalSections = verticalSections; }
+    public VerticalSectionsDTO getVerticalSectionsDTO() { return verticalSections; }
+    public void setVerticalSectionsDTO(VerticalSectionsDTO verticalSections) { this.verticalSections = verticalSections; }
 }

@@ -23,9 +23,9 @@ public class AreaDTO extends BaseEntity
     /** Свойство вместимость*/
     private BigDecimal capacity;
     /** Свойство условия хранения*/
-    private StorageConditions storageConditions;
+    private StorageConditionsDTO storageConditions;
     /** Свойство склад*/
-    private Store store;
+    private StoreDTO store;
 
     public Integer getId_Area() { return id_Area; }
     public void setId_Area(Integer id_Area) { this.id_Area = id_Area; }
@@ -36,9 +36,9 @@ public class AreaDTO extends BaseEntity
     public BigDecimal getCapacity() { return capacity; }
     public void setCapacity(BigDecimal capacity) { this.capacity = capacity; }
 
-    public StorageConditions getStorageConditions() { return storageConditions; }
-    public void setStorageConditions(StorageConditions storageConditions) { this.storageConditions = storageConditions; }
+    public StorageConditionsDTO getStorageConditionsDTO() { return storageConditions; }
+    public void setStorageConditionsDTO(StorageConditionsDTO storageConditions) { this.storageConditions = storageConditions; }
 
-    public Store getStore() { return store; }
-    public void setStore(Store store) { this.store = store; }
+    public StoreDTO getStoreDTO() { return store; }
+    public void setStoreDTO(StoreDTO store) { this.store = store; }
 }

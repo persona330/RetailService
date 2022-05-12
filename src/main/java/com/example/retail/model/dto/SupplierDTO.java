@@ -16,9 +16,9 @@ public class SupplierDTO
     /**Свойство полное имя поставщика*/
     private String name;
     /**Свойство должность*/
-    private Position position;
+    private PositionDTO position;
     /**Свойство организация в которой работает*/
-    private Organization organization;
+    private OrganizationDTO organization;
 
     public Integer getId_Supplier() { return id_Supplier; }
     public void setId_Supplier(Integer id_Supplier) { this.id_Supplier = id_Supplier; }
@@ -26,9 +26,9 @@ public class SupplierDTO
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }
 
-    public Position getPosition() { return position; }
-    public void setPosition(Position position) { this.position = position; }
+    public PositionDTO getPositionDTO() { return position; }
+    public void setPositionDTO(PositionDTO position) { this.position = position; }
 
-    public Organization getOrganization() { return organization; }
-    public void setOrganization(Organization organization) { this.organization = organization; }
+    public OrganizationDTO getOrganizationDTO() { return organization; }
+    public void setOrganizationDTO(OrganizationDTO organization) { this.organization = organization; }
 }

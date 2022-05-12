@@ -14,9 +14,9 @@ public class CourierDTO extends EmployeeDTO
     /** Свойство свободен ли сотрудник*/
     private boolean free;
     /** Свойство организация*/
-    private Organization organization;
+    private OrganizationDTO organization;
     /** Свойство транспорт*/
-    private Transport transport;
+    private TransportDTO transport;
 
     @Override
     public boolean isFree() { return free; }
@@ -24,10 +24,10 @@ public class CourierDTO extends EmployeeDTO
     public void setFree(boolean free) { this.free = free; }
 
     @Override
-    public Organization getOrganization() { return organization; }
+    public OrganizationDTO getOrganizationDTO() { return organization; }
     @Override
-    public void setOrganization(Organization organization) { this.organization = organization; }
+    public void setOrganizationDTO(OrganizationDTO organization) { this.organization = organization; }
 
-    public Transport getTransport() { return transport; }
-    public void setTransport(Transport transport) { this.transport = transport; }
+    public TransportDTO getTransportDTO() { return transport; }
+    public void setTransportDTO(TransportDTO transport) { this.transport = transport; }
 }

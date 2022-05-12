@@ -21,7 +21,7 @@ public class StillageDTO extends BaseDTO
     /** Свойство вмещаемый объем*/
     private BigDecimal size;
     /** Свойство зона хранения*/
-    private Area area;
+    private AreaDTO area;
 
     public Integer getId_Stillage() { return id_Stillage; }
     public void setId_Stillage(Integer id_Stillage) { this.id_Stillage = id_Stillage; }
@@ -32,6 +32,6 @@ public class StillageDTO extends BaseDTO
     public BigDecimal getSize() { return size; }
     public void setSize(BigDecimal size) { this.size = size; }
 
-    public Area getArea() { return area; }
-    public void setArea(Area area) { this.area = area; }
+    public AreaDTO getAreaDTO() { return area; }
+    public void setAreaDTO(AreaDTO area) { this.area = area; }
 }

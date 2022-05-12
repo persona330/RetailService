@@ -31,13 +31,13 @@ public class DeliveryDTO extends BaseEntity
     /** Свойство расстояние до адресата*/
     private BigDecimal distanceFromAddressee;
     /** Свойство метод доставки*/
-    private DeliveryMethod deliveryMethod;
+    private DeliveryMethodDTO deliveryMethod;
     /** Свойство тариф*/
-    private Tariff tariff;
+    private TariffDTO tariff;
     /** Свойство транспорт*/
-    private Transport transport;
+    private TransportDTO transport;
     /** Свойство адрес*/
-    private Address address;
+    private AddressDTO address;
 
     public Integer getId_Delivery() { return id_Delivery; }
     public void setId_Delivery(Integer id_Delivery) { this.id_Delivery = id_Delivery; }
@@ -60,15 +60,15 @@ public class DeliveryDTO extends BaseEntity
     public BigDecimal getDistanceFromAddressee() { return distanceFromAddressee; }
     public void setDistanceFromAddressee(BigDecimal distanceFromAddressee) { this.distanceFromAddressee = distanceFromAddressee; }
 
-    public DeliveryMethod getDeliveryMethod() { return deliveryMethod; }
-    public void setDeliveryMethod(DeliveryMethod deliveryMethod) { this.deliveryMethod = deliveryMethod; }
+    public DeliveryMethodDTO getDeliveryMethodDTO() { return deliveryMethod; }
+    public void setDeliveryMethodDTO(DeliveryMethodDTO deliveryMethod) { this.deliveryMethod = deliveryMethod; }
 
-    public Tariff getTariff() { return tariff; }
-    public void setTariff(Tariff tariff) { this.tariff = tariff; }
+    public TariffDTO getTariffDTO() { return tariff; }
+    public void setTariffDTO(TariffDTO tariff) { this.tariff = tariff; }
 
-    public Transport getTransport() { return transport; }
-    public void setTransport(Transport transport) { this.transport = transport; }
+    public TransportDTO getTransportDTO() { return transport; }
+    public void setTransportDTO(TransportDTO transport) { this.transport = transport; }
 
-    public Address getAddress() { return address; }
-    public void setAddress(Address address) { this.address = address; }
+    public AddressDTO getAddressDTO() { return address; }
+    public void setAddressDTO(AddressDTO address) { this.address = address; }
 }

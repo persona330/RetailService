@@ -85,7 +85,7 @@ public class DeliveryMethodController
         DeliveryMethodDTO updatedDeliveryMethodDTO = deliveryMethodService.update(deliveryMethodDTO, id);
 
         return updatedDeliveryMethodDTO != null
-                ? new ResponseEntity<>(deliveryMethodDTO, HttpStatus.OK)
+                ? new ResponseEntity<>(updatedDeliveryMethodDTO, HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
 

@@ -55,7 +55,7 @@ public class PriceServiceImpl implements PriceService
 
             if (pricetoEntity.getQuantity() == 0) pricetoEntity.setQuantity(price.getQuantity());
 
-            //if (pricetoEntity.getMeasurement() == null) pricetoEntity.setMeasurement(price.getMeasurement());
+            if (pricetoEntity.getMeasurement() == null) pricetoEntity.setMeasurement(price.getMeasurement());
 
             return priceMapper.toDTO(priceRepository.save(pricetoEntity));
         }

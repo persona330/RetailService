@@ -22,9 +22,9 @@ public class StoreDTO extends BaseDTO
     /**Свойство общая вместимость*/
     private BigDecimal totalCapacity;
     /** Свойство адрес*/
-    private Address address;
+    private AddressDTO address;
     /** Свойство организация*/
-    private Organization organization;
+    private OrganizationDTO organization;
 
     public Integer getId_Store() { return id_Store; }
     public void setId_Store(Integer id_Store) { this.id_Store = id_Store; }
@@ -35,9 +35,9 @@ public class StoreDTO extends BaseDTO
     public BigDecimal getTotalCapacity() { return totalCapacity; }
     public void setTotalCapacity(BigDecimal totalCapacity) { this.totalCapacity = totalCapacity; }
 
-    public Address getAddress() { return address; }
-    public void setAddress(Address address) { this.address = address; }
+    public AddressDTO getAddressDTO() { return address; }
+    public void setAddressDTO(AddressDTO address) { this.address = address; }
 
-    public Organization getOrganization() { return organization; }
-    public void setOrganization(Organization organization) { this.organization = organization; }
+    public OrganizationDTO getOrganizationDTO() { return organization; }
+    public void setOrganizationDTO(OrganizationDTO organization) { this.organization = organization; }
 }
