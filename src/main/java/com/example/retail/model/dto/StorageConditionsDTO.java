@@ -46,13 +46,13 @@ public class StorageConditionsDTO extends BaseDTO
     public BigDecimal getIllumination() { return illumination; }
     public void setIllumination(BigDecimal illumination) { this.illumination = illumination; }
 
-    public MeasurementDTO getMeasuremenTemperature() { return measuremenTemperature; }
-    public void setMeasuremenTemperature(MeasurementDTO measuremenTemperature) { this.measuremenTemperature = measuremenTemperature; }
+    public MeasurementDTO getMeasuremenTemperatureDTO() { return measuremenTemperature; }
+    public void setMeasuremenTemperatureDTO(MeasurementDTO measuremenTemperature) { this.measuremenTemperature = measuremenTemperature; }
 
-    public MeasurementDTO getMeasuremenHumidity() { return measuremenHumidity; }
-    public void setMeasuremenHumidity(MeasurementDTO measuremenHumidity) { this.measuremenHumidity = measuremenHumidity; }
+    public MeasurementDTO getMeasuremenHumidityDTO() { return measuremenHumidity; }
+    public void setMeasuremenHumidityDTO(MeasurementDTO measuremenHumidity) { this.measuremenHumidity = measuremenHumidity; }
 
-    public MeasurementDTO getMeasuremenIllumination() { return measuremenIllumination; }
-    public void setMeasuremenIllumination(MeasurementDTO measuremenIllumination) { this.measuremenIllumination = measuremenIllumination; }
+    public MeasurementDTO getMeasuremenIlluminationDTO() { return measuremenIllumination; }
+    public void setMeasuremenIlluminationDTO(MeasurementDTO measuremenIllumination) { this.measuremenIllumination = measuremenIllumination; }
 
 }

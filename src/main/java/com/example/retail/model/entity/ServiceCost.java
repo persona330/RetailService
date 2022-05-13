@@ -28,10 +28,8 @@ public class ServiceCost extends BaseEntity
     private PaymentMethod paymentMethod;
     /** Свойство покупатель*/
     private Customer customer;
-    /** Свойство кассовый чек*/
-    private CashVoucher cashVoucher;
 
-    public ServiceCost(Integer id_ServiceCost, BigDecimal fullCost, boolean paidForBy, Ordered ordered, Delivery delivery, PaymentMethod paymentMethod, Customer customer, CashVoucher cashVoucher)
+    public ServiceCost(Integer id_ServiceCost, BigDecimal fullCost, boolean paidForBy, Ordered ordered, Delivery delivery, PaymentMethod paymentMethod, Customer customer)
     {
         this.id_ServiceCost = id_ServiceCost;
         this.fullCost = fullCost;
@@ -40,7 +38,6 @@ public class ServiceCost extends BaseEntity
         this.delivery = delivery;
         this.paymentMethod = paymentMethod;
         this.customer = customer;
-        this.cashVoucher = cashVoucher;
     }
     public ServiceCost(){}
 
@@ -85,11 +82,4 @@ public class ServiceCost extends BaseEntity
     @JoinColumn(name = "Customer")
     public Customer getCustomer() { return customer; }
     public void setCustomer(Customer customer) { this.customer = customer; }
-
-    @NonNull
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-    @MapsId
-    @JoinColumn(name = "Cash_voucher")
-    public CashVoucher getCashVoucher() { return cashVoucher; }
-    public void setCashVoucher(CashVoucher cashVoucher) { this.cashVoucher = cashVoucher; }
 }

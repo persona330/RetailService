@@ -28,8 +28,6 @@ public class ServiceCostDTO extends BaseDTO
     private PaymentMethodDTO paymentMethod;
     /** Свойство покупатель*/
     private CustomerDTO customer;
-    /** Свойство кассовый чек*/
-    private CashVoucherDTO cashVoucher;
 
     public Integer getId_ServiceCost() { return id_ServiceCost; }
     public void setId_ServiceCost(Integer id_ServiceCost) { this.id_ServiceCost = id_ServiceCost; }
@@ -46,12 +44,10 @@ public class ServiceCostDTO extends BaseDTO
     public DeliveryDTO getDeliveryDTO() { return delivery; }
     public void setDeliveryDTO(DeliveryDTO delivery) { this.delivery = delivery; }
 
-    public PaymentMethodDTO getPaymentMethod() { return paymentMethod; }
+    public PaymentMethodDTO getPaymentMethodDTO() { return paymentMethod; }
     public void setPaymentMethodDTO(PaymentMethodDTO paymentMethod) { this.paymentMethod = paymentMethod; }
 
     public CustomerDTO getCustomerDTO() { return customer; }
     public void setCustomerDTO(CustomerDTO customer) { this.customer = customer; }
 
-    public CashVoucherDTO getCashVoucherDTO() { return cashVoucher; }
-    public void setCashVoucherDTO(CashVoucherDTO cashVoucher) { this.cashVoucher = cashVoucher; }
 }
