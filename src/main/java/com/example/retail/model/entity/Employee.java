@@ -13,70 +13,29 @@ import javax.persistence.*;
 @Table(name = "EMPLOYEE")
 @Inheritance(strategy = InheritanceType.JOINED)
 //@PrimaryKeyJoinColumn(name="id_employee")
-public abstract class Employee extends Person
+public class Employee extends Person
 {
-    /** Свойство идентификатор сотрудника*/
-    private Integer id;
-    /** Свойство фамилия*/
-    private String surname;
-    /** Свойство имя*/
-    private String name;
-    /** Свойство отчество*/
-    private String patronymic;
-    /**Свойство адрес*/
-    private Address address;
-    /**Свойство связь*/
-    private Communication communication;
+    /** Свойство свободен ли сотрудник*/
+    private boolean free;
+    /** Свойство организация*/
+    private Organization organization;
 
-    public Employee(String surname, String name, String patronymic, Address address, Communication communication)
+    public Employee(Integer id, String surname, String name, String patronymic, Address address, Communication communication, boolean free, Organization organization)
     {
-        this.surname = surname;
-        this.name = name;
-        this.patronymic = patronymic;
-        this.address = address;
-        this.communication = communication;
+        super(id, surname, name, patronymic, address, communication);
+        this.free = free;
+        this.organization = organization;
     }
     public Employee(){}
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    public Integer get_Id(){ return id; }
-    public void set_Id(Integer id){ this.id = id; }
+    @NonNull
+    @Column(name = "Free")
+    public boolean isFree() { return free; }
+    public void setFree(boolean free) { this.free = free; }
 
     @NonNull
-    @Column(name = "Surname")
-    public String getSurname(){ return surname; }
-    public void setSurname(String surname){ this.surname = surname;}
-
-    @NonNull
-    @Column(name = "Name")
-    public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
-
-    @Value("Нет")
-    @Column(name = "Patronymic")
-    public String getPatronymic(){ return patronymic; }
-    public void setPatronymic(String patronymic){ this.patronymic = patronymic; }
-
-    @NonNull
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-    @MapsId
-    @JoinColumn(name = "Address")
-    public Address getAddress(){ return address; }
-    public void setAddress(Address address){ this.address = address; }
-
-    @NonNull
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-    @MapsId
-    @JoinColumn(name = "Communication")
-    public Communication getCommunication(){ return communication; }
-    public void setCommunication(Communication communication){ this.communication = communication; }
-
-    @Transient
-    protected abstract boolean isFree();
-    protected abstract void setFree(boolean free);
-
-    @Transient
-    protected abstract Organization getOrganization();
-    protected abstract void setOrganization(Organization organization);
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "Organization")
+    public Organization getOrganization() { return organization; }
+    public void setOrganization(Organization organization) { this.organization = organization; }
 }

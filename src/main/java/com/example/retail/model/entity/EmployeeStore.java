@@ -15,39 +15,18 @@ import javax.persistence.*;
 @PrimaryKeyJoinColumn(name = "Id_employee_store")
 public class EmployeeStore extends Employee
 {
-    /** Свойство свободен ли сотрудник*/
-    private boolean free;
-    /** Свойство организация*/
-    private Organization organization;
     /** Свойство должность*/
     private Position position;
     /** Свойство склад*/
     private Store store;
 
-    public EmployeeStore(String surname, String name, String patronymic, Address address, Communication communication, boolean free, Organization organization, Position position, Store store)
+    public EmployeeStore(Integer id, String surname, String name, String patronymic, Address address, Communication communication, boolean free, Organization organization, Position position, Store store)
     {
-        super(surname, name, patronymic, address, communication);
-        this.free = free;
-        this.organization = organization;
+        super(id, surname, name, patronymic, address, communication, free, organization);
         this.position = position;
         this.store = store;
     }
     public EmployeeStore(){}
-
-    @NonNull
-    @Column(name = "Free")
-    @Override
-    public boolean isFree() { return free; }
-    @Override
-    public void setFree(boolean free) { this.free = free; }
-
-    @NonNull
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "Organization")
-    @Override
-    public Organization getOrganization() { return organization; }
-    @Override
-    public void setOrganization(Organization organization) { this.organization = organization; }
 
     @NonNull
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)

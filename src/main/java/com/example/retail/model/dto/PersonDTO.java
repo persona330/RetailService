@@ -5,32 +5,44 @@ import com.example.retail.model.entity.Communication;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import org.springframework.beans.factory.annotation.Value;
 
-import javax.persistence.Transient;
+import javax.persistence.*;
 
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 @AllArgsConstructor
-public abstract class PersonDTO extends BaseDTO
+public class PersonDTO extends BaseDTO
 {
     /** Свойство идентификатор человека*/
     private Integer id;
+    /** Свойство фамилия*/
+    private String surname;
+    /** Свойство имя*/
+    private String name;
+    /** Свойство отчество*/
+    private String patronymic;
+    /**Свойство адрес*/
+    private Address address;
+    /**Свойство связь*/
+    private Communication communication;
 
-    public Integer get_Id(){ return id; }
-    public void set_Id(Integer id){ this.id = id; }
+    public Integer getId(){ return id; }
+    public void setId(Integer id){ this.id = id; }
 
-    protected abstract String getSurname();
-    protected abstract void setSurname(String surname);
+    public String getSurname() { return surname; }
+    public void setSurname(String surname) { this.surname = surname; }
 
-    protected abstract String getName();
-    protected abstract void setName(String name);
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
 
-    protected abstract String getPatronymic();
-    protected abstract void setPatronymic(String patronymic);
+    public String getPatronymic() { return patronymic; }
+    public void setPatronymic(String patronymic) { this.patronymic = patronymic; }
 
-    protected abstract AddressDTO getAddressDTO();
-    protected abstract void setAddressDTO(AddressDTO address);
+    public Address getAddress() { return address; }
+    public void setAddress(Address address) { this.address = address; }
 
-    protected abstract CommunicationDTO getCommunicationDTO();
-    protected abstract void setCommunicationDTO(CommunicationDTO communication);
+    public Communication getCommunication() { return communication; }
+    public void setCommunication(Communication communication) { this.communication = communication; }
 }

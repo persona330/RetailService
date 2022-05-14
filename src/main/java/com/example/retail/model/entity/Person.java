@@ -1,6 +1,7 @@
 package com.example.retail.model.entity;
 
 import lombok.NonNull;
+import org.springframework.beans.factory.annotation.Value;
 
 import javax.persistence.*;
 
@@ -11,33 +12,63 @@ import javax.persistence.*;
 @Entity
 @Table(name = "PERSON")
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class Person extends BaseEntity
+public class Person extends BaseEntity
 {
     /** Свойство идентификатор человека*/
     private Integer id;
+    /** Свойство фамилия*/
+    private String surname;
+    /** Свойство имя*/
+    private String name;
+    /** Свойство отчество*/
+    private String patronymic;
+    /**Свойство адрес*/
+    private Address address;
+    /**Свойство связь*/
+    private Communication communication;
+
+    public Person(Integer id, String surname, String name, String patronymic, Address address, Communication communication)
+    {
+        this.id = id;
+        this.surname = surname;
+        this.name = name;
+        this.patronymic = patronymic;
+        this.address = address;
+        this.communication = communication;
+    }
+    public Person(){}
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    public Integer get_Id(){ return id; }
-    public void set_Id(Integer id){ this.id = id; }
+    public Integer getId(){ return id; }
+    public void setId(Integer id){ this.id = id; }
 
-    @Transient
-    protected abstract String getSurname();
-    protected abstract void setSurname(String surname);
+    @NonNull
+    @Column(name = "Surname")
+    public String getSurname() { return surname; }
+    public void setSurname(String surname) { this.surname = surname; }
 
-    @Transient
-    protected abstract String getName();
-    protected abstract void setName(String name);
+    @NonNull
+    @Column(name = "Name")
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
 
-    @Transient
-    protected abstract String getPatronymic();
-    protected abstract void setPatronymic(String patronymic);
+    @Value("Нет")
+    @Column(name = "Patronymic")
+    public String getPatronymic() { return patronymic; }
+    public void setPatronymic(String patronymic) { this.patronymic = patronymic; }
 
-    @Transient
-    protected abstract Address getAddress();
-    protected abstract void setAddress(Address address);
+    @NonNull
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @MapsId
+    @JoinColumn(name = "Address")
+    public Address getAddress() { return address; }
+    public void setAddress(Address address) { this.address = address; }
 
-    @Transient
-    protected abstract Communication getCommunication();
-    protected abstract void setCommunication(Communication communication);
+    @NonNull
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @MapsId
+    @JoinColumn(name = "Communication")
+    public Communication getCommunication() { return communication; }
+    public void setCommunication(Communication communication) { this.communication = communication; }
 }
