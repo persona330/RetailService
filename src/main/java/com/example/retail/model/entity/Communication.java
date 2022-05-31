@@ -47,12 +47,12 @@ public class Communication extends BaseEntity
     public void setId_Communication(Integer id_Communication) { this.id_Communication = id_Communication; }
 
     @NonNull
-    @Column(name = "Phone", length = 10)
+    @Column(name = "Phone")
     public String getPhone() { return phone; }
     public void setPhone(String phone) { this.phone = phone; }
 
     @Value("Нет")
-    @Column(name = "Email", length = 254)
+    @Column(name = "Email")
     public String getEmail() { return email; }
     public void setEmail(String email) { this.email = email; }
 }

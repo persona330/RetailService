@@ -35,15 +35,15 @@ public class BoxServiceImpl implements BoxService
     @Override
     public List<BoxDTO> readAll()
     {
-        List<Box> addresses = boxRepository.findAll();
-        return boxMapper.listToDTO(addresses);
+        List<Box> boxList = boxRepository.findAll();
+        return boxMapper.listToDTO(boxList);
     }
 
     @Override
     public BoxDTO read(Integer id)
     {
-        Box address = boxRepository.getById(id);
-        return boxMapper.toDTO(address);
+        Box box = boxRepository.getById(id);
+        return boxMapper.toDTO(box);
     }
 
     @Override

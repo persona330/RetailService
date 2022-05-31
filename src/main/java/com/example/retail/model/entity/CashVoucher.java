@@ -87,7 +87,7 @@ public class CashVoucher extends BaseEntity
     public CashVoucher(){}
 
     @Id
-    @GeneratedValue(generator = "SQLCashVoucher")
+    @GeneratedValue(generator = "SQLCashVoucher", strategy = GenerationType.AUTO)
     @Column(name = "ID_cash_voucher", unique = true, nullable = false)
     public Integer getId_CashVoucher() { return id_CashVoucher; }
     public void setId_CashVoucher(Integer id_CashVoucher) { this.id_CashVoucher = id_CashVoucher; }
@@ -156,7 +156,6 @@ public class CashVoucher extends BaseEntity
 
     @NonNull
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-    @MapsId
     @JoinColumn(name = "Service_cost")
     public ServiceCost getServiceCost() { return serviceCost; }
     public void setServiceCost(ServiceCost serviceCost) { this.serviceCost = serviceCost; }

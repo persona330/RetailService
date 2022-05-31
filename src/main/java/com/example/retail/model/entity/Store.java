@@ -36,7 +36,7 @@ public class Store extends BaseEntity
     public Store(){}
 
     @Id
-    @GeneratedValue(generator = "SQLStore")
+    @GeneratedValue(generator = "SQLStore", strategy = GenerationType.AUTO)
     @Column(name = "ID_store", unique = true, nullable = false)
     public Integer getId_Store() { return id_Store; }
     public void setId_Store(Integer id_Store) { this.id_Store = id_Store; }
@@ -53,7 +53,6 @@ public class Store extends BaseEntity
 
     @NonNull
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-    @MapsId
     @JoinColumn(name = "Address")
     public Address getAddress() { return address; }
     public void setAddress(Address address) { this.address = address; }

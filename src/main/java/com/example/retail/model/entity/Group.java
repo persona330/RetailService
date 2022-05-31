@@ -30,7 +30,7 @@ public class Group extends BaseEntity
     public Group(){}
 
     @Id
-    @GeneratedValue(generator = "SQLGroup")
+    @GeneratedValue(generator = "SQLGroup", strategy = GenerationType.AUTO)
     @Column(name = "ID_group", unique = true, nullable = false)
     public Integer getId_Group() { return id_Group; }
     public void setId_Group(Integer id_Group) { this.id_Group = id_Group; }
@@ -41,7 +41,6 @@ public class Group extends BaseEntity
     public void setName(String name) { this.name = name; }
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-    @MapsId
     @JoinColumn(name = "Type")
     public Group getType() { return type; }
     public void setType(Group type) { this.type = type; }

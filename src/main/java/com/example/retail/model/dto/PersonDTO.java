@@ -24,9 +24,9 @@ public class PersonDTO extends BaseDTO
     /** Свойство отчество*/
     private String patronymic;
     /**Свойство адрес*/
-    private Address address;
+    private AddressDTO address;
     /**Свойство связь*/
-    private Communication communication;
+    private CommunicationDTO communication;
 
     public Integer getId(){ return id; }
     public void setId(Integer id){ this.id = id; }
@@ -40,9 +40,9 @@ public class PersonDTO extends BaseDTO
     public String getPatronymic() { return patronymic; }
     public void setPatronymic(String patronymic) { this.patronymic = patronymic; }
 
-    public Address getAddress() { return address; }
-    public void setAddress(Address address) { this.address = address; }
+    public AddressDTO getAddressDTO() { return address; }
+    public void setAddressDTO(AddressDTO address) { this.address = address; }
 
-    public Communication getCommunication() { return communication; }
-    public void setCommunication(Communication communication) { this.communication = communication; }
+    public CommunicationDTO getCommunicationDTO() { return communication; }
+    public void setCommunicationDTO(CommunicationDTO communication) { this.communication = communication; }
 }

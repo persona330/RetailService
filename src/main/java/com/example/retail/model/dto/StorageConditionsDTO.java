@@ -25,11 +25,11 @@ public class StorageConditionsDTO extends BaseDTO
     /** Свойство рекомендуемая освещенность*/
     private BigDecimal illumination;
     /** Свойство единица измерения температуры*/
-    private MeasurementDTO measuremenTemperature;
+    private MeasurementDTO measurementTemperature;
     /** Свойство единица измерения влажности*/
-    private MeasurementDTO measuremenHumidity;
+    private MeasurementDTO measurementHumidity;
     /** Свойство единиц измерения освещенности*/
-    private MeasurementDTO measuremenIllumination;
+    private MeasurementDTO measurementIllumination;
 
     public Integer getId_StorageConditions() { return id_StorageConditions; }
     public void setId_StorageConditions(Integer id_StorageConditions) { this.id_StorageConditions = id_StorageConditions; }
@@ -46,13 +46,13 @@ public class StorageConditionsDTO extends BaseDTO
     public BigDecimal getIllumination() { return illumination; }
     public void setIllumination(BigDecimal illumination) { this.illumination = illumination; }
 
-    public MeasurementDTO getMeasuremenTemperatureDTO() { return measuremenTemperature; }
-    public void setMeasuremenTemperatureDTO(MeasurementDTO measuremenTemperature) { this.measuremenTemperature = measuremenTemperature; }
+    public MeasurementDTO getMeasurementTemperatureDTO() { return measurementTemperature; }
+    public void setMeasurementTemperatureDTO(MeasurementDTO measurementTemperature) { this.measurementTemperature = measurementTemperature; }
 
-    public MeasurementDTO getMeasuremenHumidityDTO() { return measuremenHumidity; }
-    public void setMeasuremenHumidityDTO(MeasurementDTO measuremenHumidity) { this.measuremenHumidity = measuremenHumidity; }
+    public MeasurementDTO getMeasurementHumidityDTO() { return measurementHumidity; }
+    public void setMeasurementHumidityDTO(MeasurementDTO measurementHumidity) { this.measurementHumidity = measurementHumidity; }
 
-    public MeasurementDTO getMeasuremenIlluminationDTO() { return measuremenIllumination; }
-    public void setMeasuremenIlluminationDTO(MeasurementDTO measuremenIllumination) { this.measuremenIllumination = measuremenIllumination; }
+    public MeasurementDTO getMeasurementIlluminationDTO() { return measurementIllumination; }
+    public void setMeasurementIlluminationDTO(MeasurementDTO measurementIllumination) { this.measurementIllumination = measurementIllumination; }
 
 }

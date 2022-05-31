@@ -60,14 +60,12 @@ public class Person extends BaseEntity
 
     @NonNull
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-    @MapsId
     @JoinColumn(name = "Address")
     public Address getAddress() { return address; }
     public void setAddress(Address address) { this.address = address; }
 
     @NonNull
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-    @MapsId
     @JoinColumn(name = "Communication")
     public Communication getCommunication() { return communication; }
     public void setCommunication(Communication communication) { this.communication = communication; }

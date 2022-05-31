@@ -20,11 +20,11 @@ public class EmployeeDTO extends PersonDTO
     /** Свойство свободен ли сотрудник*/
     private boolean free;
     /** Свойство организация*/
-    private Organization organization;
+    private OrganizationDTO organization;
 
     public boolean isFree() { return free; }
     public void setFree(boolean free) { this.free = free; }
 
-    public Organization getOrganization() { return organization; }
-    public void setOrganization(Organization organization) { this.organization = organization; }
+    public OrganizationDTO getOrganizationDTO() { return organization; }
+    public void setOrganizationDTO(OrganizationDTO organization) { this.organization = organization; }
 }

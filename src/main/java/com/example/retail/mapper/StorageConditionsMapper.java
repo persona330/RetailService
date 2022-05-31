@@ -14,15 +14,15 @@ import java.util.List;
 public interface StorageConditionsMapper
 {
     @Mappings({
-            @Mapping(target = "measuremenTemperature", source = "measuremenTemperatureDTO"),
-            @Mapping(target = "measuremenHumidity", source = "measuremenHumidityDTO"),
-            @Mapping(target = "measuremenIllumination", source = "measuremenIlluminationDTO")
+            @Mapping(target = "measurementTemperature", source = "measurementTemperatureDTO"),
+            @Mapping(target = "measurementHumidity", source = "measurementHumidityDTO"),
+            @Mapping(target = "measurementIllumination", source = "measurementIlluminationDTO")
     })
     StorageConditions toEntity(StorageConditionsDTO dto);
     @Mappings({
-            @Mapping(target = "measuremenTemperatureDTO", source = "measuremenTemperature"),
-            @Mapping(target = "measuremenHumidityDTO", source = "measuremenHumidity"),
-            @Mapping(target = "measuremenIlluminationDTO", source = "measuremenIllumination")
+            @Mapping(target = "measurementTemperatureDTO", source = "measurementTemperature"),
+            @Mapping(target = "measurementHumidityDTO", source = "measurementHumidity"),
+            @Mapping(target = "measurementIlluminationDTO", source = "measurementIllumination")
     })
     StorageConditionsDTO toDTO(StorageConditions entity);
     List<StorageConditionsDTO> listToDTO(List<StorageConditions> entityList);

@@ -28,7 +28,7 @@ public class PersonController
      * @param personDTO аннатацией переобразуется содержимое запроса и подставляется в объект параметра функции
      * @return http статус
      */
-    @PostMapping(value = "/delivery_method", produces = {"application/json; charset=UTF-8"})
+    @PostMapping(value = "/person", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<PersonDTO> create(@RequestBody PersonDTO personDTO) // Тип ответа явно не указан
     {
         try{ personService.create(personDTO); }
@@ -41,7 +41,7 @@ public class PersonController
      * Получение информации об адресах
      * @return http статус и/или адреса
      */
-    @GetMapping(value = "/delivery_method", produces = {"application/json; charset=UTF-8"})
+    @GetMapping(value = "/person", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<List<PersonDTO>> readAll()
     {
         try{ personService.readAll(); }
@@ -57,7 +57,7 @@ public class PersonController
      * @param id аннотацией извлекают значение из запроса
      * @return http статус и/или адрес
      */
-    @GetMapping(value = "/delivery_method/{id}", produces = {"application/json; charset=UTF-8"})
+    @GetMapping(value = "/person/{id}", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<PersonDTO> read(@PathVariable(name = "id") Integer id)
     {
         try{ personService.read(id); }
@@ -76,7 +76,7 @@ public class PersonController
      * @param personDTO
      * @return http статус и/или измененный адрес
      */
-    @PutMapping(value = "/delivery_method/{id}", produces = {"application/json; charset=UTF-8"})
+    @PutMapping(value = "/person/{id}", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<PersonDTO> update(@PathVariable(name = "id") int id, @RequestBody PersonDTO personDTO)
     {
         try{ personService.update(personDTO, id);}
@@ -94,7 +94,7 @@ public class PersonController
      * @param id
      * @return http статус
      */
-    @DeleteMapping(value = "/delivery_method/{id}", produces = {"application/json; charset=UTF-8"})
+    @DeleteMapping(value = "/person/{id}", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<PersonDTO> delete(@PathVariable(name = "id") int id)
     {
         try{ personService.delete(id); }

@@ -48,7 +48,7 @@ public class Organization extends BaseEntity
     public Organization(){}
 
     @Id
-    @GeneratedValue(generator = "SQLOrganization")
+    @GeneratedValue(generator = "SQLOrganization", strategy = GenerationType.AUTO)
     @Column(name = "ID_organization", unique = true, nullable = false)
     public Integer getId_Organization() { return id_Organization; }
     public void setId_Organization(Integer id_Organization) { this.id_Organization = id_Organization; }
@@ -59,25 +59,23 @@ public class Organization extends BaseEntity
     public void setName(String name) { this.name = name; }
 
     @NonNull
-    @Column(name = "INN", length = 10)
+    @Column(name = "INN")
     public String getInn() { return inn; }
     public void setInn(String inn) { this.inn = inn; }
 
     @NonNull
-    @Column(name = "KPP", length = 9)
+    @Column(name = "KPP")
     public String getKpp() { return kpp; }
     public void setKpp(String kpp) { this.kpp = kpp; }
 
     @NonNull
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-    @MapsId
     @JoinColumn(name = "Address")
     public Address getAddress() { return address; }
     public void setAddress(Address address) { this.address = address; }
 
     @NonNull
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-    @MapsId
     @JoinColumn(name = "Communication")
     public Communication getCommunication() { return communication; }
     public void setCommunication(Communication communication) { this.communication = communication; }

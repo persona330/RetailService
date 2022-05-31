@@ -25,11 +25,11 @@ public class StorageConditions extends BaseEntity
     /** Свойство рекомендуемая освещенность*/
     private BigDecimal illumination;
     /** Свойство единица измерения температуры*/
-    private Measurement measuremenTemperature;
+    private Measurement measurementTemperature;
     /** Свойство единица измерения влажности*/
-    private Measurement measuremenHumidity;
+    private Measurement measurementHumidity;
     /** Свойство единиц измерения освещенности*/
-    private Measurement measuremenIllumination;
+    private Measurement measurementIllumination;
 
     /**
      * Конструктор - создание нового объекта с определенными значениями
@@ -38,21 +38,21 @@ public class StorageConditions extends BaseEntity
      * @param temperature
      * @param humidity
      * @param illumination
-     * @param measuremenTemperature
-     * @param measuremenHumidity
-     * @param measuremenIllumination
+     * @param measurementTemperature
+     * @param measurementHumidity
+     * @param measurementIllumination
      * @see StorageConditions#StorageConditions()
      */
-    public StorageConditions(Integer id_StorageConditions, String name, BigDecimal temperature, BigDecimal humidity, BigDecimal illumination, Measurement measuremenTemperature, Measurement measuremenHumidity, Measurement measuremenIllumination)
+    public StorageConditions(Integer id_StorageConditions, String name, BigDecimal temperature, BigDecimal humidity, BigDecimal illumination, Measurement measurementTemperature, Measurement measurementHumidity, Measurement measurementIllumination)
     {
         this.id_StorageConditions = id_StorageConditions;
         this.name = name;
         this.temperature = temperature;
         this.humidity = humidity;
         this.illumination = illumination;
-        this.measuremenTemperature = measuremenTemperature;
-        this.measuremenHumidity = measuremenHumidity;
-        this.measuremenIllumination = measuremenIllumination;
+        this.measurementTemperature = measurementTemperature;
+        this.measurementHumidity = measurementHumidity;
+        this.measurementIllumination = measurementIllumination;
     }
     /**
      * Конструктор - создание нового объекта
@@ -88,19 +88,19 @@ public class StorageConditions extends BaseEntity
 
     @NonNull
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "Measuremen_temperature")
-    public Measurement getMeasuremenTemperature() { return measuremenTemperature; }
-    public void setMeasuremenTemperature(Measurement measuremenTemperature) { this.measuremenTemperature = measuremenTemperature; }
+    @JoinColumn(name = "Measurement_temperature")
+    public Measurement getMeasurementTemperature() { return measurementTemperature; }
+    public void setMeasurementTemperature(Measurement measurementTemperature) { this.measurementTemperature = measurementTemperature; }
 
     @NonNull
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "Measuremen_humidity")
-    public Measurement getMeasuremenHumidity() { return measuremenHumidity; }
-    public void setMeasuremenHumidity(Measurement measuremenHumidity) { this.measuremenHumidity = measuremenHumidity; }
+    @JoinColumn(name = "Measurement_humidity")
+    public Measurement getMeasurementHumidity() { return measurementHumidity; }
+    public void setMeasurementHumidity(Measurement measurementHumidity) { this.measurementHumidity = measurementHumidity; }
 
     @NonNull
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "Measuremen_illumination")
-    public Measurement getMeasuremenIllumination() { return measuremenIllumination; }
-    public void setMeasuremenIllumination(Measurement measuremenIllumination) { this.measuremenIllumination = measuremenIllumination; }
+    @JoinColumn(name = "Measurement_illumination")
+    public Measurement getMeasurementIllumination() { return measurementIllumination; }
+    public void setMeasurementIllumination(Measurement measurementIllumination) { this.measurementIllumination = measurementIllumination; }
 }

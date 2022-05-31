@@ -36,8 +36,8 @@ public class CommunicationServiceImpl implements CommunicationService
     @Override
     public List<CommunicationDTO> readAll()
     {
-        List<Communication> addresses = communicationRepository.findAll();
-        return communicationMapper.listToDTO(addresses);
+        List<Communication> communicationList = communicationRepository.findAll();
+        return communicationMapper.listToDTO(communicationList);
     }
 
     @Override

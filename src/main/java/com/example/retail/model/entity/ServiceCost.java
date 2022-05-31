@@ -42,7 +42,7 @@ public class ServiceCost extends BaseEntity
     public ServiceCost(){}
 
     @Id
-    @GeneratedValue(generator = "SQLServiceCost")
+    @GeneratedValue(generator = "SQLServiceCost", strategy = GenerationType.AUTO)
     @Column(name = "ID_service_cost", unique = true, nullable = false)
     public Integer getId_ServiceCost() { return id_ServiceCost; }
     public void setId_ServiceCost(Integer id_ServiceCost) { this.id_ServiceCost = id_ServiceCost; }
@@ -59,14 +59,12 @@ public class ServiceCost extends BaseEntity
 
     @NonNull
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-    @MapsId
     @JoinColumn(name = "Ordered")
     public Ordered getOrdered() { return ordered; }
     public void setOrdered(Ordered ordered) { this.ordered = ordered; }
 
     @NonNull
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-    @MapsId
     @JoinColumn(name = "Delivery")
     public Delivery getDelivery() { return delivery; }
     public void setDelivery(Delivery delivery) { this.delivery = delivery; }

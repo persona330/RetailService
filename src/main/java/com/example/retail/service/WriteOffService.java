@@ -1,38 +1,38 @@
 package com.example.retail.service;
 
 import com.example.retail.model.dto.AccountDTO;
-import com.example.retail.model.dto.BoxDTO;
+import com.example.retail.model.dto.WriteOffDTO;
 
 import java.util.List;
 
-public interface AccountService
+public interface WriteOffService
 {
     /**
      * Создает новый адрес
-     * @param accountDTO
+     * @param writeOffDTO
      * @return
      */
-    AccountDTO create(AccountDTO accountDTO);
+    WriteOffDTO create(WriteOffDTO writeOffDTO);
 
     /**Возвращает список всех имеющихся адресов
      * @return список адресов
      */
-    List<AccountDTO> readAll();
+    List<WriteOffDTO> readAll();
 
     /**
      * Возвращает адрес по его id
      * @param id
      * @return объект адреса
      */
-    AccountDTO read(Integer id);
+    WriteOffDTO read(Integer id);
 
     /**
      * Обновляет адрес с заданным id, в соотвествии с переданным адесом
-     * @param accountDTO
+     * @param writeOffDTO
      * @param id
      * @return true если данные были обновлены, иначе false
      */
-    AccountDTO update(AccountDTO accountDTO, Integer id);
+    WriteOffDTO update(WriteOffDTO writeOffDTO, Integer id);
 
     /**
      * Удаляет адрес с заданным id

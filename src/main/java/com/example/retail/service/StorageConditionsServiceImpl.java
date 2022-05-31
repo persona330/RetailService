@@ -64,11 +64,11 @@ public class StorageConditionsServiceImpl  implements StorageConditionsService
 
             if (storageConditionstoEntity.getIllumination() == null) storageConditionstoEntity.setIllumination(storageConditions.getIllumination());
 
-            if (storageConditionstoEntity.getMeasuremenTemperature() == null) storageConditionstoEntity.setMeasuremenTemperature(storageConditions.getMeasuremenTemperature());
+            if (storageConditionstoEntity.getMeasurementTemperature() == null) storageConditionstoEntity.setMeasurementTemperature(storageConditions.getMeasurementTemperature());
 
-            if (storageConditionstoEntity.getMeasuremenHumidity() == null) storageConditionstoEntity.setMeasuremenHumidity(storageConditions.getMeasuremenHumidity());
+            if (storageConditionstoEntity.getMeasurementHumidity() == null) storageConditionstoEntity.setMeasurementHumidity(storageConditions.getMeasurementHumidity());
 
-            if (storageConditionstoEntity.getMeasuremenIllumination() == null) storageConditionstoEntity.setMeasuremenIllumination(storageConditions.getMeasuremenIllumination());
+            if (storageConditionstoEntity.getMeasurementIllumination() == null) storageConditionstoEntity.setMeasurementIllumination(storageConditions.getMeasurementIllumination());
 
             return storageConditionsMapper.toDTO(storageConditionsRepository.save(storageConditionstoEntity));
         }
