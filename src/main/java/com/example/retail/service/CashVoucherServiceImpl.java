@@ -70,6 +70,8 @@ public class CashVoucherServiceImpl implements CashVoucherService
 
             if (cashVouchertoEntity.getFd() == null) cashVouchertoEntity.setFd(cashVoucher.getFd());
 
+            if (cashVouchertoEntity.getFp() == null) cashVouchertoEntity.setFp(cashVoucher.getFp());
+
             if (cashVouchertoEntity.getVat() == 0) cashVouchertoEntity.setVat(cashVoucher.getVat());
 
             if (cashVouchertoEntity.getCalculationDateTime() == null) cashVouchertoEntity.setCalculationDateTime(cashVoucher.getCalculationDateTime());

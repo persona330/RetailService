@@ -6,9 +6,8 @@ import lombok.NonNull;
 import javax.persistence.*;
 
 /**
- * Класс товара со свойствами <b>id_Produkt<b/>, <b>mengeAufLager<b/>, <b>menge_auf_lager<b/>
+ * Класс Товар со свойствами <b>id_Produkt<b/>, <b>mengeAufLager<b/>, <b>menge_auf_lager<b/>
  */
-
 @Entity
 @EqualsAndHashCode(callSuper = false)
 @Table(name = "PRODUCT")
@@ -55,7 +54,7 @@ public class Product extends BaseEntity
     public void setId_Product(Integer id_Product) { this.id_Product = id_Product; }
 
     @NonNull
-    @Column(name = "Menge_auf_lager", length = 10)
+    @Column(name = "Menge_auf_lager")
     public int getMengeAufLager() { return mengeAufLager; }
     public void setMengeAufLager(int mengeAufLager) { this.mengeAufLager = mengeAufLager; }
 

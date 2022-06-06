@@ -1,8 +1,6 @@
 package com.example.retail.controller;
 
-import com.example.retail.model.dto.AddressDTO;
 import com.example.retail.model.dto.WriteOffDTO;
-import com.example.retail.service.AddressService;
 import com.example.retail.service.WriteOffService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

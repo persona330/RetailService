@@ -1,7 +1,5 @@
 package com.example.retail.model.dto;
 
-import com.example.retail.model.entity.Nomenclature;
-import com.example.retail.model.entity.Product;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;

@@ -32,6 +32,8 @@ public class CashVoucher extends BaseEntity
     private String fn;
     /** Свойство фд*/
     private String fd;
+    /** Свойство фп*/
+    private String fp;
     /** Свойство ндс*/
     private int vat;
     /** Свойство дата и время расчета*/
@@ -55,6 +57,7 @@ public class CashVoucher extends BaseEntity
      * @param znKkt
      * @param fn
      * @param fd
+     * @param fp
      * @param vat
      * @param calculationDateTime
      * @param numberPerShift
@@ -63,7 +66,7 @@ public class CashVoucher extends BaseEntity
      * @param serviceCost
      * @see CashVoucher#CashVoucher()
      */
-    public CashVoucher(Integer id_CashVoucher, String name, int shift, String location, String rnKkt, String znKkt, String fn, String fd, int vat, Date calculationDateTime, int numberPerShift, CalculatedSign calculatedSign, Organization organization, ServiceCost serviceCost)
+    public CashVoucher(Integer id_CashVoucher, String name, int shift, String location, String rnKkt, String znKkt, String fn, String fd, String fp, int vat, Date calculationDateTime, int numberPerShift, CalculatedSign calculatedSign, Organization organization, ServiceCost serviceCost)
     {
         this.id_CashVoucher = id_CashVoucher;
         this.name = name;
@@ -73,6 +76,7 @@ public class CashVoucher extends BaseEntity
         this.znKkt = znKkt;
         this.fn = fn;
         this.fd = fd;
+        this.fp = fp;
         this.vat = vat;
         this.calculationDateTime = calculationDateTime;
         this.numberPerShift = numberPerShift;
@@ -82,7 +86,7 @@ public class CashVoucher extends BaseEntity
     }
     /**
      * Конструктор - создание нового объекта
-     * @see CashVoucher#CashVoucher(Integer, String, int, String, String, String, String, String, int, Date, int, CalculatedSign, Organization, ServiceCost)
+     * @see CashVoucher#CashVoucher(Integer, String, int, String, String, String, String, String, String, int, Date, int, CalculatedSign, Organization, ServiceCost)
      */
     public CashVoucher(){}
 
@@ -126,6 +130,11 @@ public class CashVoucher extends BaseEntity
     @Column(name = "FD")
     public String getFd() { return fd; }
     public void setFd(String fd) { this.fd = fd; }
+
+    @NonNull
+    @Column(name = "FP")
+    public String getFp() { return fp; }
+    public void setFp(String fp) { this.fp = fp; }
 
     @NonNull
     @Column(name = "VAT")

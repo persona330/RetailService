@@ -32,6 +32,8 @@ public class CashVoucherDTO extends BaseDTO
     private String fn;
     /** Свойство фд*/
     private String fd;
+    /** Свойство фп*/
+    private String fp;
     /** Свойство ндс*/
     private int vat;
     /** Свойство дата и время расчета*/
@@ -68,6 +70,9 @@ public class CashVoucherDTO extends BaseDTO
 
     public String getFd() { return fd; }
     public void setFd(String fd) { this.fd = fd; }
+
+    public String getFp() { return fp; }
+    public void setFp(String fp) { this.fp = fp; }
 
     public int getVat() { return vat; }
     public void setVat(int vat) { this.vat = vat; }
