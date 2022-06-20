@@ -51,7 +51,6 @@ public class OrderedController
     {
         try{
             final List<OrderedDTO> orderedDTOList = orderedService.readAll();
-
             return new ResponseEntity<>(orderedDTOList, HttpStatus.OK);
         }
         catch (Exception e)
