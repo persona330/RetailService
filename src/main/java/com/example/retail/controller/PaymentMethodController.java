@@ -31,10 +31,15 @@ public class PaymentMethodController
     @PostMapping(value = "/payment_method", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<PaymentMethodDTO> create(@RequestBody PaymentMethodDTO paymentMethodDTO) // Тип ответа явно не указан
     {
-        try{ paymentMethodService.create(paymentMethodDTO); }
-        catch (Exception e){System.out.println(e.getMessage());}
-
-        return new ResponseEntity<>(paymentMethodDTO, HttpStatus.CREATED);
+        try{
+            paymentMethodService.create(paymentMethodDTO);
+            return new ResponseEntity<>(paymentMethodDTO, HttpStatus.CREATED);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -44,12 +49,16 @@ public class PaymentMethodController
     @GetMapping(value = "/payment_method", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<List<PaymentMethodDTO>> readAll()
     {
-        try{ paymentMethodService.readAll(); }
-        catch (Exception e){System.out.println(e.getMessage());}
+        try{
+            final List<PaymentMethodDTO> paymentMethodDTOList = paymentMethodService.readAll();
 
-        final List<PaymentMethodDTO> paymentMethodDTOList = paymentMethodService.readAll();
-
-        return new ResponseEntity<>(paymentMethodDTOList, HttpStatus.OK);
+            return new ResponseEntity<>(paymentMethodDTOList, HttpStatus.OK);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -60,14 +69,18 @@ public class PaymentMethodController
     @GetMapping(value = "/payment_method/{id}", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<PaymentMethodDTO> read(@PathVariable(name = "id") Integer id)
     {
-        try{ paymentMethodService.read(id); }
-        catch (Exception e){System.out.println(e.getMessage());}
+        try{
+            final PaymentMethodDTO paymentMethodDTO = paymentMethodService.read(id);
 
-        final PaymentMethodDTO paymentMethodDTO = paymentMethodService.read(id);
-
-        return paymentMethodDTO != null // if else
-                ? new ResponseEntity<>(paymentMethodDTO, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return paymentMethodDTO != null // if else
+                    ? new ResponseEntity<>(paymentMethodDTO, HttpStatus.OK)
+                    : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -79,14 +92,18 @@ public class PaymentMethodController
     @PutMapping(value = "/payment_method/{id}", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<PaymentMethodDTO> update(@PathVariable(name = "id") int id, @RequestBody PaymentMethodDTO paymentMethodDTO)
     {
-        try{ paymentMethodService.update(paymentMethodDTO, id);}
-        catch (Exception e){System.out.println(e.getMessage());}
+        try{
+            PaymentMethodDTO updatedPaymentMethodDTO = paymentMethodService.update(paymentMethodDTO, id);
 
-        PaymentMethodDTO updatedPaymentMethodDTO = paymentMethodService.update(paymentMethodDTO, id);
-
-        return updatedPaymentMethodDTO != null
-                ? new ResponseEntity<>(updatedPaymentMethodDTO, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+            return updatedPaymentMethodDTO != null
+                    ? new ResponseEntity<>(updatedPaymentMethodDTO, HttpStatus.OK)
+                    : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -97,14 +114,17 @@ public class PaymentMethodController
     @DeleteMapping(value = "/payment_method/{id}", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<PaymentMethodDTO> delete(@PathVariable(name = "id") int id)
     {
-        try{ paymentMethodService.delete(id); }
-        catch (Exception e){System.out.println(e.getMessage());}
+        try{
+            final boolean deleted = paymentMethodService.delete(id);
 
-        final boolean deleted = paymentMethodService.delete(id);
-
-        return deleted
-                ? new ResponseEntity<>(HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+            return deleted
+                    ? new ResponseEntity<>(HttpStatus.OK)
+                    : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
-
 }

@@ -31,10 +31,15 @@ public class ShelfController
     @PostMapping(value = "/shelf", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<ShelfDTO> create(@RequestBody ShelfDTO shelfDTO) // Тип ответа явно не указан
     {
-        try{ shelfService.create(shelfDTO); }
-        catch (Exception e){System.out.println(e.getMessage());}
-
-        return new ResponseEntity<>(shelfDTO, HttpStatus.CREATED);
+        try{
+            shelfService.create(shelfDTO);
+            return new ResponseEntity<>(shelfDTO, HttpStatus.CREATED);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -44,15 +49,16 @@ public class ShelfController
     @GetMapping(value = "/shelf", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<List<ShelfDTO>> readAll()
     {
-        try{ shelfService.readAll(); }
-        catch (Exception e){System.out.println(e.getMessage());}
+        try{
+            final List<ShelfDTO> shelfDTOList = shelfService.readAll();
 
-        final List<ShelfDTO> shelfDTOList = shelfService.readAll();
-
-        return new ResponseEntity<>(shelfDTOList, HttpStatus.OK);
-        /*return addressesDTO != null &&  !addressesDTO.isEmpty()
-                ? new ResponseEntity<>(addressesDTO, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_FOUND);*/
+            return new ResponseEntity<>(shelfDTOList, HttpStatus.OK);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -63,14 +69,18 @@ public class ShelfController
     @GetMapping(value = "/shelf/{id}", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<ShelfDTO> read(@PathVariable(name = "id") Integer id)
     {
-        try{ shelfService.read(id); }
-        catch (Exception e){System.out.println(e.getMessage());}
+        try{
+            final ShelfDTO shelfDTO = shelfService.read(id);
 
-        final ShelfDTO shelfDTO = shelfService.read(id);
-
-        return shelfDTO != null // if else
-                ? new ResponseEntity<>(shelfDTO, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return shelfDTO != null // if else
+                    ? new ResponseEntity<>(shelfDTO, HttpStatus.OK)
+                    : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -82,14 +92,18 @@ public class ShelfController
     @PutMapping(value = "/shelf/{id}", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<ShelfDTO> update(@PathVariable(name = "id") int id, @RequestBody ShelfDTO shelfDTO)
     {
-        try{ shelfService.update(shelfDTO, id);}
-        catch (Exception e){System.out.println(e.getMessage());}
+        try{
+            ShelfDTO updatedShelfDTO = shelfService.update(shelfDTO, id);
 
-        ShelfDTO updatedShelfDTO = shelfService.update(shelfDTO, id);
-
-        return updatedShelfDTO != null
-                ? new ResponseEntity<>(updatedShelfDTO, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+            return updatedShelfDTO != null
+                    ? new ResponseEntity<>(updatedShelfDTO, HttpStatus.OK)
+                    : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -100,13 +114,17 @@ public class ShelfController
     @DeleteMapping(value = "/shelf/{id}", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<ShelfDTO> delete(@PathVariable(name = "id") int id)
     {
-        try{ shelfService.delete(id); }
-        catch (Exception e){System.out.println(e.getMessage());}
+        try{
+            final boolean deleted = shelfService.delete(id);
 
-        final boolean deleted = shelfService.delete(id);
-
-        return deleted
-                ? new ResponseEntity<>(HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+            return deleted
+                    ? new ResponseEntity<>(HttpStatus.OK)
+                    : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 }

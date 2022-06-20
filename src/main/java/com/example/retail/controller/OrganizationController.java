@@ -31,10 +31,15 @@ public class OrganizationController
     @PostMapping(value = "/organization", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<OrganizationDTO> create(@RequestBody OrganizationDTO organizationDTO) // Тип ответа явно не указан
     {
-        try{ organizationService.create(organizationDTO); }
-        catch (Exception e){System.out.println(e.getMessage());}
-
-        return new ResponseEntity<>(organizationDTO, HttpStatus.CREATED);
+        try{
+            organizationService.create(organizationDTO);
+            return new ResponseEntity<>(organizationDTO, HttpStatus.CREATED);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -44,15 +49,16 @@ public class OrganizationController
     @GetMapping(value = "/organization", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<List<OrganizationDTO>> readAll()
     {
-        try{ organizationService.readAll(); }
-        catch (Exception e){System.out.println(e.getMessage());}
+        try{
+            final List<OrganizationDTO> organizationDTOList = organizationService.readAll();
 
-        final List<OrganizationDTO> organizationDTOList = organizationService.readAll();
-
-        return new ResponseEntity<>(organizationDTOList, HttpStatus.OK);
-        /*return addressesDTO != null &&  !addressesDTO.isEmpty()
-                ? new ResponseEntity<>(addressesDTO, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_FOUND);*/
+            return new ResponseEntity<>(organizationDTOList, HttpStatus.OK);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -63,14 +69,18 @@ public class OrganizationController
     @GetMapping(value = "/organization/{id}", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<OrganizationDTO> read(@PathVariable(name = "id") Integer id)
     {
-        try{ organizationService.read(id); }
-        catch (Exception e){System.out.println(e.getMessage());}
+        try{
+            final OrganizationDTO organizationDTO = organizationService.read(id);
 
-        final OrganizationDTO organizationDTO = organizationService.read(id);
-
-        return organizationDTO != null // if else
-                ? new ResponseEntity<>(organizationDTO, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return organizationDTO != null // if else
+                    ? new ResponseEntity<>(organizationDTO, HttpStatus.OK)
+                    : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -82,14 +92,18 @@ public class OrganizationController
     @PutMapping(value = "/organization/{id}", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<OrganizationDTO> update(@PathVariable(name = "id") int id, @RequestBody OrganizationDTO organizationDTO)
     {
-        try{ organizationService.update(organizationDTO, id);}
-        catch (Exception e){System.out.println(e.getMessage());}
+        try{
+            OrganizationDTO updatedOrganizationDTO = organizationService.update(organizationDTO, id);
 
-        OrganizationDTO updatedOrganizationDTO = organizationService.update(organizationDTO, id);
-
-        return updatedOrganizationDTO != null
-                ? new ResponseEntity<>(updatedOrganizationDTO, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+            return updatedOrganizationDTO != null
+                    ? new ResponseEntity<>(updatedOrganizationDTO, HttpStatus.OK)
+                    : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -100,13 +114,16 @@ public class OrganizationController
     @DeleteMapping(value = "/organization/{id}", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<OrganizationDTO> delete(@PathVariable(name = "id") int id)
     {
-        try{ organizationService.delete(id); }
-        catch (Exception e){System.out.println(e.getMessage());}
-
-        final boolean deleted = organizationService.delete(id);
-
-        return deleted
-                ? new ResponseEntity<>(HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+        try{
+            final boolean deleted = organizationService.delete(id);
+            return deleted
+                    ? new ResponseEntity<>(HttpStatus.OK)
+                    : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 }

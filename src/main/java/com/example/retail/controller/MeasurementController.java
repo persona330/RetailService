@@ -31,10 +31,15 @@ public class MeasurementController
     @PostMapping(value = "/measurement", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<MeasurementDTO> create(@RequestBody MeasurementDTO measurementDTO) // Тип ответа явно не указан
     {
-        try{ measurementService.create(measurementDTO); }
-        catch (Exception e){System.out.println(e.getMessage());}
-
-        return new ResponseEntity<>(measurementDTO, HttpStatus.CREATED);
+        try {
+            measurementService.create(measurementDTO);
+            return new ResponseEntity<>(measurementDTO, HttpStatus.CREATED);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -44,12 +49,16 @@ public class MeasurementController
     @GetMapping(value = "/measurement", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<List<MeasurementDTO>> readAll()
     {
-        try{ measurementService.readAll(); }
-        catch (Exception e){System.out.println(e.getMessage());}
+        try{
+            final List<MeasurementDTO> measurementDTOList = measurementService.readAll();
 
-        final List<MeasurementDTO> measurementDTOList = measurementService.readAll();
-
-        return new ResponseEntity<>(measurementDTOList, HttpStatus.OK);
+            return new ResponseEntity<>(measurementDTOList, HttpStatus.OK);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -60,14 +69,18 @@ public class MeasurementController
     @GetMapping(value = "/measurement/{id}", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<MeasurementDTO> read(@PathVariable(name = "id") Integer id)
     {
-        try{ measurementService.read(id); }
-        catch (Exception e){System.out.println(e.getMessage());}
+        try{
+            final MeasurementDTO measurementDTO = measurementService.read(id);
 
-        final MeasurementDTO measurementDTO = measurementService.read(id);
-
-        return measurementDTO != null // if else
-                ? new ResponseEntity<>(measurementDTO, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return measurementDTO != null // if else
+                    ? new ResponseEntity<>(measurementDTO, HttpStatus.OK)
+                    : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -79,14 +92,18 @@ public class MeasurementController
     @PutMapping(value = "/measurement/{id}", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<MeasurementDTO> update(@PathVariable(name = "id") int id, @RequestBody MeasurementDTO measurementDTO)
     {
-        try{ measurementService.update(measurementDTO, id);}
-        catch (Exception e){System.out.println(e.getMessage());}
+        try{
+            MeasurementDTO updatedMeasurementDTO = measurementService.update(measurementDTO, id);
 
-        MeasurementDTO updatedMeasurementDTO = measurementService.update(measurementDTO, id);
-
-        return updatedMeasurementDTO != null
-                ? new ResponseEntity<>(updatedMeasurementDTO, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+            return updatedMeasurementDTO != null
+                    ? new ResponseEntity<>(updatedMeasurementDTO, HttpStatus.OK)
+                    : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -97,14 +114,17 @@ public class MeasurementController
     @DeleteMapping(value = "/measurement/{id}", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<MeasurementDTO> delete(@PathVariable(name = "id") int id)
     {
-        try{ measurementService.delete(id); }
-        catch (Exception e){System.out.println(e.getMessage());}
+        try{
+            final boolean deleted = measurementService.delete(id);
 
-        final boolean deleted = measurementService.delete(id);
-
-        return deleted
-                ? new ResponseEntity<>(HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+            return deleted
+                    ? new ResponseEntity<>(HttpStatus.OK)
+                    : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
-
 }

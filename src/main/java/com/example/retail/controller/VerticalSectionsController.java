@@ -31,10 +31,15 @@ public class VerticalSectionsController
     @PostMapping(value = "/vertical_sections", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<VerticalSectionsDTO> create(@RequestBody VerticalSectionsDTO verticalSectionsDTO) // Тип ответа явно не указан
     {
-        try{ verticalSectionsService.create(verticalSectionsDTO); }
-        catch (Exception e){System.out.println(e.getMessage());}
-
-        return new ResponseEntity<>(verticalSectionsDTO, HttpStatus.CREATED);
+        try{
+            verticalSectionsService.create(verticalSectionsDTO);
+            return new ResponseEntity<>(verticalSectionsDTO, HttpStatus.CREATED);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -44,15 +49,16 @@ public class VerticalSectionsController
     @GetMapping(value = "/vertical_sections", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<List<VerticalSectionsDTO>> readAll()
     {
-        try{ verticalSectionsService.readAll(); }
-        catch (Exception e){System.out.println(e.getMessage());}
+        try{
+            final List<VerticalSectionsDTO> verticalSectionsDTOList = verticalSectionsService.readAll();
 
-        final List<VerticalSectionsDTO> verticalSectionsDTOList = verticalSectionsService.readAll();
-
-        return new ResponseEntity<>(verticalSectionsDTOList, HttpStatus.OK);
-        /*return addressesDTO != null &&  !addressesDTO.isEmpty()
-                ? new ResponseEntity<>(addressesDTO, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_FOUND);*/
+            return new ResponseEntity<>(verticalSectionsDTOList, HttpStatus.OK);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -63,14 +69,18 @@ public class VerticalSectionsController
     @GetMapping(value = "/vertical_sections/{id}", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<VerticalSectionsDTO> read(@PathVariable(name = "id") Integer id)
     {
-        try{ verticalSectionsService.read(id); }
-        catch (Exception e){System.out.println(e.getMessage());}
+        try{
+            final VerticalSectionsDTO verticalSectionsDTO = verticalSectionsService.read(id);
 
-        final VerticalSectionsDTO verticalSectionsDTO = verticalSectionsService.read(id);
-
-        return verticalSectionsDTO != null // if else
-                ? new ResponseEntity<>(verticalSectionsDTO, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return verticalSectionsDTO != null // if else
+                    ? new ResponseEntity<>(verticalSectionsDTO, HttpStatus.OK)
+                    : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -82,14 +92,18 @@ public class VerticalSectionsController
     @PutMapping(value = "/vertical_sections/{id}", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<VerticalSectionsDTO> update(@PathVariable(name = "id") int id, @RequestBody VerticalSectionsDTO verticalSectionsDTO)
     {
-        try{ verticalSectionsService.update(verticalSectionsDTO, id);}
-        catch (Exception e){System.out.println(e.getMessage());}
+        try{
+            VerticalSectionsDTO updatedVerticalSectionsDTO = verticalSectionsService.update(verticalSectionsDTO, id);
 
-        VerticalSectionsDTO updatedVerticalSectionsDTO = verticalSectionsService.update(verticalSectionsDTO, id);
-
-        return updatedVerticalSectionsDTO != null
-                ? new ResponseEntity<>(updatedVerticalSectionsDTO, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+            return updatedVerticalSectionsDTO != null
+                    ? new ResponseEntity<>(updatedVerticalSectionsDTO, HttpStatus.OK)
+                    : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -100,13 +114,17 @@ public class VerticalSectionsController
     @DeleteMapping(value = "/vertical_sections/{id}", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<VerticalSectionsDTO> delete(@PathVariable(name = "id") int id)
     {
-        try{ verticalSectionsService.delete(id); }
-        catch (Exception e){System.out.println(e.getMessage());}
+        try{
+            final boolean deleted = verticalSectionsService.delete(id);
 
-        final boolean deleted = verticalSectionsService.delete(id);
-
-        return deleted
-                ? new ResponseEntity<>(HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+            return deleted
+                    ? new ResponseEntity<>(HttpStatus.OK)
+                    : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 }

@@ -1,16 +1,8 @@
 package com.example.retail.model.dto;
 
-import com.example.retail.model.entity.Address;
-import com.example.retail.model.entity.Communication;
-import com.example.retail.model.entity.Organization;
-import com.example.retail.model.entity.Person;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import org.springframework.beans.factory.annotation.Value;
-
-import javax.persistence.*;
 
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor

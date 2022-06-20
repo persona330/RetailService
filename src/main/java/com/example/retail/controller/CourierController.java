@@ -31,10 +31,15 @@ public class CourierController
     @PostMapping(value = "/courier", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<CourierDTO> create(@RequestBody CourierDTO courierDTO) // Тип ответа явно не указан
     {
-        try{ courierService.create(courierDTO); }
-        catch (Exception e){System.out.println(e.getMessage());}
-
-        return new ResponseEntity<>(courierDTO, HttpStatus.CREATED);
+        try{
+            courierService.create(courierDTO);
+            return new ResponseEntity<>(courierDTO, HttpStatus.CREATED);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -44,15 +49,16 @@ public class CourierController
     @GetMapping(value = "/courier", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<List<CourierDTO>> readAll()
     {
-        try{ courierService.readAll(); }
-        catch (Exception e){System.out.println(e.getMessage());}
+        try{
+            final List<CourierDTO> courierDTOList = courierService.readAll();
 
-        final List<CourierDTO> courierDTOList = courierService.readAll();
-
-        return new ResponseEntity<>(courierDTOList, HttpStatus.OK);
-        /*return addressesDTO != null &&  !addressesDTO.isEmpty()
-                ? new ResponseEntity<>(addressesDTO, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_FOUND);*/
+            return new ResponseEntity<>(courierDTOList, HttpStatus.OK);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -63,14 +69,18 @@ public class CourierController
     @GetMapping(value = "/courier/{id}", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<CourierDTO> read(@PathVariable(name = "id") Integer id)
     {
-        try{ courierService.read(id); }
-        catch (Exception e){System.out.println(e.getMessage());}
+        try{
+            final CourierDTO courierDTO = courierService.read(id);
 
-        final CourierDTO courierDTO = courierService.read(id);
-
-        return courierDTO != null // if else
-                ? new ResponseEntity<>(courierDTO, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return courierDTO != null // if else
+                    ? new ResponseEntity<>(courierDTO, HttpStatus.OK)
+                    : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -82,14 +92,18 @@ public class CourierController
     @PutMapping(value = "/courier/{id}", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<CourierDTO> update(@PathVariable(name = "id") int id, @RequestBody CourierDTO courierDTO)
     {
-        try{ courierService.update(courierDTO, id);}
-        catch (Exception e){System.out.println(e.getMessage());}
+        try{
+            CourierDTO updatedCourierDTO = courierService.update(courierDTO, id);
 
-        CourierDTO updatedCourierDTO = courierService.update(courierDTO, id);
-
-        return updatedCourierDTO != null
-                ? new ResponseEntity<>(updatedCourierDTO, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+            return updatedCourierDTO != null
+                    ? new ResponseEntity<>(updatedCourierDTO, HttpStatus.OK)
+                    : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -100,13 +114,17 @@ public class CourierController
     @DeleteMapping(value = "/courier/{id}", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<CourierDTO> delete(@PathVariable(name = "id") int id)
     {
-        try{ courierService.delete(id); }
-        catch (Exception e){System.out.println(e.getMessage());}
+        try{
+            final boolean deleted = courierService.delete(id);
 
-        final boolean deleted = courierService.delete(id);
-
-        return deleted
-                ? new ResponseEntity<>(HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+            return deleted
+                    ? new ResponseEntity<>(HttpStatus.OK)
+                    : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 }

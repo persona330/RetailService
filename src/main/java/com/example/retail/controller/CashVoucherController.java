@@ -31,10 +31,15 @@ public class CashVoucherController
     @PostMapping(value = "/cash_voucher", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<CashVoucherDTO> create(@RequestBody CashVoucherDTO cashVoucherDTO) // Тип ответа явно не указан
     {
-        try{ cashVoucherService.create(cashVoucherDTO); }
-        catch (Exception e){System.out.println(e.getMessage());}
-
-        return new ResponseEntity<>(cashVoucherDTO, HttpStatus.CREATED);
+        try{
+            cashVoucherService.create(cashVoucherDTO);
+            return new ResponseEntity<>(cashVoucherDTO, HttpStatus.CREATED);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -44,15 +49,16 @@ public class CashVoucherController
     @GetMapping(value = "/cash_voucher", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<List<CashVoucherDTO>> readAll()
     {
-        try{ cashVoucherService.readAll(); }
-        catch (Exception e){System.out.println(e.getMessage());}
+        try{
+            final List<CashVoucherDTO> cashVoucherDTOList = cashVoucherService.readAll();
 
-        final List<CashVoucherDTO> cashVoucherDTOList = cashVoucherService.readAll();
-
-        return new ResponseEntity<>(cashVoucherDTOList, HttpStatus.OK);
-        /*return addressesDTO != null &&  !addressesDTO.isEmpty()
-                ? new ResponseEntity<>(addressesDTO, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_FOUND);*/
+            return new ResponseEntity<>(cashVoucherDTOList, HttpStatus.OK);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -63,14 +69,18 @@ public class CashVoucherController
     @GetMapping(value = "/cash_voucher/{id}", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<CashVoucherDTO> read(@PathVariable(name = "id") Integer id)
     {
-        try{ cashVoucherService.read(id); }
-        catch (Exception e){System.out.println(e.getMessage());}
+        try{
+            final CashVoucherDTO cashVoucherDTO = cashVoucherService.read(id);
 
-        final CashVoucherDTO cashVoucherDTO = cashVoucherService.read(id);
-
-        return cashVoucherDTO != null // if else
-                ? new ResponseEntity<>(cashVoucherDTO, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return cashVoucherDTO != null // if else
+                    ? new ResponseEntity<>(cashVoucherDTO, HttpStatus.OK)
+                    : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -82,14 +92,18 @@ public class CashVoucherController
     @PutMapping(value = "/cash_voucher/{id}", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<CashVoucherDTO> update(@PathVariable(name = "id") int id, @RequestBody CashVoucherDTO cashVoucherDTO)
     {
-        try{ cashVoucherService.update(cashVoucherDTO, id);}
-        catch (Exception e){System.out.println(e.getMessage());}
+        try{
+            CashVoucherDTO updatedCashVoucherDTO = cashVoucherService.update(cashVoucherDTO, id);
 
-        CashVoucherDTO updatedCashVoucherDTO = cashVoucherService.update(cashVoucherDTO, id);
-
-        return updatedCashVoucherDTO != null
-                ? new ResponseEntity<>(updatedCashVoucherDTO, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+            return updatedCashVoucherDTO != null
+                    ? new ResponseEntity<>(updatedCashVoucherDTO, HttpStatus.OK)
+                    : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -100,13 +114,17 @@ public class CashVoucherController
     @DeleteMapping(value = "/cash_voucher/{id}", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<CashVoucherDTO> delete(@PathVariable(name = "id") int id)
     {
-        try{ cashVoucherService.delete(id); }
-        catch (Exception e){System.out.println(e.getMessage());}
+        try{
+            final boolean deleted = cashVoucherService.delete(id);
 
-        final boolean deleted = cashVoucherService.delete(id);
-
-        return deleted
-                ? new ResponseEntity<>(HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+            return deleted
+                    ? new ResponseEntity<>(HttpStatus.OK)
+                    : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 }

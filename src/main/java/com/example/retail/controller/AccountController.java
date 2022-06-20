@@ -31,10 +31,15 @@ public class AccountController
     @PostMapping(value = "/account", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<AccountDTO> create(@RequestBody AccountDTO accountDTO) // Тип ответа явно не указан
     {
-        try{ accountService.create(accountDTO); }
-        catch (Exception e){System.out.println(e.getMessage());}
-
-        return new ResponseEntity<>(accountDTO, HttpStatus.CREATED);
+        try
+        {
+            accountService.create(accountDTO);
+            return new ResponseEntity<>(accountDTO, HttpStatus.CREATED);
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -44,15 +49,15 @@ public class AccountController
     @GetMapping(value = "/account", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<List<AccountDTO>> readAll()
     {
-        try{ accountService.readAll(); }
-        catch (Exception e){System.out.println(e.getMessage());}
-
-        final List<AccountDTO> accountDTOList = accountService.readAll();
-
-        return new ResponseEntity<>(accountDTOList, HttpStatus.OK);
-        /*return addressesDTO != null &&  !addressesDTO.isEmpty()
-                ? new ResponseEntity<>(addressesDTO, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_FOUND);*/
+        try
+        {
+            final List<AccountDTO> accountDTOList = accountService.readAll();
+            return new ResponseEntity<>(accountDTOList, HttpStatus.OK);
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -63,14 +68,17 @@ public class AccountController
     @GetMapping(value = "/account/{id}", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<AccountDTO> read(@PathVariable(name = "id") Integer id)
     {
-        try{ accountService.read(id); }
-        catch (Exception e){System.out.println(e.getMessage());}
-
-        final AccountDTO accountDTO = accountService.read(id);
-
-        return accountDTO != null // if else
-                ? new ResponseEntity<>(accountDTO, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        try
+        {
+            final AccountDTO accountDTO = accountService.read(id);
+            return accountDTO != null // if else
+                    ? new ResponseEntity<>(accountDTO, HttpStatus.OK)
+                    : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -82,14 +90,19 @@ public class AccountController
     @PutMapping(value = "/account/{id}", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<AccountDTO> update(@PathVariable(name = "id") int id, @RequestBody AccountDTO accountDTO)
     {
-        try{ accountService.update(accountDTO, id);}
-        catch (Exception e){System.out.println(e.getMessage());}
+        try
+        {
+            AccountDTO updatedAccountDTO = accountService.update(accountDTO, id);
+            return updatedAccountDTO != null
+                    ? new ResponseEntity<>(updatedAccountDTO, HttpStatus.OK)
+                    : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
 
-        AccountDTO updatedAccountDTO = accountService.update(accountDTO, id);
 
-        return updatedAccountDTO != null
-                ? new ResponseEntity<>(updatedAccountDTO, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
 
     /**
@@ -100,13 +113,18 @@ public class AccountController
     @DeleteMapping(value = "/account/{id}", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<AccountDTO> delete(@PathVariable(name = "id") int id)
     {
-        try{ accountService.delete(id); }
-        catch (Exception e){System.out.println(e.getMessage());}
+        try
+        {
+            final boolean deleted = accountService.delete(id);
+            return deleted
+                    ? new ResponseEntity<>(HttpStatus.OK)
+                    : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
 
-        final boolean deleted = accountService.delete(id);
 
-        return deleted
-                ? new ResponseEntity<>(HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
 }

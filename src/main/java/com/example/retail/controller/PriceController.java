@@ -31,10 +31,15 @@ public class PriceController
     @PostMapping(value = "/price", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<PriceDTO> create(@RequestBody PriceDTO priceDTO) // Тип ответа явно не указан
     {
-        try{ priceService.create(priceDTO); }
-        catch (Exception e){System.out.println(e.getMessage());}
-
-        return new ResponseEntity<>(priceDTO, HttpStatus.CREATED);
+        try{
+            priceService.create(priceDTO);
+            return new ResponseEntity<>(priceDTO, HttpStatus.CREATED);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -44,12 +49,16 @@ public class PriceController
     @GetMapping(value = "/price", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<List<PriceDTO>> readAll()
     {
-        try{ priceService.readAll(); }
-        catch (Exception e){System.out.println(e.getMessage());}
+        try{
+            final List<PriceDTO> priceDTOList = priceService.readAll();
 
-        final List<PriceDTO> priceDTOList = priceService.readAll();
-
-        return new ResponseEntity<>(priceDTOList, HttpStatus.OK);
+            return new ResponseEntity<>(priceDTOList, HttpStatus.OK);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -60,14 +69,18 @@ public class PriceController
     @GetMapping(value = "/price/{id}", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<PriceDTO> read(@PathVariable(name = "id") Integer id)
     {
-        try{ priceService.read(id); }
-        catch (Exception e){System.out.println(e.getMessage());}
+        try{
+            final PriceDTO priceDTO = priceService.read(id);
 
-        final PriceDTO priceDTO = priceService.read(id);
-
-        return priceDTO != null // if else
-                ? new ResponseEntity<>(priceDTO, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return priceDTO != null // if else
+                    ? new ResponseEntity<>(priceDTO, HttpStatus.OK)
+                    : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -79,14 +92,18 @@ public class PriceController
     @PutMapping(value = "/price/{id}", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<PriceDTO> update(@PathVariable(name = "id") int id, @RequestBody PriceDTO priceDTO)
     {
-        try{ priceService.update(priceDTO, id);}
-        catch (Exception e){System.out.println(e.getMessage());}
+        try{
+            PriceDTO updatedPriceDTO = priceService.update(priceDTO, id);
 
-        PriceDTO updatedPriceDTO = priceService.update(priceDTO, id);
-
-        return updatedPriceDTO != null
-                ? new ResponseEntity<>(updatedPriceDTO, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+            return updatedPriceDTO != null
+                    ? new ResponseEntity<>(updatedPriceDTO, HttpStatus.OK)
+                    : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -97,14 +114,18 @@ public class PriceController
     @DeleteMapping(value = "/price/{id}", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<PriceDTO> delete(@PathVariable(name = "id") int id)
     {
-        try{ priceService.delete(id); }
-        catch (Exception e){System.out.println(e.getMessage());}
+        try{
+            final boolean deleted = priceService.delete(id);
 
-        final boolean deleted = priceService.delete(id);
-
-        return deleted
-                ? new ResponseEntity<>(HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+            return deleted
+                    ? new ResponseEntity<>(HttpStatus.OK)
+                    : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
 }

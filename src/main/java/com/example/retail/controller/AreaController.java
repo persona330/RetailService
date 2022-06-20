@@ -31,10 +31,15 @@ public class AreaController
     @PostMapping(value = "/area", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<AreaDTO> create(@RequestBody AreaDTO areaDTO) // Тип ответа явно не указан
     {
-        try{ areaService.create(areaDTO); }
-        catch (Exception e){System.out.println(e.getMessage());}
-
-        return new ResponseEntity<>(areaDTO, HttpStatus.CREATED);
+        try{
+            areaService.create(areaDTO);
+            return new ResponseEntity<>(areaDTO, HttpStatus.CREATED);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -44,15 +49,15 @@ public class AreaController
     @GetMapping(value = "/area", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<List<AreaDTO>> readAll()
     {
-        try{ areaService.readAll(); }
-        catch (Exception e){System.out.println(e.getMessage());}
-
-        final List<AreaDTO> areaDTOList = areaService.readAll();
-
-        return new ResponseEntity<>(areaDTOList, HttpStatus.OK);
-        /*return addressesDTO != null &&  !addressesDTO.isEmpty()
-                ? new ResponseEntity<>(addressesDTO, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_FOUND);*/
+        try{
+            final List<AreaDTO> areaDTOList = areaService.readAll();
+            return new ResponseEntity<>(areaDTOList, HttpStatus.OK);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -63,14 +68,19 @@ public class AreaController
     @GetMapping(value = "/area/{id}", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<AreaDTO> read(@PathVariable(name = "id") Integer id)
     {
-        try{ areaService.read(id); }
-        catch (Exception e){System.out.println(e.getMessage());}
+        try{
+            final AreaDTO areaDTO = areaService.read(id);
+            return areaDTO != null // if else
+                    ? new ResponseEntity<>(areaDTO, HttpStatus.OK)
+                    : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
 
-        final AreaDTO areaDTO = areaService.read(id);
 
-        return areaDTO != null // if else
-                ? new ResponseEntity<>(areaDTO, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     /**
@@ -82,14 +92,17 @@ public class AreaController
     @PutMapping(value = "/area/{id}", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<AreaDTO> update(@PathVariable(name = "id") int id, @RequestBody AreaDTO areaDTO)
     {
-        try{ areaService.update(areaDTO, id);}
-        catch (Exception e){System.out.println(e.getMessage());}
-
-        AreaDTO updatedAreaDTO = areaService.update(areaDTO, id);
-
-        return updatedAreaDTO != null
-                ? new ResponseEntity<>(updatedAreaDTO, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+        try{
+            AreaDTO updatedAreaDTO = areaService.update(areaDTO, id);
+            return updatedAreaDTO != null
+                    ? new ResponseEntity<>(updatedAreaDTO, HttpStatus.OK)
+                    : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -100,13 +113,16 @@ public class AreaController
     @DeleteMapping(value = "/area/{id}", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<AreaDTO> delete(@PathVariable(name = "id") int id)
     {
-        try{ areaService.delete(id); }
-        catch (Exception e){System.out.println(e.getMessage());}
-
-        final boolean deleted = areaService.delete(id);
-
-        return deleted
-                ? new ResponseEntity<>(HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+        try{
+            final boolean deleted = areaService.delete(id);
+            return deleted
+                    ? new ResponseEntity<>(HttpStatus.OK)
+                    : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 }

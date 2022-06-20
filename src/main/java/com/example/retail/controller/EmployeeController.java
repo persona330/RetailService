@@ -31,10 +31,15 @@ public class EmployeeController
     @PostMapping(value = "/employee", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<EmployeeDTO> create(@RequestBody EmployeeDTO employeeDTO) // Тип ответа явно не указан
     {
-        try{ employeeService.create(employeeDTO); }
-        catch (Exception e){System.out.println(e.getMessage());}
-
-        return new ResponseEntity<>(employeeDTO, HttpStatus.CREATED);
+        try{
+            employeeService.create(employeeDTO);
+            return new ResponseEntity<>(employeeDTO, HttpStatus.CREATED);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -44,12 +49,16 @@ public class EmployeeController
     @GetMapping(value = "/employee", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<List<EmployeeDTO>> readAll()
     {
-        try{ employeeService.readAll(); }
-        catch (Exception e){System.out.println(e.getMessage());}
+        try{
+            final List<EmployeeDTO> employeeDTOList = employeeService.readAll();
 
-        final List<EmployeeDTO> employeeDTOList = employeeService.readAll();
-
-        return new ResponseEntity<>(employeeDTOList, HttpStatus.OK);
+            return new ResponseEntity<>(employeeDTOList, HttpStatus.OK);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -60,14 +69,18 @@ public class EmployeeController
     @GetMapping(value = "/employee/{id}", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<EmployeeDTO> read(@PathVariable(name = "id") Integer id)
     {
-        try{ employeeService.read(id); }
-        catch (Exception e){System.out.println(e.getMessage());}
+        try{
+            final EmployeeDTO employeeDTO = employeeService.read(id);
 
-        final EmployeeDTO employeeDTO = employeeService.read(id);
-
-        return employeeDTO != null // if else
-                ? new ResponseEntity<>(employeeDTO, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return employeeDTO != null // if else
+                    ? new ResponseEntity<>(employeeDTO, HttpStatus.OK)
+                    : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -79,14 +92,18 @@ public class EmployeeController
     @PutMapping(value = "/employee/{id}", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<EmployeeDTO> update(@PathVariable(name = "id") int id, @RequestBody EmployeeDTO employeeDTO)
     {
-        try{ employeeService.update(employeeDTO, id);}
-        catch (Exception e){System.out.println(e.getMessage());}
+        try{
+            EmployeeDTO updatedEmployeedDTO = employeeService.update(employeeDTO, id);
 
-        EmployeeDTO updatedEmployeedDTO = employeeService.update(employeeDTO, id);
-
-        return updatedEmployeedDTO != null
-                ? new ResponseEntity<>(updatedEmployeedDTO, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+            return updatedEmployeedDTO != null
+                    ? new ResponseEntity<>(updatedEmployeedDTO, HttpStatus.OK)
+                    : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -97,13 +114,17 @@ public class EmployeeController
     @DeleteMapping(value = "/employee/{id}", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<EmployeeDTO> delete(@PathVariable(name = "id") int id)
     {
-        try{ employeeService.delete(id); }
-        catch (Exception e){System.out.println(e.getMessage());}
+        try{
+            final boolean deleted = employeeService.delete(id);
 
-        final boolean deleted = employeeService.delete(id);
-
-        return deleted
-                ? new ResponseEntity<>(HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+            return deleted
+                    ? new ResponseEntity<>(HttpStatus.OK)
+                    : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 }

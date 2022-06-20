@@ -31,10 +31,15 @@ public class StillageController
     @PostMapping(value = "/stillage", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<StillageDTO> create(@RequestBody StillageDTO stillageDTO) // Тип ответа явно не указан
     {
-        try{ stillageService.create(stillageDTO); }
-        catch (Exception e){System.out.println(e.getMessage());}
-
-        return new ResponseEntity<>(stillageDTO, HttpStatus.CREATED);
+        try{
+            stillageService.create(stillageDTO);
+            return new ResponseEntity<>(stillageDTO, HttpStatus.CREATED);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -44,15 +49,16 @@ public class StillageController
     @GetMapping(value = "/stillage", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<List<StillageDTO>> readAll()
     {
-        try{ stillageService.readAll(); }
-        catch (Exception e){System.out.println(e.getMessage());}
+        try{
+            final List<StillageDTO> stillageDTOList = stillageService.readAll();
 
-        final List<StillageDTO> stillageDTOList = stillageService.readAll();
-
-        return new ResponseEntity<>(stillageDTOList, HttpStatus.OK);
-        /*return addressesDTO != null &&  !addressesDTO.isEmpty()
-                ? new ResponseEntity<>(addressesDTO, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_FOUND);*/
+            return new ResponseEntity<>(stillageDTOList, HttpStatus.OK);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -63,14 +69,18 @@ public class StillageController
     @GetMapping(value = "/stillage/{id}", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<StillageDTO> read(@PathVariable(name = "id") Integer id)
     {
-        try{ stillageService.read(id); }
-        catch (Exception e){System.out.println(e.getMessage());}
+        try{
+            final StillageDTO stillageDTO = stillageService.read(id);
 
-        final StillageDTO stillageDTO = stillageService.read(id);
-
-        return stillageDTO != null // if else
-                ? new ResponseEntity<>(stillageDTO, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return stillageDTO != null // if else
+                    ? new ResponseEntity<>(stillageDTO, HttpStatus.OK)
+                    : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -82,14 +92,18 @@ public class StillageController
     @PutMapping(value = "/stillage/{id}", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<StillageDTO> update(@PathVariable(name = "id") int id, @RequestBody StillageDTO stillageDTO)
     {
-        try{ stillageService.update(stillageDTO, id);}
-        catch (Exception e){System.out.println(e.getMessage());}
+        try{
+            StillageDTO updatedStillageDTO = stillageService.update(stillageDTO, id);
 
-        StillageDTO updatedStillageDTO = stillageService.update(stillageDTO, id);
-
-        return updatedStillageDTO != null
-                ? new ResponseEntity<>(updatedStillageDTO, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+            return updatedStillageDTO != null
+                    ? new ResponseEntity<>(updatedStillageDTO, HttpStatus.OK)
+                    : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -100,13 +114,17 @@ public class StillageController
     @DeleteMapping(value = "/stillage/{id}", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<StillageDTO> delete(@PathVariable(name = "id") int id)
     {
-        try{ stillageService.delete(id); }
-        catch (Exception e){System.out.println(e.getMessage());}
+        try{
+            final boolean deleted = stillageService.delete(id);
 
-        final boolean deleted = stillageService.delete(id);
-
-        return deleted
-                ? new ResponseEntity<>(HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+            return deleted
+                    ? new ResponseEntity<>(HttpStatus.OK)
+                    : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 }

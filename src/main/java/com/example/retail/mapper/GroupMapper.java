@@ -1,9 +1,7 @@
 package com.example.retail.mapper;
 
 import com.example.retail.model.dto.GroupDTO;
-import com.example.retail.model.dto.ProducerDTO;
 import com.example.retail.model.entity.Group;
-import com.example.retail.model.entity.Producer;
 import org.mapstruct.Mapper;
 
 import java.util.List;

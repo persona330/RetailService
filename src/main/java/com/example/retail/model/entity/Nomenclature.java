@@ -1,5 +1,6 @@
 package com.example.retail.model.entity;
 
+import com.example.retail.model.dto.OrganizationDTO;
 import lombok.EqualsAndHashCode;
 import lombok.NonNull;
 
@@ -32,7 +33,7 @@ public class Nomenclature extends BaseEntity
     /**Свойство объем товара*/
     private BigDecimal size;
     /**Свойство производитель*/
-    private Producer producer;
+    private Organization organization;
     /**Свойство группа товара*/
     private Group group;
     /**Свойство единица измерения*/
@@ -44,7 +45,7 @@ public class Nomenclature extends BaseEntity
     /**Свойство продукт*/
     private Product product;
 
-    public Nomenclature(Integer id_Nomenclature, String name, String brand, BigDecimal cost, Date productionDate, Date expirationDate, BigDecimal weight, BigDecimal size, Producer producer, Group group, Measurement measurement, Box box, StorageConditions storageConditions, Product product)
+    public Nomenclature(Integer id_Nomenclature, String name, String brand, BigDecimal cost, Date productionDate, Date expirationDate, BigDecimal weight, BigDecimal size, Organization organization, Group group, Measurement measurement, Box box, StorageConditions storageConditions, Product product)
     {
         this.id_Nomenclature = id_Nomenclature;
         this.name = name;
@@ -54,7 +55,7 @@ public class Nomenclature extends BaseEntity
         this.expirationDate = expirationDate;
         this.weight = weight;
         this.size = size;
-        this.producer = producer;
+        this.organization = organization;
         this.group = group;
         this.measurement = measurement;
         this.box = box;
@@ -107,9 +108,9 @@ public class Nomenclature extends BaseEntity
 
     @NonNull
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "Producer")
-    public Producer getProducer() { return producer; }
-    public void setProducer(Producer producer) { this.producer = producer; }
+    @JoinColumn(name = "Organization")
+    public Organization getOrganization() { return organization; }
+    public void setOrganization(Organization organization) { this.organization = organization; }
 
     @NonNull
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)

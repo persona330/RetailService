@@ -31,10 +31,15 @@ public class OrderedController
     @PostMapping(value = "/ordered", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<OrderedDTO> create(@RequestBody OrderedDTO orderedDTO) // Тип ответа явно не указан
     {
-        try{ orderedService.create(orderedDTO); }
-        catch (Exception e){System.out.println(e.getMessage());}
-
-        return new ResponseEntity<>(orderedDTO, HttpStatus.CREATED);
+        try{
+            orderedService.create(orderedDTO);
+            return new ResponseEntity<>(orderedDTO, HttpStatus.CREATED);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -44,15 +49,16 @@ public class OrderedController
     @GetMapping(value = "/ordered", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<List<OrderedDTO>> readAll()
     {
-        try{ orderedService.readAll(); }
-        catch (Exception e){System.out.println(e.getMessage());}
+        try{
+            final List<OrderedDTO> orderedDTOList = orderedService.readAll();
 
-        final List<OrderedDTO> orderedDTOList = orderedService.readAll();
-
-        return new ResponseEntity<>(orderedDTOList, HttpStatus.OK);
-        /*return addressesDTO != null &&  !addressesDTO.isEmpty()
-                ? new ResponseEntity<>(addressesDTO, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_FOUND);*/
+            return new ResponseEntity<>(orderedDTOList, HttpStatus.OK);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -63,14 +69,18 @@ public class OrderedController
     @GetMapping(value = "/ordered/{id}", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<OrderedDTO> read(@PathVariable(name = "id") Integer id)
     {
-        try{ orderedService.read(id); }
-        catch (Exception e){System.out.println(e.getMessage());}
+        try{
+            final OrderedDTO orderedDTO = orderedService.read(id);
 
-        final OrderedDTO orderedDTO = orderedService.read(id);
-
-        return orderedDTO != null // if else
-                ? new ResponseEntity<>(orderedDTO, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return orderedDTO != null // if else
+                    ? new ResponseEntity<>(orderedDTO, HttpStatus.OK)
+                    : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -82,14 +92,18 @@ public class OrderedController
     @PutMapping(value = "/ordered/{id}", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<OrderedDTO> update(@PathVariable(name = "id") int id, @RequestBody OrderedDTO orderedDTO)
     {
-        try{ orderedService.update(orderedDTO, id);}
-        catch (Exception e){System.out.println(e.getMessage());}
+        try{
+            OrderedDTO updatedOrderedDTO = orderedService.update(orderedDTO, id);
 
-        OrderedDTO updatedOrderedDTO = orderedService.update(orderedDTO, id);
-
-        return updatedOrderedDTO != null
-                ? new ResponseEntity<>(updatedOrderedDTO, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+            return updatedOrderedDTO != null
+                    ? new ResponseEntity<>(updatedOrderedDTO, HttpStatus.OK)
+                    : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -100,14 +114,18 @@ public class OrderedController
     @DeleteMapping(value = "/ordered/{id}", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<OrderedDTO> delete(@PathVariable(name = "id") int id)
     {
-        try{ orderedService.delete(id); }
-        catch (Exception e){System.out.println(e.getMessage());}
+        try{
+            final boolean deleted = orderedService.delete(id);
 
-        final boolean deleted = orderedService.delete(id);
-
-        return deleted
-                ? new ResponseEntity<>(HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+            return deleted
+                    ? new ResponseEntity<>(HttpStatus.OK)
+                    : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
 }

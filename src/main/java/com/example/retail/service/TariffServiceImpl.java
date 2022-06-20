@@ -1,12 +1,8 @@
 package com.example.retail.service;
 
-import com.example.retail.mapper.ProducerMapper;
 import com.example.retail.mapper.TariffMapper;
-import com.example.retail.model.dto.ProducerDTO;
 import com.example.retail.model.dto.TariffDTO;
-import com.example.retail.model.entity.Producer;
 import com.example.retail.model.entity.Tariff;
-import com.example.retail.repository.ProducerRepository;
 import com.example.retail.repository.TariffRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

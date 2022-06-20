@@ -31,10 +31,15 @@ public class CalculatedSignController
     @PostMapping(value = "/calculated_sign", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<CalculatedSignDTO> create(@RequestBody CalculatedSignDTO calculatedSignDTO) // Тип ответа явно не указан
     {
-        try{ calculatedSignService.create(calculatedSignDTO); }
-        catch (Exception e){System.out.println(e.getMessage());}
-
-        return new ResponseEntity<>(calculatedSignDTO, HttpStatus.CREATED);
+        try{
+            calculatedSignService.create(calculatedSignDTO);
+            return new ResponseEntity<>(calculatedSignDTO, HttpStatus.CREATED);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -44,12 +49,16 @@ public class CalculatedSignController
     @GetMapping(value = "/calculated_sign", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<List<CalculatedSignDTO>> readAll()
     {
-        try{ calculatedSignService.readAll(); }
-        catch (Exception e){System.out.println(e.getMessage());}
+        try{
+            final List<CalculatedSignDTO> calculatedSignsDTO = calculatedSignService.readAll();
 
-        final List<CalculatedSignDTO> calculatedSignsDTO = calculatedSignService.readAll();
-
-        return new ResponseEntity<>(calculatedSignsDTO, HttpStatus.OK);
+            return new ResponseEntity<>(calculatedSignsDTO, HttpStatus.OK);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -60,14 +69,18 @@ public class CalculatedSignController
     @GetMapping(value = "/calculated_sign/{id}", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<CalculatedSignDTO> read(@PathVariable(name = "id") Integer id)
     {
-        try{ calculatedSignService.read(id); }
-        catch (Exception e){System.out.println(e.getMessage());}
+        try{
+            final CalculatedSignDTO calculatedSignDTO = calculatedSignService.read(id);
 
-        final CalculatedSignDTO calculatedSignDTO = calculatedSignService.read(id);
-
-        return calculatedSignDTO != null // if else
-                ? new ResponseEntity<>(calculatedSignDTO, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return calculatedSignDTO != null // if else
+                    ? new ResponseEntity<>(calculatedSignDTO, HttpStatus.OK)
+                    : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -79,14 +92,17 @@ public class CalculatedSignController
     @PutMapping(value = "/calculated_sign/{id}", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<CalculatedSignDTO> update(@PathVariable(name = "id") int id, @RequestBody CalculatedSignDTO calculatedSignDTO)
     {
-        try{ calculatedSignService.update(calculatedSignDTO, id);}
-        catch (Exception e){System.out.println(e.getMessage());}
+        try{
+            CalculatedSignDTO updatedCalculatedSignDTO = calculatedSignService.update(calculatedSignDTO, id);
 
-        CalculatedSignDTO updatedCalculatedSignDTO = calculatedSignService.update(calculatedSignDTO, id);
-
-        return updatedCalculatedSignDTO != null
-                ? new ResponseEntity<>(updatedCalculatedSignDTO, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+            return updatedCalculatedSignDTO != null
+                    ? new ResponseEntity<>(updatedCalculatedSignDTO, HttpStatus.OK)
+                    : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);}
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -97,14 +113,17 @@ public class CalculatedSignController
     @DeleteMapping(value = "/calculated_sign/{id}", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<CalculatedSignDTO> delete(@PathVariable(name = "id") int id)
     {
-        try{ calculatedSignService.delete(id); }
-        catch (Exception e){System.out.println(e.getMessage());}
+        try{
+            final boolean deleted = calculatedSignService.delete(id);
 
-        final boolean deleted = calculatedSignService.delete(id);
-
-        return deleted
-                ? new ResponseEntity<>(HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+            return deleted
+                    ? new ResponseEntity<>(HttpStatus.OK)
+                    : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
-
 }

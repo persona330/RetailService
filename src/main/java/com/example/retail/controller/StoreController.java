@@ -31,10 +31,15 @@ public class StoreController
     @PostMapping(value = "/store", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<StoreDTO> create(@RequestBody StoreDTO storeDTO) // Тип ответа явно не указан
     {
-        try{ storeService.create(storeDTO); }
-        catch (Exception e){System.out.println(e.getMessage());}
-
-        return new ResponseEntity<>(storeDTO, HttpStatus.CREATED);
+        try{
+            storeService.create(storeDTO);
+            return new ResponseEntity<>(storeDTO, HttpStatus.CREATED);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -44,15 +49,16 @@ public class StoreController
     @GetMapping(value = "/store", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<List<StoreDTO>> readAll()
     {
-        try{ storeService.readAll(); }
-        catch (Exception e){System.out.println(e.getMessage());}
+        try{
+            final List<StoreDTO> storeDTOList = storeService.readAll();
 
-        final List<StoreDTO> storeDTOList = storeService.readAll();
-
-        return new ResponseEntity<>(storeDTOList, HttpStatus.OK);
-        /*return addressesDTO != null &&  !addressesDTO.isEmpty()
-                ? new ResponseEntity<>(addressesDTO, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_FOUND);*/
+            return new ResponseEntity<>(storeDTOList, HttpStatus.OK);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -63,14 +69,18 @@ public class StoreController
     @GetMapping(value = "/store/{id}", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<StoreDTO> read(@PathVariable(name = "id") Integer id)
     {
-        try{ storeService.read(id); }
-        catch (Exception e){System.out.println(e.getMessage());}
+        try{
+            final StoreDTO storeDTO = storeService.read(id);
 
-        final StoreDTO storeDTO = storeService.read(id);
-
-        return storeDTO != null // if else
-                ? new ResponseEntity<>(storeDTO, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return storeDTO != null // if else
+                    ? new ResponseEntity<>(storeDTO, HttpStatus.OK)
+                    : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -82,14 +92,18 @@ public class StoreController
     @PutMapping(value = "/store/{id}", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<StoreDTO> update(@PathVariable(name = "id") int id, @RequestBody StoreDTO storeDTO)
     {
-        try{ storeService.update(storeDTO, id);}
-        catch (Exception e){System.out.println(e.getMessage());}
+        try{
+            StoreDTO updatedStoreDTO = storeService.update(storeDTO, id);
 
-        StoreDTO updatedStoreDTO = storeService.update(storeDTO, id);
-
-        return updatedStoreDTO != null
-                ? new ResponseEntity<>(updatedStoreDTO, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+            return updatedStoreDTO != null
+                    ? new ResponseEntity<>(updatedStoreDTO, HttpStatus.OK)
+                    : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -100,13 +114,17 @@ public class StoreController
     @DeleteMapping(value = "/store/{id}", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<StoreDTO> delete(@PathVariable(name = "id") int id)
     {
-        try{ storeService.delete(id); }
-        catch (Exception e){System.out.println(e.getMessage());}
+        try{
+            final boolean deleted = storeService.delete(id);
 
-        final boolean deleted = storeService.delete(id);
-
-        return deleted
-                ? new ResponseEntity<>(HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+            return deleted
+                    ? new ResponseEntity<>(HttpStatus.OK)
+                    : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 }

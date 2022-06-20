@@ -70,7 +70,7 @@ public class NomenclatureServiceImpl implements NomenclatureService
 
             if (nomenclaturetoEntity.getSize() == null) nomenclaturetoEntity.setSize(nomenclature.getSize());
 
-            if (nomenclaturetoEntity.getProducer() == null) nomenclaturetoEntity.setProducer(nomenclature.getProducer());
+            if (nomenclaturetoEntity.getOrganization() == null) nomenclaturetoEntity.setOrganization(nomenclature.getOrganization());
 
             if (nomenclaturetoEntity.getGroup() == null) nomenclaturetoEntity.setGroup(nomenclature.getGroup());
 

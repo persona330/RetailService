@@ -1,6 +1,5 @@
 package com.example.retail.service;
 
-import com.example.retail.model.dto.ProducerDTO;
 import com.example.retail.model.dto.TariffDTO;
 
 import java.util.List;

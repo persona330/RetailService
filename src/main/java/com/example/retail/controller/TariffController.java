@@ -30,10 +30,15 @@ public class TariffController
     @PostMapping(value = "/tariff", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<TariffDTO> create(@RequestBody TariffDTO tariffDTO) // Тип ответа явно не указан
     {
-        try{ tariffService.create(tariffDTO); }
-        catch (Exception e){System.out.println(e.getMessage());}
-
-        return new ResponseEntity<>(tariffDTO, HttpStatus.CREATED);
+        try{
+            tariffService.create(tariffDTO);
+            return new ResponseEntity<>(tariffDTO, HttpStatus.CREATED);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -43,12 +48,16 @@ public class TariffController
     @GetMapping(value = "/tariff", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<List<TariffDTO>> readAll()
     {
-        try{ tariffService.readAll(); }
-        catch (Exception e){System.out.println(e.getMessage());}
+        try{
+            final List<TariffDTO> tariffDTOList = tariffService.readAll();
 
-        final List<TariffDTO> tariffDTOList = tariffService.readAll();
-
-        return new ResponseEntity<>(tariffDTOList, HttpStatus.OK);
+            return new ResponseEntity<>(tariffDTOList, HttpStatus.OK);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -59,14 +68,18 @@ public class TariffController
     @GetMapping(value = "/tariff/{id}", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<TariffDTO> read(@PathVariable(name = "id") Integer id)
     {
-        try{ tariffService.read(id); }
-        catch (Exception e){System.out.println(e.getMessage());}
+        try{
+            final TariffDTO tariffDTO = tariffService.read(id);
 
-        final TariffDTO tariffDTO = tariffService.read(id);
-
-        return tariffDTO != null // if else
-                ? new ResponseEntity<>(tariffDTO, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return tariffDTO != null // if else
+                    ? new ResponseEntity<>(tariffDTO, HttpStatus.OK)
+                    : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -78,14 +91,18 @@ public class TariffController
     @PutMapping(value = "/tariff/{id}", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<TariffDTO> update(@PathVariable(name = "id") int id, @RequestBody TariffDTO tariffDTO)
     {
-        try{ tariffService.update(tariffDTO, id);}
-        catch (Exception e){System.out.println(e.getMessage());}
+        try{
+            TariffDTO updatedTariffDTO = tariffService.update(tariffDTO, id);
 
-        TariffDTO updatedTariffDTO = tariffService.update(tariffDTO, id);
-
-        return updatedTariffDTO != null
-                ? new ResponseEntity<>(updatedTariffDTO, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+            return updatedTariffDTO != null
+                    ? new ResponseEntity<>(updatedTariffDTO, HttpStatus.OK)
+                    : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -96,14 +113,17 @@ public class TariffController
     @DeleteMapping(value = "/tariff/{id}", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<TariffDTO> delete(@PathVariable(name = "id") int id)
     {
-        try{ tariffService.delete(id); }
-        catch (Exception e){System.out.println(e.getMessage());}
+        try{
+            final boolean deleted = tariffService.delete(id);
 
-        final boolean deleted = tariffService.delete(id);
-
-        return deleted
-                ? new ResponseEntity<>(HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+            return deleted
+                    ? new ResponseEntity<>(HttpStatus.OK)
+                    : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
-
 }

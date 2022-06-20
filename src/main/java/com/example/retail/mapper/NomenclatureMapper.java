@@ -10,12 +10,12 @@ import org.mapstruct.Mappings;
 
 import java.util.List;
 
-@Mapper(componentModel = "spring", uses = {ProducerMapper.class, MeasurementMapper.class, BoxMapper.class,
-        GroupMapper.class, StorageConditionsMapper.class, ProductMapper.class})
+@Mapper(componentModel = "spring", uses = {ProductMapper.class, MeasurementMapper.class, BoxMapper.class,
+        GroupMapper.class, StorageConditionsMapper.class, OrganizationMapper.class})
 public interface NomenclatureMapper
 {
     @Mappings({
-            @Mapping(target = "producer", source = "producerDTO"),
+            @Mapping(target = "organization", source = "organizationDTO"),
             @Mapping(target = "measurement", source = "measurementDTO"),
             @Mapping(target = "box", source = "boxDTO"),
             @Mapping(target = "group", source = "groupDTO"),
@@ -24,7 +24,7 @@ public interface NomenclatureMapper
     })
     Nomenclature toEntity(NomenclatureDTO dto);
     @Mappings({
-            @Mapping(target = "producerDTO", source = "producer"),
+            @Mapping(target = "organizationDTO", source = "organization"),
             @Mapping(target = "measurementDTO", source = "measurement"),
             @Mapping(target = "boxDTO", source = "box"),
             @Mapping(target = "groupDTO", source = "group"),

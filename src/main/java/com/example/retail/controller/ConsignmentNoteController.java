@@ -31,10 +31,15 @@ public class ConsignmentNoteController
     @PostMapping(value = "/consignment_note", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<ConsignmentNoteDTO> create(@RequestBody ConsignmentNoteDTO consignmentNoteDTO) // Тип ответа явно не указан
     {
-        try{ consignmentNoteService.create(consignmentNoteDTO); }
-        catch (Exception e){System.out.println(e.getMessage());}
-
-        return new ResponseEntity<>(consignmentNoteDTO, HttpStatus.CREATED);
+        try{
+            consignmentNoteService.create(consignmentNoteDTO);
+            return new ResponseEntity<>(consignmentNoteDTO, HttpStatus.CREATED);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -44,15 +49,16 @@ public class ConsignmentNoteController
     @GetMapping(value = "/consignment_note", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<List<ConsignmentNoteDTO>> readAll()
     {
-        try{ consignmentNoteService.readAll(); }
-        catch (Exception e){System.out.println(e.getMessage());}
+        try{
+            final List<ConsignmentNoteDTO> consignmentNoteDTOList = consignmentNoteService.readAll();
 
-        final List<ConsignmentNoteDTO> consignmentNoteDTOList = consignmentNoteService.readAll();
-
-        return new ResponseEntity<>(consignmentNoteDTOList, HttpStatus.OK);
-        /*return addressesDTO != null &&  !addressesDTO.isEmpty()
-                ? new ResponseEntity<>(addressesDTO, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_FOUND);*/
+            return new ResponseEntity<>(consignmentNoteDTOList, HttpStatus.OK);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -63,14 +69,18 @@ public class ConsignmentNoteController
     @GetMapping(value = "/consignment_note/{id}", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<ConsignmentNoteDTO> read(@PathVariable(name = "id") Integer id)
     {
-        try{ consignmentNoteService.read(id); }
-        catch (Exception e){System.out.println(e.getMessage());}
+        try{
+            final ConsignmentNoteDTO consignmentNoteDTO = consignmentNoteService.read(id);
 
-        final ConsignmentNoteDTO consignmentNoteDTO = consignmentNoteService.read(id);
-
-        return consignmentNoteDTO != null // if else
-                ? new ResponseEntity<>(consignmentNoteDTO, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return consignmentNoteDTO != null // if else
+                    ? new ResponseEntity<>(consignmentNoteDTO, HttpStatus.OK)
+                    : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -82,14 +92,18 @@ public class ConsignmentNoteController
     @PutMapping(value = "/consignment_note/{id}", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<ConsignmentNoteDTO> update(@PathVariable(name = "id") int id, @RequestBody ConsignmentNoteDTO consignmentNoteDTO)
     {
-        try{ consignmentNoteService.update(consignmentNoteDTO, id);}
-        catch (Exception e){System.out.println(e.getMessage());}
+        try{
+            ConsignmentNoteDTO updatedConsignmentNoteDTO = consignmentNoteService.update(consignmentNoteDTO, id);
 
-        ConsignmentNoteDTO updatedConsignmentNoteDTO = consignmentNoteService.update(consignmentNoteDTO, id);
-
-        return updatedConsignmentNoteDTO != null
-                ? new ResponseEntity<>(updatedConsignmentNoteDTO, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+            return updatedConsignmentNoteDTO != null
+                    ? new ResponseEntity<>(updatedConsignmentNoteDTO, HttpStatus.OK)
+                    : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -100,13 +114,16 @@ public class ConsignmentNoteController
     @DeleteMapping(value = "/consignment_note/{id}", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<ConsignmentNoteDTO> delete(@PathVariable(name = "id") int id)
     {
-        try{ consignmentNoteService.delete(id); }
-        catch (Exception e){System.out.println(e.getMessage());}
+        try{
+            final boolean deleted = consignmentNoteService.delete(id);
 
-        final boolean deleted = consignmentNoteService.delete(id);
-
-        return deleted
-                ? new ResponseEntity<>(HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+            return deleted
+                    ? new ResponseEntity<>(HttpStatus.OK)
+                    : new ResponseEntity<>(HttpStatus.NOT_MODIFIED); }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 }

@@ -1,6 +1,7 @@
 package com.example.retail.controller;
 
 import com.example.retail.model.dto.AddressDTO;
+import com.example.retail.model.dto.AreaDTO;
 import com.example.retail.model.dto.BoxDTO;
 import com.example.retail.service.AddressService;
 import com.example.retail.service.BoxService;
@@ -31,10 +32,15 @@ public class BoxController
     @PostMapping(value = "/box", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<BoxDTO> create(@RequestBody BoxDTO boxDTO) // Тип ответа явно не указан
     {
-        try{ boxService.create(boxDTO); }
-        catch (Exception e){System.out.println(e.getMessage());}
-
-        return new ResponseEntity<>(boxDTO, HttpStatus.CREATED);
+        try{
+            boxService.create(boxDTO);
+            return new ResponseEntity<>(boxDTO, HttpStatus.CREATED);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -44,15 +50,15 @@ public class BoxController
     @GetMapping(value = "/box", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<List<BoxDTO>> readAll()
     {
-        try{ boxService.readAll(); }
-        catch (Exception e){System.out.println(e.getMessage());}
-
-        final List<BoxDTO> boxDTOList = boxService.readAll();
-
-        return new ResponseEntity<>(boxDTOList, HttpStatus.OK);
-        /*return addressesDTO != null &&  !addressesDTO.isEmpty()
-                ? new ResponseEntity<>(addressesDTO, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_FOUND);*/
+        try{
+            final List<BoxDTO> boxDTOList = boxService.readAll();
+            return new ResponseEntity<>(boxDTOList, HttpStatus.OK);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -63,14 +69,17 @@ public class BoxController
     @GetMapping(value = "/box/{id}", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<BoxDTO> read(@PathVariable(name = "id") Integer id)
     {
-        try{ boxService.read(id); }
-        catch (Exception e){System.out.println(e.getMessage());}
-
-        final BoxDTO boxDTO = boxService.read(id);
-
-        return boxDTO != null // if else
-                ? new ResponseEntity<>(boxDTO, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        try{
+            final BoxDTO boxDTO = boxService.read(id);
+            return boxDTO != null // if else
+                    ? new ResponseEntity<>(boxDTO, HttpStatus.OK)
+                    : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -82,14 +91,17 @@ public class BoxController
     @PutMapping(value = "/box/{id}", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<BoxDTO> update(@PathVariable(name = "id") int id, @RequestBody BoxDTO boxDTO)
     {
-        try{ boxService.update(boxDTO, id);}
-        catch (Exception e){System.out.println(e.getMessage());}
-
-        BoxDTO updatedBoxDTO = boxService.update(boxDTO, id);
-
-        return updatedBoxDTO != null
-                ? new ResponseEntity<>(updatedBoxDTO, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+        try{
+            BoxDTO updatedBoxDTO = boxService.update(boxDTO, id);
+            return updatedBoxDTO != null
+                    ? new ResponseEntity<>(updatedBoxDTO, HttpStatus.OK)
+                    : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -100,13 +112,16 @@ public class BoxController
     @DeleteMapping(value = "/box/{id}", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<BoxDTO> delete(@PathVariable(name = "id") int id)
     {
-        try{ boxService.delete(id); }
-        catch (Exception e){System.out.println(e.getMessage());}
-
-        final boolean deleted = boxService.delete(id);
-
-        return deleted
-                ? new ResponseEntity<>(HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+        try{
+            final boolean deleted = boxService.delete(id);
+            return deleted
+                    ? new ResponseEntity<>(HttpStatus.OK)
+                    : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 }

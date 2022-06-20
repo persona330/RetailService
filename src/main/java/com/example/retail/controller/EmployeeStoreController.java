@@ -31,10 +31,15 @@ public class EmployeeStoreController
     @PostMapping(value = "/employee_store", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<EmployeeStoreDTO> create(@RequestBody EmployeeStoreDTO employeeStoreDTO) // Тип ответа явно не указан
     {
-        try{ employeeStoreService.create(employeeStoreDTO); }
-        catch (Exception e){System.out.println(e.getMessage());}
-
-        return new ResponseEntity<>(employeeStoreDTO, HttpStatus.CREATED);
+        try{
+            employeeStoreService.create(employeeStoreDTO);
+            return new ResponseEntity<>(employeeStoreDTO, HttpStatus.CREATED);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -44,15 +49,16 @@ public class EmployeeStoreController
     @GetMapping(value = "/employee_store", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<List<EmployeeStoreDTO>> readAll()
     {
-        try{ employeeStoreService.readAll(); }
-        catch (Exception e){System.out.println(e.getMessage());}
+        try{
+            final List<EmployeeStoreDTO> employeeStoreDTOList = employeeStoreService.readAll();
 
-        final List<EmployeeStoreDTO> employeeStoreDTOList = employeeStoreService.readAll();
-
-        return new ResponseEntity<>(employeeStoreDTOList, HttpStatus.OK);
-        /*return addressesDTO != null &&  !addressesDTO.isEmpty()
-                ? new ResponseEntity<>(addressesDTO, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_FOUND);*/
+            return new ResponseEntity<>(employeeStoreDTOList, HttpStatus.OK);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -63,14 +69,18 @@ public class EmployeeStoreController
     @GetMapping(value = "/employee_store/{id}", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<EmployeeStoreDTO> read(@PathVariable(name = "id") Integer id)
     {
-        try{ employeeStoreService.read(id); }
-        catch (Exception e){System.out.println(e.getMessage());}
+        try{
+            final EmployeeStoreDTO employeeStoreDTO = employeeStoreService.read(id);
 
-        final EmployeeStoreDTO employeeStoreDTO = employeeStoreService.read(id);
-
-        return employeeStoreDTO != null // if else
-                ? new ResponseEntity<>(employeeStoreDTO, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return employeeStoreDTO != null // if else
+                    ? new ResponseEntity<>(employeeStoreDTO, HttpStatus.OK)
+                    : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -82,14 +92,18 @@ public class EmployeeStoreController
     @PutMapping(value = "/employee_store/{id}", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<EmployeeStoreDTO> update(@PathVariable(name = "id") int id, @RequestBody EmployeeStoreDTO employeeStoreDTO)
     {
-        try{ employeeStoreService.update(employeeStoreDTO, id);}
-        catch (Exception e){System.out.println(e.getMessage());}
+        try{
+            EmployeeStoreDTO updatedEmployeeStoreDTO = employeeStoreService.update(employeeStoreDTO, id);
 
-        EmployeeStoreDTO updatedEmployeeStoreDTO = employeeStoreService.update(employeeStoreDTO, id);
-
-        return updatedEmployeeStoreDTO != null
-                ? new ResponseEntity<>(updatedEmployeeStoreDTO, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+            return updatedEmployeeStoreDTO != null
+                    ? new ResponseEntity<>(updatedEmployeeStoreDTO, HttpStatus.OK)
+                    : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -100,13 +114,17 @@ public class EmployeeStoreController
     @DeleteMapping(value = "/employee_store/{id}", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<EmployeeStoreDTO> delete(@PathVariable(name = "id") int id)
     {
-        try{ employeeStoreService.delete(id); }
-        catch (Exception e){System.out.println(e.getMessage());}
+        try{
+            final boolean deleted = employeeStoreService.delete(id);
 
-        final boolean deleted = employeeStoreService.delete(id);
-
-        return deleted
-                ? new ResponseEntity<>(HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+            return deleted
+                    ? new ResponseEntity<>(HttpStatus.OK)
+                    : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 }

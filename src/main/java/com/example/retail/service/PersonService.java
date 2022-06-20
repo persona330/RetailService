@@ -8,13 +8,6 @@ import java.util.List;
 
 public interface PersonService
 {
-    /**
-     * Создает новый адрес
-     * @param personDTO
-     * @return
-     */
-    PersonDTO create(PersonDTO personDTO);
-
     /**Возвращает список всех имеющихся адресов
      * @return список адресов
      */
@@ -26,14 +19,6 @@ public interface PersonService
      * @return объект адреса
      */
     PersonDTO read(Integer id);
-
-    /**
-     * Обновляет адрес с заданным id, в соотвествии с переданным адесом
-     * @param personDTO
-     * @param id
-     * @return true если данные были обновлены, иначе false
-     */
-    PersonDTO update(PersonDTO personDTO, Integer id);
 
     /**
      * Удаляет адрес с заданным id

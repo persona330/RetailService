@@ -31,10 +31,15 @@ public class OrderController
     @PostMapping(value = "/order", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<OrderDTO> create(@RequestBody OrderDTO orderDTO) // Тип ответа явно не указан
     {
-        try{ orderService.create(orderDTO); }
-        catch (Exception e){System.out.println(e.getMessage());}
-
-        return new ResponseEntity<>(orderDTO, HttpStatus.CREATED);
+        try{
+            orderService.create(orderDTO);
+            return new ResponseEntity<>(orderDTO, HttpStatus.CREATED);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -44,12 +49,16 @@ public class OrderController
     @GetMapping(value = "/order", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<List<OrderDTO>> readAll()
     {
-        try{ orderService.readAll(); }
-        catch (Exception e){System.out.println(e.getMessage());}
+        try{
+            final List<OrderDTO> orderDTOList = orderService.readAll();
 
-        final List<OrderDTO> orderDTOList = orderService.readAll();
-
-        return new ResponseEntity<>(orderDTOList, HttpStatus.OK);
+            return new ResponseEntity<>(orderDTOList, HttpStatus.OK);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -60,14 +69,18 @@ public class OrderController
     @GetMapping(value = "/order/{id}", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<OrderDTO> read(@PathVariable(name = "id") Integer id)
     {
-        try{ orderService.read(id); }
-        catch (Exception e){System.out.println(e.getMessage());}
+        try{
+            final OrderDTO orderDTO = orderService.read(id);
 
-        final OrderDTO orderDTO = orderService.read(id);
-
-        return orderDTO != null // if else
-                ? new ResponseEntity<>(orderDTO, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return orderDTO != null // if else
+                    ? new ResponseEntity<>(orderDTO, HttpStatus.OK)
+                    : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -79,14 +92,18 @@ public class OrderController
     @PutMapping(value = "/order/{id}", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<OrderDTO> update(@PathVariable(name = "id") int id, @RequestBody OrderDTO orderDTO)
     {
-        try{ orderService.update(orderDTO, id);}
-        catch (Exception e){System.out.println(e.getMessage());}
+        try{
+            OrderDTO updatedOrderDTO = orderService.update(orderDTO, id);
 
-        OrderDTO updatedOrderDTO = orderService.update(orderDTO, id);
-
-        return updatedOrderDTO != null
-                ? new ResponseEntity<>(updatedOrderDTO, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+            return updatedOrderDTO != null
+                    ? new ResponseEntity<>(updatedOrderDTO, HttpStatus.OK)
+                    : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -97,13 +114,17 @@ public class OrderController
     @DeleteMapping(value = "/order/{id}", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<OrderDTO> delete(@PathVariable(name = "id") int id)
     {
-        try{ orderService.delete(id); }
-        catch (Exception e){System.out.println(e.getMessage());}
+        try{
+            final boolean deleted = orderService.delete(id);
 
-        final boolean deleted = orderService.delete(id);
-
-        return deleted
-                ? new ResponseEntity<>(HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+            return deleted
+                    ? new ResponseEntity<>(HttpStatus.OK)
+                    : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 }

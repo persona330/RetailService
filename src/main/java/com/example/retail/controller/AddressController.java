@@ -29,10 +29,14 @@ public class AddressController
     @PostMapping(value = "/addresses", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<AddressDTO> create(@RequestBody AddressDTO addressDTO) // Тип ответа явно не указан
     {
-        try{ addressService.create(addressDTO); }
-        catch (Exception e){System.out.println(e.getMessage());}
-
-        return new ResponseEntity<>(addressDTO, HttpStatus.CREATED);
+        try{
+            addressService.create(addressDTO);
+            return new ResponseEntity<>(addressDTO, HttpStatus.CREATED);
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -42,15 +46,14 @@ public class AddressController
     @GetMapping(value = "/addresses", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<List<AddressDTO>> readAll()
     {
-        try{ addressService.readAll(); }
-        catch (Exception e){System.out.println(e.getMessage());}
-
-        final List<AddressDTO> addressesDTO = addressService.readAll();
-
-        return new ResponseEntity<>(addressesDTO, HttpStatus.OK);
-        /*return addressesDTO != null &&  !addressesDTO.isEmpty()
-                ? new ResponseEntity<>(addressesDTO, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_FOUND);*/
+        try{
+            final List<AddressDTO> addressesDTO = addressService.readAll();
+            return new ResponseEntity<>(addressesDTO, HttpStatus.OK);
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -61,14 +64,17 @@ public class AddressController
     @GetMapping(value = "/addresses/{id}", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<AddressDTO> read(@PathVariable(name = "id") Integer id)
     {
-        try{ addressService.read(id); }
-        catch (Exception e){System.out.println(e.getMessage());}
-
-        final AddressDTO addressDTO = addressService.read(id);
-
-        return addressDTO != null // if else
-                ? new ResponseEntity<>(addressDTO, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        try
+        {
+            final AddressDTO addressDTO = addressService.read(id);
+            return addressDTO != null // if else
+                    ? new ResponseEntity<>(addressDTO, HttpStatus.OK)
+                    : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -80,14 +86,17 @@ public class AddressController
     @PutMapping(value = "/addresses/{id}", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<AddressDTO> update(@PathVariable(name = "id") int id, @RequestBody AddressDTO addressDTO)
     {
-        try{ addressService.update(addressDTO, id);}
-        catch (Exception e){System.out.println(e.getMessage());}
-
-        AddressDTO updatedAddressDTO = addressService.update(addressDTO, id);
-
-        return updatedAddressDTO != null
-                ? new ResponseEntity<>(updatedAddressDTO, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+        try
+        {
+            AddressDTO updatedAddressDTO = addressService.update(addressDTO, id);
+            return updatedAddressDTO != null
+                    ? new ResponseEntity<>(updatedAddressDTO, HttpStatus.OK)
+                    : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -98,14 +107,16 @@ public class AddressController
     @DeleteMapping(value = "/addresses/{id}", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<AddressDTO> delete(@PathVariable(name = "id") int id)
     {
-        try{ addressService.delete(id); }
-        catch (Exception e){System.out.println(e.getMessage());}
-
-        final boolean deleted = addressService.delete(id);
-
-        return deleted
-                ? new ResponseEntity<>(HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+        try
+        {
+            final boolean deleted = addressService.delete(id);
+            return deleted
+                    ? new ResponseEntity<>(HttpStatus.OK)
+                    : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
-
 }

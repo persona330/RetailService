@@ -1,9 +1,7 @@
 package com.example.retail.mapper;
 
 import com.example.retail.model.dto.CustomerDTO;
-import com.example.retail.model.dto.ProducerDTO;
 import com.example.retail.model.entity.Customer;
-import com.example.retail.model.entity.Producer;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;

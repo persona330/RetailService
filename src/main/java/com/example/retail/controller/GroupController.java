@@ -31,10 +31,15 @@ public class GroupController
     @PostMapping(value = "/group", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<GroupDTO> create(@RequestBody GroupDTO groupDTO) // Тип ответа явно не указан
     {
-        try{ groupService.create(groupDTO); }
-        catch (Exception e){System.out.println(e.getMessage());}
-
-        return new ResponseEntity<>(groupDTO, HttpStatus.CREATED);
+        try{
+            groupService.create(groupDTO);
+            return new ResponseEntity<>(groupDTO, HttpStatus.CREATED);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -44,15 +49,16 @@ public class GroupController
     @GetMapping(value = "/group", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<List<GroupDTO>> readAll()
     {
-        try{ groupService.readAll(); }
-        catch (Exception e){System.out.println(e.getMessage());}
+        try{
+            final List<GroupDTO> groupDTOList = groupService.readAll();
 
-        final List<GroupDTO> groupDTOList = groupService.readAll();
-
-        return new ResponseEntity<>(groupDTOList, HttpStatus.OK);
-        /*return addressesDTO != null &&  !addressesDTO.isEmpty()
-                ? new ResponseEntity<>(addressesDTO, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_FOUND);*/
+            return new ResponseEntity<>(groupDTOList, HttpStatus.OK);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -63,14 +69,18 @@ public class GroupController
     @GetMapping(value = "/group/{id}", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<GroupDTO> read(@PathVariable(name = "id") Integer id)
     {
-        try{ groupService.read(id); }
-        catch (Exception e){System.out.println(e.getMessage());}
+        try{
+            final GroupDTO groupDTO = groupService.read(id);
 
-        final GroupDTO groupDTO = groupService.read(id);
-
-        return groupDTO != null // if else
-                ? new ResponseEntity<>(groupDTO, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return groupDTO != null // if else
+                    ? new ResponseEntity<>(groupDTO, HttpStatus.OK)
+                    : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -82,14 +92,18 @@ public class GroupController
     @PutMapping(value = "/group/{id}", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<GroupDTO> update(@PathVariable(name = "id") int id, @RequestBody GroupDTO groupDTO)
     {
-        try{ groupService.update(groupDTO, id);}
-        catch (Exception e){System.out.println(e.getMessage());}
+        try{
+            GroupDTO updatedGroupDTO = groupService.update(groupDTO, id);
 
-        GroupDTO updatedGroupDTO = groupService.update(groupDTO, id);
-
-        return updatedGroupDTO != null
-                ? new ResponseEntity<>(updatedGroupDTO, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+            return updatedGroupDTO != null
+                    ? new ResponseEntity<>(updatedGroupDTO, HttpStatus.OK)
+                    : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -100,13 +114,17 @@ public class GroupController
     @DeleteMapping(value = "/group/{id}", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<GroupDTO> delete(@PathVariable(name = "id") int id)
     {
-        try{ groupService.delete(id); }
-        catch (Exception e){System.out.println(e.getMessage());}
+        try{
+            final boolean deleted = groupService.delete(id);
 
-        final boolean deleted = groupService.delete(id);
-
-        return deleted
-                ? new ResponseEntity<>(HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+            return deleted
+                    ? new ResponseEntity<>(HttpStatus.OK)
+                    : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 }

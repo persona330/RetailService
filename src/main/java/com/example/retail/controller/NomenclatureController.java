@@ -31,10 +31,15 @@ public class NomenclatureController
     @PostMapping(value = "/nomenclature", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<NomenclatureDTO> create(@RequestBody NomenclatureDTO nomenclatureDTO) // Тип ответа явно не указан
     {
-        try{ nomenclatureService.create(nomenclatureDTO); }
-        catch (Exception e){System.out.println(e.getMessage());}
-
-        return new ResponseEntity<>(nomenclatureDTO, HttpStatus.CREATED);
+        try{
+            nomenclatureService.create(nomenclatureDTO);
+            return new ResponseEntity<>(nomenclatureDTO, HttpStatus.CREATED);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -44,15 +49,16 @@ public class NomenclatureController
     @GetMapping(value = "/nomenclature", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<List<NomenclatureDTO>> readAll()
     {
-        try{ nomenclatureService.readAll(); }
-        catch (Exception e){System.out.println(e.getMessage());}
+        try{
+            final List<NomenclatureDTO> nomenclatureDTOList = nomenclatureService.readAll();
 
-        final List<NomenclatureDTO> nomenclatureDTOList = nomenclatureService.readAll();
-
-        return new ResponseEntity<>(nomenclatureDTOList, HttpStatus.OK);
-        /*return addressesDTO != null &&  !addressesDTO.isEmpty()
-                ? new ResponseEntity<>(addressesDTO, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_FOUND);*/
+            return new ResponseEntity<>(nomenclatureDTOList, HttpStatus.OK);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -63,14 +69,18 @@ public class NomenclatureController
     @GetMapping(value = "/nomenclature/{id}", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<NomenclatureDTO> read(@PathVariable(name = "id") Integer id)
     {
-        try{ nomenclatureService.read(id); }
-        catch (Exception e){System.out.println(e.getMessage());}
+        try{
+            final NomenclatureDTO nomenclatureDTO = nomenclatureService.read(id);
 
-        final NomenclatureDTO nomenclatureDTO = nomenclatureService.read(id);
-
-        return nomenclatureDTO != null // if else
-                ? new ResponseEntity<>(nomenclatureDTO, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return nomenclatureDTO != null // if else
+                    ? new ResponseEntity<>(nomenclatureDTO, HttpStatus.OK)
+                    : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -82,14 +92,18 @@ public class NomenclatureController
     @PutMapping(value = "/nomenclature/{id}", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<NomenclatureDTO> update(@PathVariable(name = "id") int id, @RequestBody NomenclatureDTO nomenclatureDTO)
     {
-        try{ nomenclatureService.update(nomenclatureDTO, id);}
-        catch (Exception e){System.out.println(e.getMessage());}
+        try{
+            NomenclatureDTO updatedNomenclatureDTO = nomenclatureService.update(nomenclatureDTO, id);
 
-        NomenclatureDTO updatedNomenclatureDTO = nomenclatureService.update(nomenclatureDTO, id);
-
-        return updatedNomenclatureDTO != null
-                ? new ResponseEntity<>(updatedNomenclatureDTO, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+            return updatedNomenclatureDTO != null
+                    ? new ResponseEntity<>(updatedNomenclatureDTO, HttpStatus.OK)
+                    : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -100,13 +114,17 @@ public class NomenclatureController
     @DeleteMapping(value = "/nomenclature/{id}", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<NomenclatureDTO> delete(@PathVariable(name = "id") int id)
     {
-        try{ nomenclatureService.delete(id); }
-        catch (Exception e){System.out.println(e.getMessage());}
+        try{
+            final boolean deleted = nomenclatureService.delete(id);
 
-        final boolean deleted = nomenclatureService.delete(id);
-
-        return deleted
-                ? new ResponseEntity<>(HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+            return deleted
+                    ? new ResponseEntity<>(HttpStatus.OK)
+                    : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 }

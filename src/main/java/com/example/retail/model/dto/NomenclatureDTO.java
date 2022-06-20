@@ -32,7 +32,7 @@ public class NomenclatureDTO extends BaseDTO
     /**Свойство объем товара*/
     private BigDecimal size;
     /**Свойство производитель*/
-    private ProducerDTO producer;
+    private OrganizationDTO organization;
     /**Свойство группа товара*/
     private GroupDTO group;
     /**Свойство единица измерения*/
@@ -69,8 +69,8 @@ public class NomenclatureDTO extends BaseDTO
     public BigDecimal getSize() { return size; }
     public void setSize(BigDecimal size) { this.size = size; }
 
-    public ProducerDTO getProducerDTO() { return producer; }
-    public void setProducerDTO(ProducerDTO producer) { this.producer = producer; }
+    public OrganizationDTO getOrganizationDTO() { return organization; }
+    public void setOrganizationDTO(OrganizationDTO organization) { this.organization = organization; }
 
     public GroupDTO getGroupDTO() { return group; }
     public void setGroupDTO(GroupDTO group) { this.group = group; }

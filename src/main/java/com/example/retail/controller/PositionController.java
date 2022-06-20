@@ -31,10 +31,15 @@ public class PositionController
     @PostMapping(value = "/position", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<PositionDTO> create(@RequestBody PositionDTO positionDTO) // Тип ответа явно не указан
     {
-        try{ positionService.create(positionDTO); }
-        catch (Exception e){System.out.println(e.getMessage());}
-
-        return new ResponseEntity<>(positionDTO, HttpStatus.CREATED);
+        try{
+            positionService.create(positionDTO);
+            return new ResponseEntity<>(positionDTO, HttpStatus.CREATED);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -44,12 +49,16 @@ public class PositionController
     @GetMapping(value = "/position", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<List<PositionDTO>> readAll()
     {
-        try{ positionService.readAll(); }
-        catch (Exception e){System.out.println(e.getMessage());}
+        try{
+            final List<PositionDTO> positionDTOList = positionService.readAll();
 
-        final List<PositionDTO> positionDTOList = positionService.readAll();
-
-        return new ResponseEntity<>(positionDTOList, HttpStatus.OK);
+            return new ResponseEntity<>(positionDTOList, HttpStatus.OK);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -60,14 +69,18 @@ public class PositionController
     @GetMapping(value = "/position/{id}", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<PositionDTO> read(@PathVariable(name = "id") Integer id)
     {
-        try{ positionService.read(id); }
-        catch (Exception e){System.out.println(e.getMessage());}
+        try{
+            final PositionDTO positionDTO = positionService.read(id);
 
-        final PositionDTO positionDTO = positionService.read(id);
-
-        return positionDTO != null // if else
-                ? new ResponseEntity<>(positionDTO, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return positionDTO != null // if else
+                    ? new ResponseEntity<>(positionDTO, HttpStatus.OK)
+                    : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -79,14 +92,18 @@ public class PositionController
     @PutMapping(value = "/position/{id}", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<PositionDTO> update(@PathVariable(name = "id") int id, @RequestBody PositionDTO positionDTO)
     {
-        try{ positionService.update(positionDTO, id);}
-        catch (Exception e){System.out.println(e.getMessage());}
+        try{
+            PositionDTO updatedPositionDTO = positionService.update(positionDTO, id);
 
-        PositionDTO updatedPositionDTO = positionService.update(positionDTO, id);
-
-        return updatedPositionDTO != null
-                ? new ResponseEntity<>(updatedPositionDTO, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+            return updatedPositionDTO != null
+                    ? new ResponseEntity<>(updatedPositionDTO, HttpStatus.OK)
+                    : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -97,14 +114,17 @@ public class PositionController
     @DeleteMapping(value = "/position/{id}", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<PositionDTO> delete(@PathVariable(name = "id") int id)
     {
-        try{ positionService.delete(id); }
-        catch (Exception e){System.out.println(e.getMessage());}
+        try{
+            final boolean deleted = positionService.delete(id);
 
-        final boolean deleted = positionService.delete(id);
-
-        return deleted
-                ? new ResponseEntity<>(HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+            return deleted
+                    ? new ResponseEntity<>(HttpStatus.OK)
+                    : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
-
 }

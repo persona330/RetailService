@@ -31,10 +31,15 @@ public class ProductController
     @PostMapping(value = "/product", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<ProductDTO> create(@RequestBody ProductDTO productDTO) // Тип ответа явно не указан
     {
-        try{ productService.create(productDTO);}
-        catch (Exception e){System.out.println(e.getMessage());}
-
-        return new ResponseEntity<>(productDTO, HttpStatus.CREATED);
+        try{
+            productService.create(productDTO);
+            return new ResponseEntity<>(productDTO, HttpStatus.CREATED);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -44,12 +49,16 @@ public class ProductController
     @GetMapping(value = "/product", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<List<ProductDTO>> readAll()
     {
-        try{ productService.readAll(); }
-        catch (Exception e){System.out.println(e.getMessage());}
+        try{
+            final List<ProductDTO> productDTOList = productService.readAll();
 
-        final List<ProductDTO> productDTOList = productService.readAll();
-
-        return new ResponseEntity<>(productDTOList, HttpStatus.OK);
+            return new ResponseEntity<>(productDTOList, HttpStatus.OK);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -60,14 +69,18 @@ public class ProductController
     @GetMapping(value = "/product/{id}", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<ProductDTO> read(@PathVariable(name = "id") Integer id)
     {
-        try{ productService.read(id); }
-        catch (Exception e){System.out.println(e.getMessage());}
+        try{
+            final ProductDTO productDTO = productService.read(id);
 
-        final ProductDTO productDTO = productService.read(id);
-
-        return productDTO != null // if else
-                ? new ResponseEntity<>(productDTO, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return productDTO != null // if else
+                    ? new ResponseEntity<>(productDTO, HttpStatus.OK)
+                    : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -79,14 +92,18 @@ public class ProductController
     @PutMapping(value = "/product/{id}", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<ProductDTO> update(@PathVariable(name = "id") int id, @RequestBody ProductDTO productDTO)
     {
-        try{ productService.update(productDTO, id);}
-        catch (Exception e){System.out.println(e.getMessage());}
+        try{
+            ProductDTO updatedProductDTO = productService.update(productDTO, id);
 
-        ProductDTO updatedProductDTO = productService.update(productDTO, id);
-
-        return updatedProductDTO != null
-                ? new ResponseEntity<>(updatedProductDTO, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+            return updatedProductDTO != null
+                    ? new ResponseEntity<>(updatedProductDTO, HttpStatus.OK)
+                    : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -97,14 +114,18 @@ public class ProductController
     @DeleteMapping(value = "/product/{id}", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<ProductDTO> delete(@PathVariable(name = "id") int id)
     {
-        try{ productService.delete(id); }
-        catch (Exception e){System.out.println(e.getMessage());}
+        try{
+            final boolean deleted = productService.delete(id);
 
-        final boolean deleted = productService.delete(id);
-
-        return deleted
-                ? new ResponseEntity<>(HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+            return deleted
+                    ? new ResponseEntity<>(HttpStatus.OK)
+                    : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
 }

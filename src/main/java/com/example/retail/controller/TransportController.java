@@ -30,10 +30,15 @@ public class TransportController
     @PostMapping(value = "/transport", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<TransportDTO> create(@RequestBody TransportDTO transportDTO) // Тип ответа явно не указан
     {
-        try{ transportService.create(transportDTO); }
-        catch (Exception e){System.out.println(e.getMessage());}
-
-        return new ResponseEntity<>(transportDTO, HttpStatus.CREATED);
+        try{
+            transportService.create(transportDTO);
+            return new ResponseEntity<>(transportDTO, HttpStatus.CREATED);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -43,12 +48,16 @@ public class TransportController
     @GetMapping(value = "/transport", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<List<TransportDTO>> readAll()
     {
-        try{ transportService.readAll(); }
-        catch (Exception e){System.out.println(e.getMessage());}
+        try{
+            final List<TransportDTO> transportDTOList = transportService.readAll();
 
-        final List<TransportDTO> transportDTOList = transportService.readAll();
-
-        return new ResponseEntity<>(transportDTOList, HttpStatus.OK);
+            return new ResponseEntity<>(transportDTOList, HttpStatus.OK);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -59,14 +68,18 @@ public class TransportController
     @GetMapping(value = "/transport/{id}", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<TransportDTO> read(@PathVariable(name = "id") Integer id)
     {
-        try{ transportService.read(id); }
-        catch (Exception e){System.out.println(e.getMessage());}
+        try{
+            final TransportDTO transportDTO = transportService.read(id);
 
-        final TransportDTO transportDTO = transportService.read(id);
-
-        return transportDTO != null // if else
-                ? new ResponseEntity<>(transportDTO, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return transportDTO != null // if else
+                    ? new ResponseEntity<>(transportDTO, HttpStatus.OK)
+                    : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -78,14 +91,18 @@ public class TransportController
     @PutMapping(value = "/transport/{id}", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<TransportDTO> update(@PathVariable(name = "id") int id, @RequestBody TransportDTO transportDTO)
     {
-        try{ transportService.update(transportDTO, id);}
-        catch (Exception e){System.out.println(e.getMessage());}
+        try{
+            TransportDTO updatedTransportDTO = transportService.update(transportDTO, id);
 
-        TransportDTO updatedTransportDTO = transportService.update(transportDTO, id);
-
-        return updatedTransportDTO != null
-                ? new ResponseEntity<>(updatedTransportDTO, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+            return updatedTransportDTO != null
+                    ? new ResponseEntity<>(updatedTransportDTO, HttpStatus.OK)
+                    : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -96,14 +113,18 @@ public class TransportController
     @DeleteMapping(value = "/transport/{id}", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<TransportDTO> delete(@PathVariable(name = "id") int id)
     {
-        try{ transportService.delete(id); }
-        catch (Exception e){System.out.println(e.getMessage());}
+        try{
+            final boolean deleted = transportService.delete(id);
 
-        final boolean deleted = transportService.delete(id);
-
-        return deleted
-                ? new ResponseEntity<>(HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+            return deleted
+                    ? new ResponseEntity<>(HttpStatus.OK)
+                    : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
 }

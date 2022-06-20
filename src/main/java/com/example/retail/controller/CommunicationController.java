@@ -1,8 +1,6 @@
 package com.example.retail.controller;
 
-import com.example.retail.model.dto.AddressDTO;
 import com.example.retail.model.dto.CommunicationDTO;
-import com.example.retail.service.AddressService;
 import com.example.retail.service.CommunicationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -31,10 +29,16 @@ public class CommunicationController
     @PostMapping(value = "/communication", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<CommunicationDTO> create(@RequestBody CommunicationDTO communicationDTO) // Тип ответа явно не указан
     {
-        try{ communicationService.create(communicationDTO); }
-        catch (Exception e){System.out.println(e.getMessage());}
-
-        return new ResponseEntity<>(communicationDTO, HttpStatus.CREATED);
+        try
+        {
+            communicationService.create(communicationDTO);
+            return new ResponseEntity<>(communicationDTO, HttpStatus.CREATED);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -44,12 +48,16 @@ public class CommunicationController
     @GetMapping(value = "/communication", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<List<CommunicationDTO>> readAll()
     {
-        try{ communicationService.readAll(); }
-        catch (Exception e){System.out.println(e.getMessage());}
-
-        final List<CommunicationDTO> communicationsDTO = communicationService.readAll();
-
-        return new ResponseEntity<>(communicationsDTO, HttpStatus.OK);
+        try
+        {
+            final List<CommunicationDTO> communicationsDTO = communicationService.readAll();
+            return new ResponseEntity<>(communicationsDTO, HttpStatus.OK);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -60,14 +68,20 @@ public class CommunicationController
     @GetMapping(value = "/communication/{id}", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<CommunicationDTO> read(@PathVariable(name = "id") Integer id)
     {
-        try{ communicationService.read(id); }
-        catch (Exception e){System.out.println(e.getMessage());}
+        try
+        {
+            final CommunicationDTO communicationDTO = communicationService.read(id);
+            return communicationDTO != null // if else
+                    ? new ResponseEntity<>(communicationDTO, HttpStatus.OK)
+                    : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
 
-        final CommunicationDTO communicationDTO = communicationService.read(id);
 
-        return communicationDTO != null // if else
-                ? new ResponseEntity<>(communicationDTO, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     /**
@@ -79,14 +93,18 @@ public class CommunicationController
     @PutMapping(value = "/communication/{id}", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<CommunicationDTO> update(@PathVariable(name = "id") int id, @RequestBody CommunicationDTO communicationDTO)
     {
-        try{ communicationService.update(communicationDTO, id);}
-        catch (Exception e){System.out.println(e.getMessage());}
-
-        CommunicationDTO updatedCommunicationDTO = communicationService.update(communicationDTO, id);
-
-        return updatedCommunicationDTO != null
-                ? new ResponseEntity<>(updatedCommunicationDTO, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+        try
+        {
+            CommunicationDTO updatedCommunicationDTO = communicationService.update(communicationDTO, id);
+            return updatedCommunicationDTO != null
+                    ? new ResponseEntity<>(updatedCommunicationDTO, HttpStatus.OK)
+                    : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -97,14 +115,18 @@ public class CommunicationController
     @DeleteMapping(value = "/communication/{id}", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<CommunicationDTO> delete(@PathVariable(name = "id") int id)
     {
-        try{ communicationService.delete(id); }
-        catch (Exception e){System.out.println(e.getMessage());}
-
-        final boolean deleted = communicationService.delete(id);
-
-        return deleted
-                ? new ResponseEntity<>(HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+        try
+        {
+            final boolean deleted = communicationService.delete(id);
+            return deleted
+                    ? new ResponseEntity<>(HttpStatus.OK)
+                    : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
 }

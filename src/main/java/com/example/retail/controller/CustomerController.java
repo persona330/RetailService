@@ -31,10 +31,15 @@ public class CustomerController
     @PostMapping(value = "/customer", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<CustomerDTO> create(@RequestBody CustomerDTO customerDTO) // Тип ответа явно не указан
     {
-        try{ customerService.create(customerDTO); }
-        catch (Exception e){System.out.println(e.getMessage());}
-
-        return new ResponseEntity<>(customerDTO, HttpStatus.CREATED);
+        try{
+            customerService.create(customerDTO);
+            return new ResponseEntity<>(customerDTO, HttpStatus.CREATED);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -44,15 +49,16 @@ public class CustomerController
     @GetMapping(value = "/customer", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<List<CustomerDTO>> readAll()
     {
-        try{ customerService.readAll(); }
-        catch (Exception e){System.out.println(e.getMessage());}
+        try{
+            final List<CustomerDTO> customerDTOList = customerService.readAll();
 
-        final List<CustomerDTO> customerDTOList = customerService.readAll();
-
-        return new ResponseEntity<>(customerDTOList, HttpStatus.OK);
-        /*return addressesDTO != null &&  !addressesDTO.isEmpty()
-                ? new ResponseEntity<>(addressesDTO, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_FOUND);*/
+            return new ResponseEntity<>(customerDTOList, HttpStatus.OK);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -63,14 +69,18 @@ public class CustomerController
     @GetMapping(value = "/customer/{id}", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<CustomerDTO> read(@PathVariable(name = "id") Integer id)
     {
-        try{ customerService.read(id); }
-        catch (Exception e){System.out.println(e.getMessage());}
+        try{
+            final CustomerDTO customerDTO = customerService.read(id);
 
-        final CustomerDTO customerDTO = customerService.read(id);
-
-        return customerDTO != null // if else
-                ? new ResponseEntity<>(customerDTO, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return customerDTO != null // if else
+                    ? new ResponseEntity<>(customerDTO, HttpStatus.OK)
+                    : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -82,14 +92,18 @@ public class CustomerController
     @PutMapping(value = "/customer/{id}", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<CustomerDTO> update(@PathVariable(name = "id") int id, @RequestBody CustomerDTO customerDTO)
     {
-        try{ customerService.update(customerDTO, id);}
-        catch (Exception e){System.out.println(e.getMessage());}
+        try{
+            CustomerDTO updatedCustomerDTO = customerService.update(customerDTO, id);
 
-        CustomerDTO updatedCustomerDTO = customerService.update(customerDTO, id);
-
-        return updatedCustomerDTO != null
-                ? new ResponseEntity<>(updatedCustomerDTO, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+            return updatedCustomerDTO != null
+                    ? new ResponseEntity<>(updatedCustomerDTO, HttpStatus.OK)
+                    : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -100,13 +114,17 @@ public class CustomerController
     @DeleteMapping(value = "/customer/{id}", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<CustomerDTO> delete(@PathVariable(name = "id") int id)
     {
-        try{ customerService.delete(id); }
-        catch (Exception e){System.out.println(e.getMessage());}
+        try{
+            final boolean deleted = customerService.delete(id);
 
-        final boolean deleted = customerService.delete(id);
-
-        return deleted
-                ? new ResponseEntity<>(HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+            return deleted
+                    ? new ResponseEntity<>(HttpStatus.OK)
+                    : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 }

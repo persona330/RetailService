@@ -31,10 +31,15 @@ public class StorageConditionsController
     @PostMapping(value = "/storage_conditions", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<StorageConditionsDTO> create(@RequestBody StorageConditionsDTO storageConditionsDTO) // Тип ответа явно не указан
     {
-        try{ storageConditionsService.create(storageConditionsDTO); }
-        catch (Exception e){System.out.println(e.getMessage());}
-
-        return new ResponseEntity<>(storageConditionsDTO, HttpStatus.CREATED);
+        try{
+            storageConditionsService.create(storageConditionsDTO);
+            return new ResponseEntity<>(storageConditionsDTO, HttpStatus.CREATED);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -44,15 +49,16 @@ public class StorageConditionsController
     @GetMapping(value = "/storage_conditions", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<List<StorageConditionsDTO>> readAll()
     {
-        try{ storageConditionsService.readAll(); }
-        catch (Exception e){System.out.println(e.getMessage());}
+        try{
+            final List<StorageConditionsDTO> storageConditionsDTOList = storageConditionsService.readAll();
 
-        final List<StorageConditionsDTO> storageConditionsDTOList = storageConditionsService.readAll();
-
-        return new ResponseEntity<>(storageConditionsDTOList, HttpStatus.OK);
-        /*return addressesDTO != null &&  !addressesDTO.isEmpty()
-                ? new ResponseEntity<>(addressesDTO, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_FOUND);*/
+            return new ResponseEntity<>(storageConditionsDTOList, HttpStatus.OK);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -63,14 +69,18 @@ public class StorageConditionsController
     @GetMapping(value = "/storage_conditions/{id}", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<StorageConditionsDTO> read(@PathVariable(name = "id") Integer id)
     {
-        try{ storageConditionsService.read(id); }
-        catch (Exception e){System.out.println(e.getMessage());}
+        try{
+            final StorageConditionsDTO storageConditionsDTO = storageConditionsService.read(id);
 
-        final StorageConditionsDTO storageConditionsDTO = storageConditionsService.read(id);
-
-        return storageConditionsDTO != null // if else
-                ? new ResponseEntity<>(storageConditionsDTO, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return storageConditionsDTO != null // if else
+                    ? new ResponseEntity<>(storageConditionsDTO, HttpStatus.OK)
+                    : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -82,14 +92,18 @@ public class StorageConditionsController
     @PutMapping(value = "/storage_conditions/{id}", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<StorageConditionsDTO> update(@PathVariable(name = "id") int id, @RequestBody StorageConditionsDTO storageConditionsDTO)
     {
-        try{ storageConditionsService.update(storageConditionsDTO, id);}
-        catch (Exception e){System.out.println(e.getMessage());}
+        try{
+            StorageConditionsDTO updatedStorageConditionsDTO = storageConditionsService.update(storageConditionsDTO, id);
 
-        StorageConditionsDTO updatedStorageConditionsDTO = storageConditionsService.update(storageConditionsDTO, id);
-
-        return updatedStorageConditionsDTO != null
-                ? new ResponseEntity<>(updatedStorageConditionsDTO, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+            return updatedStorageConditionsDTO != null
+                    ? new ResponseEntity<>(updatedStorageConditionsDTO, HttpStatus.OK)
+                    : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -100,13 +114,17 @@ public class StorageConditionsController
     @DeleteMapping(value = "/storage_conditions/{id}", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<StorageConditionsDTO> delete(@PathVariable(name = "id") int id)
     {
-        try{ storageConditionsService.delete(id); }
-        catch (Exception e){System.out.println(e.getMessage());}
+        try{
+            final boolean deleted = storageConditionsService.delete(id);
 
-        final boolean deleted = storageConditionsService.delete(id);
-
-        return deleted
-                ? new ResponseEntity<>(HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+            return deleted
+                    ? new ResponseEntity<>(HttpStatus.OK)
+                    : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 }

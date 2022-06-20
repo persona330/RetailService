@@ -31,10 +31,15 @@ public class DeliveryController
     @PostMapping(value = "/delivery", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<DeliveryDTO> create(@RequestBody DeliveryDTO deliveryDTO) // Тип ответа явно не указан
     {
-        try{ deliveryService.create(deliveryDTO); }
-        catch (Exception e){System.out.println(e.getMessage());}
-
-        return new ResponseEntity<>(deliveryDTO, HttpStatus.CREATED);
+        try{
+            deliveryService.create(deliveryDTO);
+            return new ResponseEntity<>(deliveryDTO, HttpStatus.CREATED);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -44,15 +49,16 @@ public class DeliveryController
     @GetMapping(value = "/delivery", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<List<DeliveryDTO>> readAll()
     {
-        try{ deliveryService.readAll(); }
-        catch (Exception e){System.out.println(e.getMessage());}
+        try{
+            final List<DeliveryDTO> deliveryDTOList = deliveryService.readAll();
 
-        final List<DeliveryDTO> deliveryDTOList = deliveryService.readAll();
-
-        return new ResponseEntity<>(deliveryDTOList, HttpStatus.OK);
-        /*return addressesDTO != null &&  !addressesDTO.isEmpty()
-                ? new ResponseEntity<>(addressesDTO, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_FOUND);*/
+            return new ResponseEntity<>(deliveryDTOList, HttpStatus.OK);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -63,14 +69,18 @@ public class DeliveryController
     @GetMapping(value = "/delivery/{id}", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<DeliveryDTO> read(@PathVariable(name = "id") Integer id)
     {
-        try{ deliveryService.read(id); }
-        catch (Exception e){System.out.println(e.getMessage());}
+        try{
+            final DeliveryDTO deliveryDTO = deliveryService.read(id);
 
-        final DeliveryDTO deliveryDTO = deliveryService.read(id);
-
-        return deliveryDTO != null // if else
-                ? new ResponseEntity<>(deliveryDTO, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return deliveryDTO != null // if else
+                    ? new ResponseEntity<>(deliveryDTO, HttpStatus.OK)
+                    : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -82,14 +92,18 @@ public class DeliveryController
     @PutMapping(value = "/delivery/{id}", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<DeliveryDTO> update(@PathVariable(name = "id") int id, @RequestBody DeliveryDTO deliveryDTO)
     {
-        try{ deliveryService.update(deliveryDTO, id);}
-        catch (Exception e){System.out.println(e.getMessage());}
+        try{
+            DeliveryDTO updatedDeliveryDTO = deliveryService.update(deliveryDTO, id);
 
-        DeliveryDTO updatedDeliveryDTO = deliveryService.update(deliveryDTO, id);
-
-        return updatedDeliveryDTO != null
-                ? new ResponseEntity<>(updatedDeliveryDTO, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+            return updatedDeliveryDTO != null
+                    ? new ResponseEntity<>(updatedDeliveryDTO, HttpStatus.OK)
+                    : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
@@ -100,13 +114,17 @@ public class DeliveryController
     @DeleteMapping(value = "/delivery/{id}", produces = {"application/json; charset=UTF-8"})
     public ResponseEntity<DeliveryDTO> delete(@PathVariable(name = "id") int id)
     {
-        try{ deliveryService.delete(id); }
-        catch (Exception e){System.out.println(e.getMessage());}
+        try{
+            final boolean deleted = deliveryService.delete(id);
 
-        final boolean deleted = deliveryService.delete(id);
-
-        return deleted
-                ? new ResponseEntity<>(HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+            return deleted
+                    ? new ResponseEntity<>(HttpStatus.OK)
+                    : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 }
