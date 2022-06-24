@@ -15,5 +15,4 @@ public interface PriceMapper
     @Mapping(target = "measurementDTO", source = "measurement")
     PriceDTO toDTO(Price entity);
     List<PriceDTO> listToDTO(List<Price> entityList);
-
 }
