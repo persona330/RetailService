@@ -79,8 +79,6 @@ public class AreaController
             System.out.println(e.getMessage());
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-
-
     }
 
     /**

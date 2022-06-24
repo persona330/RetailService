@@ -101,8 +101,6 @@ public class AccountController
             System.out.println(e.getMessage());
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-
-
     }
 
     /**
@@ -124,7 +122,5 @@ public class AccountController
             System.out.println(e.getMessage());
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-
-
     }
 }

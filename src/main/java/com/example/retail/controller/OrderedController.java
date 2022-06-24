@@ -126,5 +126,4 @@ public class OrderedController
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
-
 }

@@ -127,5 +127,4 @@ public class PriceController
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
-
 }
